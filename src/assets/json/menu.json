@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Cabinet",
+    "level": 0,
+    "children": [
+      {
+        "name": "Aiguilles et seringues",
+        "level": 1,
+        "children": [
+          { "name": "Accessoires anésthésie", "level": 2 },
+          { "name": "Aiguilles dentaires", "level": 2 },
+          { "name": "Irrigation dentaire", "level": 2 },
+          { "name": "Seringues", "level": 2 }
+        ]
+      },
+      {
+        "name": "Blanchiment Dentaire",
+        "level": 1,
+        "children": [
+          { "name": "Kits de blanchiments à domicile", "level": 2 },
+          { "name": "Kits de blanchiments en cabinet", "level": 2 },
+          {
+            "name": "Kits et Accessoires pour blanchiments dentaires",
+            "level": 2
+          }
+        ]
+      },
+      {
+        "name": "Chirurgie et parodontie",
+        "level": 1,
+        "children": [
+          { "name": "Bistouris Microchirurgie", "level": 2 },
+          { "name": "Burins", "level": 2 },
+          { "name": "Ciseaux", "level": 2 },
+          { "name": "Dissecteurs", "level": 2 },
+          { "name": "Élévateurs à racines", "level": 2 },
+          { "name": "Élévateurs", "level": 2 },
+          { "name": "Forceps", "level": 2 },
+          { "name": "Hémostatique", "level": 2 },
+          { "name": "Lames de bistouri", "level": 2 }
+        ]
+      },
+      {
+        "name": "Fraises",
+        "level": 1,
+        "children": [
+          { "name": "Fraises Arkansas", "level": 2 },
+          { "name": "Fraises d'Acier", "level": 2 },
+          { "name": "Fraises de Laboratoire", "level": 2 },
+          { "name": "Fraises Diamantées", "level": 2 },
+          { "name": "Fraises en Tungstène", "level": 2 },
+          { "name": "Fraises Pivots", "level": 2 },
+          { "name": "Fraises pour découper le métal", "level": 2 },
+          { "name": "Kits de Fraises", "level": 2 },
+          { "name": "Kits de Fraises", "level": 2 },
+          { "name": "Fraises de Trépane", "level": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Equipement",
+    "level": 0,
+    "children": [
+      {
+        "name": "Appareils de Chirurgie",
+        "level": 1,
+        "children": [
+          { "name": "Équipement de Chirurgie au Laser", "level": 2 },
+          { "name": "Contre-angle pour Implants", "level": 2 },
+          { "name": "Moteurs implantologie", "level": 2 },
+          { "name": "Piezoélectriques de Chirurgie", "level": 2 },
+          { "name": "Préparation Plasma", "level": 2 }
+        ]
+      },
+      {
+        "name": "Endodontique",
+        "level": 1,
+        "children": [
+          { "name": "Contre-Angle", "level": 2 },
+          { "name": "Localisateur d'Apex", "level": 2 },
+          { "name": "Loupes Binoculaires", "level": 2 },
+          { "name": "Moteurs d'Endodontie", "level": 2 },
+          { "name": "Systèmes d'Étanchéité", "level": 2 }
+        ]
+      },
+      {
+        "name": "Esthétique et Restauration",
+        "level": 1,
+        "children": [
+          { "name": "Appareils d'Esthétique Faciale", "level": 2 },
+          { "name": "Lampes à Blanchiment", "level": 2 },
+          { "name": "Lampes à Photopolymérisation", "level": 2 },
+          { "name": "Machine pour thermoformage", "level": 2 },
+          { "name": "Mélangeurs de capsules", "level": 2 }
+        ]
+      },
+      {
+        "name": "Mobiliers Pour Cabinet",
+        "level": 1,
+        "children": [
+          { "name": "Chariots de Cabinet", "level": 2 },
+          { "name": "Fauteuils Dentaires", "level": 2 },
+          { "name": "Lampe pour Cabinet", "level": 2 },
+          { "name": "Lampes de Bloc Opératoire", "level": 2 },
+          { "name": "Meubles de bureau", "level": 2 },
+          { "name": "Raccords", "level": 2 },
+          { "name": "Tables de Cabinet", "level": 2 },
+          { "name": "Tables de Laboratoire", "level": 2 },
+          { "name": "Tabourets", "level": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Laboratoire",
+    "level": 0,
+    "children": [
+      {
+        "name": "Abrasifs et Polisseurs",
+        "level": 1,
+        "children": [
+          { "name": "Cônes et Feutres", "level": 2 },
+          { "name": "Disques", "level": 2 },
+          { "name": "Polisseurs", "level": 2 },
+          { "name": "Sableuses et Consommables", "level": 2 }
+        ]
+      },
+      {
+        "name": "Alliages Métalliques et Métaux",
+        "level": 1,
+        "children": [
+          { "name": "Alliages Métalliques", "level": 2 },
+          { "name": "Attaches Laboratoire", "level": 2 },
+          { "name": "Bondings", "level": 2 },
+          { "name": "Grilles et Renforts", "level": 2 },
+          { "name": "Soudures", "level": 2 }
+        ]
+      },
+      {
+        "name": "Appareils de Laboratoire",
+        "level": 1,
+        "children": [
+          { "name": "Brûleurs Alcool ou à Gaz", "level": 2 },
+          { "name": "Mesures et Calibrage", "level": 2 },
+          { "name": "Pinceaux de restauration", "level": 2 },
+          { "name": "Pinces de Laboratoire", "level": 2 },
+          { "name": "Divers Appareils", "level": 2 }
+        ]
+      },
+      {
+        "name": "Revêtements",
+        "level": 1,
+        "children": [
+          { "name": "Cires pour Collage", "level": 2 },
+          { "name": "Creusets Laboratoire", "level": 2 },
+          { "name": "Cylindres", "level": 2 },
+          { "name": "Prothèses", "level": 2 },
+          { "name": "Revêtement de Prothèses", "level": 2 }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="filters">
+        <h2>Catégories</h2>
+        <p> <a href="#">Draps d'examen</a></p>
+        <p><a href="#">Gobelets</a></p>
+        <p><a href="#">Canules</a></p>
+        <p><a href="#">Divers</a></p>
+        <p><a href="#">Essuyage</a></p>
+        <h2>Filtrer les résultats</h2>
+        <h3>Minimum De Commande</h3>
+        <mat-form-field appearance="outline">
+            <mat-label>pièces</mat-label>
+            <input matInput autocomplete="off">
+        </mat-form-field>
+        <h3>Prix Par Pièce</h3>
+        <mat-form-field appearance="outline">
+            <mat-label>prix par pièce maximum</mat-label>
+            <input matInput autocomplete="off">
+            <mat-icon matSuffix>euro</mat-icon>
+        </mat-form-field>
+        <h3>Vendeurs</h3>
+        <mat-checkbox color="primary">Dentalix</mat-checkbox>
+        <mat-checkbox color="primary">Mercura</mat-checkbox>
+        <mat-checkbox color="primary">Allo Dent</mat-checkbox>
+    </div>
+    <div class="products-list">
+        <mat-card class="product-card" *ngFor="let product of products | async">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{product.product_name}}</mat-card-title>
+                <!-- <mat-card-subtitle>{{product.id}}</mat-card-subtitle> -->
+            </mat-card-header>
+            <img mat-card-image src="https://picsum.photos/150?sig=`{{product.id}}`">
+            <mat-card-content>
+                <p>
+                    <span class="product-price">{{product.price}} € </span>
+                    <span>/ pcs</span>
+                </p>
+                <p>
+                    A partir de {{product.order_min}} pièces
+                </p>
+                <div class="rating">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                    <p>42 avis</p>
+                </div>
+                <p class="delivery-time">
+                    Livraison sous 3 à 5 jours
+                    <mat-icon aria-hidden="false">departure_board</mat-icon>
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button>Voir les offres</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+$primary-color: #10257f;
+$secondary-color: #52d2ac;
+//$secondary-color: #69f0ae;
+
+$second-color-gradiant: linear-gradient(
+  180deg,
+  rgba(169, 233, 214, 1) 0%,
+  rgba(82, 210, 172, 1) 100%
+);
+
+$border-radius-primary: max(0px, min(8px, calc((100vw - 4px - 100%) * 9999))) /
+  8px;

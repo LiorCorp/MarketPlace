@@ -1,0 +1,62 @@
+@import "../style/style.scss";
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+mat-tree {
+  display: flex;
+  position: relative;
+  z-index: 10;
+  background-color: $primary-color;
+  padding-left: 2rem;
+  justify-content: center;
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    mat-nested-tree-node > li {
+      ul.tree-child-0 {
+        position: absolute;
+        width: 30rem;
+        height: auto;
+        border-radius: 0px 0px 1rem 1rem;
+        backdrop-filter: blur(10px);
+        background-color: rgba(180, 204, 215, 0.55);
+        box-shadow: -1px 1px 14px -1px rgba(0, 0, 0, 0.4);
+        -webkit-backdrop-filter: blur(10px);
+        -webkit-box-shadow: -1px 1px 14px -1px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: -1px 1px 14px -1px rgba(0, 0, 0, 0.4);
+
+        mat-nested-tree-node > li {
+          display: flex;
+          align-items: flex-start;
+          align-content: flex-start;
+        }
+
+        mat-tree-node > li {
+          color: $primary-color;
+        }
+      }
+      ul.tree-child-1 {
+        padding-right: 2.5rem;
+        padding-left: 0;
+      }
+    }
+  }
+
+  mat-nested-tree-node > li > div {
+    font-size: medium;
+    padding-right: 1rem;
+    color: #ffffff;
+
+    button {
+      width: auto;
+    }
+  }
+}
