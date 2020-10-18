@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,11 @@ import { ChangeDetectorRef, Component } from '@angular/core';
   animations: [
     trigger('page', [
       state('open', style({
-        transform: 'translateX(-2%) rotateY(40deg) scale(0.65)',
+        transform: 'translateX(-2%) scale(0.45)',
         'transform-origin': 'right 60%',
-        'clip-path': 'polygon(0 2%, 100% 0, 100% 100%, 0 97%)',
         overflow: 'hidden',
         'border-radius': '1rem',
+        cursor: 'pointer'
       })), state('closed', style({
         overflow: 'auto',
       })),
@@ -27,11 +27,13 @@ export class AppComponent {
   menuOpened: boolean;
   menuClosed: boolean;
   disabledMenuButton: boolean;
+  menuHover: boolean;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor() {
     this.menuOpened = false;
     this.menuClosed = true;
     this.disabledMenuButton = false;
+    this.menuHover = false;
   }
 
   openMenu(open: boolean): void {
