@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
   animations: [
     trigger('page', [
       state('open', style({
-        transform: 'translateX(-2%) scale(0.45)',
-        'transform-origin': 'right 60%',
+        transform: 'translateX(-2%) scale(0.5)',
+        'transform-origin': 'right 50%',
         overflow: 'hidden',
         'border-radius': '1rem',
         cursor: 'pointer'
