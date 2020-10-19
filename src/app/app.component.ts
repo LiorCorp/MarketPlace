@@ -12,7 +12,8 @@ import { Component } from '@angular/core';
         'transform-origin': 'right 50%',
         overflow: 'hidden',
         'border-radius': '1rem',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        'box-shadow': '21px -14px 50px 0px rgba(0,0,0,0.68)'
       })), state('closed', style({
         overflow: 'auto',
       })),
@@ -27,13 +28,11 @@ export class AppComponent {
   menuOpened: boolean;
   menuClosed: boolean;
   disabledMenuButton: boolean;
-  menuHover: boolean;
 
   constructor() {
     this.menuOpened = false;
     this.menuClosed = true;
     this.disabledMenuButton = false;
-    this.menuHover = false;
   }
 
   openMenu(open: boolean): void {

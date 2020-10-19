@@ -15,6 +15,7 @@ import { ContainerComponent } from './container/container.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
     HeaderComponent,
     ContainerComponent,
     MenuComponent,
-    HamburgerIconComponent
+    HamburgerIconComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,

@@ -3,100 +3,45 @@
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+}
+
+#page {
+  background-color: #f0f2f5;
+  display: flex;
+  z-index: 2;
+}
+
+app-header {
+  background-color: #10257f;
+  color: #52d2ac;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
 }
 
 app-container {
   margin: 6rem 2.5rem 2.5rem 2.5rem;
 }
 
-.app {
-  display: flex;
-  height: 100%;
-}
-
-#page {
-  display: flex;
-  background-color: #f0f2f5;
-  z-index: 2;
-}
-
 .background {
-  display: flex;
-  z-index: 1;
-  height: 100%;
   background: linear-gradient(
     35deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(82, 210, 172, 1) 100%
   );
-}
-
-.menu {
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 50%;
   height: 100%;
-  margin-top: 15rem;
-  align-items: center;
-
-  .header-menu {
-    display: flex;
-    justify-content: space-around;
-    background-color: #f0f2f5;
-    width: 75%;
-    height: 5%;
-    border-radius: 26px;
-    font-weight: bold;
-    color: $primary-color;
-    overflow: hidden;
-    box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.5);
-
-    span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      cursor: pointer;
-      font-size: large;
-    }
-    span:hover {
-      background-color: $primary-color;
-      color: $secondary-color;
-    }
-  }
-  .container-menu {
-    display: flex;
-    width: 70%;
-    height: 25%;
-    background-color: #ffffff;
-    border-radius: 13px;
-    overflow: hidden;
-    box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 4.5%;
-
-    .sub-menu {
-      width: 40%;
-      border-top-right-radius: 16px;
-      border-bottom-right-radius: 16px;
-      box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.82);
-    }
-
-    .detail-menu {
-      width: 60%;
-    }
-  }
+  z-index: 1;
 }
 
 app-hamburger-icon {
-  position: fixed;
-  z-index: 100;
-  top: 1.6rem;
   left: 1.9rem;
+  position: fixed;
+  top: 1.6rem;
+  z-index: 100;
 }

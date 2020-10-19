@@ -2,18 +2,7 @@
 </app-hamburger-icon>
 
 <div [ngClass]='{"background": !menuClosed}'>
-    <div *ngIf="!menuClosed" class="menu">
-        <div class="header-menu" [ngStyle]="{'background-color': menuHover ? 'rgba(240,242,245,0.6)' : ''}"
-            (mouseover)="menuHover=true" (mouseout)="menuHover=false">
-            <span>CABINET</span>
-            <span>EQUIPEMENT</span>
-            <span>LABORATOIRE</span>
-        </div>
-        <div class="container-menu">
-            <div class="sub-menu"></div>
-            <div class="detail-menu"></div>
-        </div>
-    </div>
+    <app-main-menu [menuClosed]="menuClosed"></app-main-menu>
     <div id="page" [@page]="menuOpened ? 'open' : 'closed'" (@page.done)=closeMenuDone($event)
         (click)="menuOpened=false">
         <app-header></app-header>

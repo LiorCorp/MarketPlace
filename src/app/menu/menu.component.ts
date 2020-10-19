@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   lastParentNodeSelected: Menu;
   lastChildrenNodeSelected: Menu;
 
-  constructor(readonly fakeService: FakeService) {
+  constructor(private readonly fakeService: FakeService) {
     this.fakeService.getMenu().subscribe((menuItems => {
       this.dataSource.data = menuItems;
     }));
