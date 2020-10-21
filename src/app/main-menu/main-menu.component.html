@@ -1,5 +1,6 @@
 <div class="menu">
-    <div class="categories-parent category">
+    <div class="categories-parent category" [@category]="menuItems ? 'display' : 'hide'"
+        (@category.done)="categoriesParentAnimationDone($event)">
         <div class="header">Bonjour, Anthony</div>
         <div class="container" (mouseenter)="itemChildHovered=null">
             <div class="menu-items" *ngFor="let item of menuItems" (mouseenter)="hoverMenuItem(item)">
@@ -8,20 +9,21 @@
             </div>
         </div>
     </div>
-    <div class="categories-child category" *ngIf="itemHovered">
-        <div class="header">{{menuItemSelected.name}}</div>
+    <div class="categories-child category" [@category]="displayCategoriesChild ? 'display' : 'hide'">
+        <div class="header">{{menuItemSelected?.name}}</div>
         <div class="container">
-            <div class="menu-items" *ngFor="let item of menuItemSelected.children"
+            <div class="menu-items" *ngFor="let item of menuItemSelected?.children"
                 (mouseenter)="hoverMenuItemChild(item)">
                 <div class="menu-item" [ngClass]='{"menu-item-hover": itemChildHovered === item}'>{{item.name}}</div>
                 <div class="line"></div>
             </div>
         </div>
     </div>
-    <div class="categories-baby category" *ngIf="itemChildHovered" (mouseleave)="mouseLeaveCategoriesBaby()">
-        <div class="header">{{menuItemChildSelected.name}}</div>
+    <div class="categories-baby category" (mouseleave)="mouseLeaveCategoriesBaby()"
+        [@category]="itemChildHovered && itemChildHovered !== null ? 'display' : 'hide'">
+        <div class="header">{{menuItemChildSelected?.name}}</div>
         <div class="container">
-            <div class="menu-items" *ngFor="let item of menuItemChildSelected.children"
+            <div class="menu-items" *ngFor="let item of menuItemChildSelected?.children"
                 (mouseenter)="hoverMenuItemBaby(item)">
                 <div class="menu-item" [ngClass]='{"menu-item-hover": itemBabyHovered === item}'>{{item.name}}</div>
                 <div class="line"></div>

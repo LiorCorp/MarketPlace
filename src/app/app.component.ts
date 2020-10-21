@@ -53,4 +53,11 @@ export class AppComponent {
       }
     }
   }
+
+  closeMenu(): void {
+    if (this.menuOpened) {
+      this.menuOpened = false;
+      this.menuDisplayed = false;
+    }
+  }
 }

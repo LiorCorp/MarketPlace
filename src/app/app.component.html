@@ -3,8 +3,7 @@
 
 <div [ngClass]='{"background": !menuClosed}'>
     <app-main-menu *ngIf="menuDisplayed"></app-main-menu>
-    <div id="page" [@page]="menuOpened ? 'open' : 'closed'" (@page.done)=closeMenuDone($event)
-        (click)="menuOpened=false">
+    <div id="page" [@page]="menuOpened ? 'open' : 'closed'" (@page.done)=closeMenuDone($event) (click)="closeMenu()">
         <app-header></app-header>
         <app-container></app-container>
         <router-outlet></router-outlet>

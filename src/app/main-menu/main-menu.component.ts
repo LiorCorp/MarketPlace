@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FakeService } from '../services/fake.service';
 import { Menu } from './../models/menu.model';
@@ -5,7 +6,23 @@ import { Menu } from './../models/menu.model';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.scss']
+  styleUrls: ['./main-menu.component.scss'],
+  animations: [
+    trigger('category', [
+      state('display', style({
+        opacity: '1',
+        transform: 'translateX(0%)',
+      })),
+      state('hide', style({
+        opacity: '0',
+        transform: 'translateX(10%)',
+      }),
+      ),
+      transition('hide <=> display', [
+        animate('300ms'),
+      ])
+    ])
+  ]
 })
 export class MainMenuComponent implements OnInit {
 
@@ -15,6 +32,7 @@ export class MainMenuComponent implements OnInit {
   itemHovered: Menu;
   itemChildHovered: Menu;
   itemBabyHovered: Menu;
+  displayCategoriesChild = false;
 
   constructor(private readonly fakeService: FakeService) {
     this.fakeService.getMenu().subscribe((menuItems => {
@@ -44,5 +62,11 @@ export class MainMenuComponent implements OnInit {
   mouseLeaveCategoriesBaby(): void {
     this.itemChildHovered = null;
     this.itemBabyHovered = null;
+  }
+
+  categoriesParentAnimationDone(event): void {
+    if (event.fromState !== 'void') {
+      this.displayCategoriesChild = true;
+    }
   }
 }
