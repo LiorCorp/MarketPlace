@@ -2,7 +2,7 @@
 </app-hamburger-icon>
 
 <div [ngClass]='{"background": !menuClosed}'>
-    <app-main-menu [menuClosed]="menuClosed"></app-main-menu>
+    <app-main-menu *ngIf="menuDisplayed"></app-main-menu>
     <div id="page" [@page]="menuOpened ? 'open' : 'closed'" (@page.done)=closeMenuDone($event)
         (click)="menuOpened=false">
         <app-header></app-header>

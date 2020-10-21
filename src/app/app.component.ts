@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   animations: [
     trigger('page', [
       state('open', style({
-        transform: 'translateX(-2%) scale(0.5)',
+        transform: 'translateX(-4%) translateY(4%) scale(0.4)',
         'transform-origin': 'right 50%',
         overflow: 'hidden',
         'border-radius': '1rem',
@@ -27,18 +27,20 @@ import { Component } from '@angular/core';
 export class AppComponent {
   menuOpened: boolean;
   menuClosed: boolean;
+  menuDisplayed: boolean;
   disabledMenuButton: boolean;
 
   constructor() {
     this.menuOpened = false;
     this.menuClosed = true;
+    this.menuDisplayed = false;
     this.disabledMenuButton = false;
   }
 
   openMenu(open: boolean): void {
     this.menuOpened = open;
     this.disabledMenuButton = true;
-    if (open) { this.menuClosed = !open; }
+    if (open) { this.menuClosed = false; } else { this.menuDisplayed = false; }
   }
 
   closeMenuDone(event): void {
@@ -46,6 +48,8 @@ export class AppComponent {
       this.disabledMenuButton = false;
       if (!this.menuOpened) {
         this.menuClosed = true;
+      } else {
+        this.menuDisplayed = true;
       }
     }
   }

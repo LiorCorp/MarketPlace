@@ -12,8 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
+import { FiltersComponent } from './filters/filters.component';
 import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
+import { ProductsListComponent } from './products-list/products-list.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 
@@ -22,8 +23,9 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     AppComponent,
     HeaderComponent,
     ContainerComponent,
-    MenuComponent,
     HamburgerIconComponent,
+    FiltersComponent,
+    ProductsListComponent,
     MainMenuComponent
   ],
   imports: [

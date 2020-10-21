@@ -1,17 +1,31 @@
-<div *ngIf="!menuClosed" class="menu">
-    <div class="header-menu" [ngClass]='{"header-menu-selected": itemHovered}'>
-        <span *ngFor="let item of menuItems" (mouseover)="hoverMenuItem(item)"
-            [ngClass]='{"menu-item-hover": itemHovered === item}'>{{item.name}}</span>
-    </div>
-    <div class="container-menu">
-        <div class="sub-menu" *ngIf="menuItemSelected">
-            <span *ngFor="let item of menuItemSelected.children" (mouseover)="hoverMenuItemChild(item)"
-                [ngClass]='{"menu-item-child-hover": itemChildHovered === item}'>{{item.name}}</span>
+<div class="menu">
+    <div class="categories-parent category">
+        <div class="header">Bonjour, Anthony</div>
+        <div class="container" (mouseenter)="itemChildHovered=null">
+            <div class="menu-items" *ngFor="let item of menuItems" (mouseenter)="hoverMenuItem(item)">
+                <div class="menu-item" [ngClass]='{"menu-item-hover": itemHovered === item}'>{{item.name}}</div>
+                <div class="line"></div>
+            </div>
         </div>
-        <div class="detail-menu" *ngIf="menuItemChildSelected">
-            <p>{{menuItemChildSelected.name}}</p>
-            <span *ngFor="let item of menuItemChildSelected.children" (mouseover)="hoverMenuItemBaby(item)"
-                [ngClass]='{"menu-item-baby-hover": itemBabyHovered === item}'>{{item.name}}</span>
+    </div>
+    <div class="categories-child category" *ngIf="itemHovered">
+        <div class="header">{{menuItemSelected.name}}</div>
+        <div class="container">
+            <div class="menu-items" *ngFor="let item of menuItemSelected.children"
+                (mouseenter)="hoverMenuItemChild(item)">
+                <div class="menu-item" [ngClass]='{"menu-item-hover": itemChildHovered === item}'>{{item.name}}</div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    <div class="categories-baby category" *ngIf="itemChildHovered" (mouseleave)="mouseLeaveCategoriesBaby()">
+        <div class="header">{{menuItemChildSelected.name}}</div>
+        <div class="container">
+            <div class="menu-items" *ngFor="let item of menuItemChildSelected.children"
+                (mouseenter)="hoverMenuItemBaby(item)">
+                <div class="menu-item" [ngClass]='{"menu-item-hover": itemBabyHovered === item}'>{{item.name}}</div>
+                <div class="line"></div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FakeService } from '../services/fake.service';
-import { Menu } from './../models/menu.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Menu } from 'src/app/models/menu.model';
+import { FakeService } from 'src/app/services/fake.service';
 
 @Component({
-  selector: 'app-main-menu',
-  templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.scss']
+  selector: 'app-bubble-menu',
+  templateUrl: './bubble-menu.component.html',
+  styleUrls: ['./bubble-menu.component.scss']
 })
-export class MainMenuComponent implements OnInit {
+export class BubbleMenuComponent implements OnInit {
 
+  @Input() menuClosed: boolean;
+  menuHover: boolean;
   menuItems: Menu[];
   menuItemSelected: Menu;
   menuItemChildSelected: Menu;
@@ -17,10 +19,11 @@ export class MainMenuComponent implements OnInit {
   itemBabyHovered: Menu;
 
   constructor(private readonly fakeService: FakeService) {
+    this.menuHover = false;
+    this.menuItemSelected = null;
+    this.menuItemChildSelected = null;
     this.fakeService.getMenu().subscribe((menuItems => {
       this.menuItems = menuItems;
-      this.itemHovered = this.menuItems[0];
-      this.menuItemSelected = this.itemHovered;
     }));
   }
 
@@ -39,10 +42,5 @@ export class MainMenuComponent implements OnInit {
 
   hoverMenuItemBaby(item: Menu): void {
     this.itemBabyHovered = item;
-  }
-
-  mouseLeaveCategoriesBaby(): void {
-    this.itemChildHovered = null;
-    this.itemBabyHovered = null;
   }
 }

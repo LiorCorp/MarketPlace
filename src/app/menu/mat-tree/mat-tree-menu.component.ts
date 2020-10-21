@@ -2,15 +2,15 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Observable } from 'rxjs';
-import { Menu } from '../models/menu.model';
-import { FakeService } from '../services/fake.service';
+import { Menu } from 'src/app/models/menu.model';
+import { FakeService } from 'src/app/services/fake.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-mat-tree-menu',
+  templateUrl: './mat-tree-menu.component.html',
+  styleUrls: ['./mat-tree-menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MatTreeMenuComponent implements OnInit {
 
   menu: Observable<Menu[]>;
   treeControl = new NestedTreeControl<Menu>(node => node.children);
