@@ -120,9 +120,15 @@ header {
     }
   }
 
-  .menu {
-    color: #ffffff;
+  .header-menu {
     display: flex;
     justify-content: center;
+    margin-bottom: 0.5rem;
+
+    a {
+      padding: 0 1rem;
+      color: #ffffff;
+      text-decoration: none;
+    }
   }
 }
