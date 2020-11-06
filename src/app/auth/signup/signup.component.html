@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <h2>Créer un compte</h2>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="firstname">Firstname</label>
+                <input type="text" id="firstname" formControlName="firstname">
+            </div>
+            <div>
+                <label for="lastname">Lastname</label>
+                <input type="text" id="lastname" formControlName="lastname">
+            </div>
+            <div>
+                <label for="email">Adresse mail</label>
+                <input type="text" id="email" formControlName="email">
+            </div>
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" formControlName="password">
+            </div>
+            <button type="submit" [disabled]="signupForm.invalid">Créer mon compte</button>
+        </form>
+        <p>{{ errorMessage }}</p>
+    </div>
+</div>

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FakeService } from '../services/fake.service';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +8,7 @@ import { FakeService } from '../services/fake.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(readonly fakeService: FakeService) {
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

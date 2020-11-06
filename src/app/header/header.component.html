@@ -1,42 +1,10 @@
 <header>
-    <div class="container">
-        <div class="logo">LOGO</div>
-
-        <div class="searchbar">
-            <input name="search" placeholder="Cherchez une fourniture">
-
-            <span class="right-side">
-                <mat-icon class="search-icon" aria-hidden="false">search</mat-icon>
-            </span>
+    <div class="logo"><img src="../../assets/logo/logo.png"></div>
+    <div class="header">
+        <div class="action">
+            <app-searchbar></app-searchbar>
+            <app-action-buttons></app-action-buttons>
         </div>
-
-        <div class="right-buttons">
-            <div class="account">
-                <div class="icon">
-                    <img src="../../assets/svg/user.svg">
-                </div>
-                <div class="label">
-                    <span class="hello">Bonjour</span><span class="my-account">Mon compte</span>
-                </div>
-            </div>
-            <div class="package">
-                <div class="icon">
-                    <img src="../../assets/svg/package.svg">
-                </div>
-                <div class="label"><span>Mes </span><span>commandes</span></div>
-            </div>
-            <div class="cart">
-                <div class="icon">
-                    <img src="../../assets/svg/shopping-cart.svg">
-                </div>
-                <div class="label"><span>Panier</span></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-menu">
-        <a href="#">Cabinet</a>
-        <a href="#">Equipement</a>
-        <a href="#">Laboratoire</a>
+        <app-menu></app-menu>
     </div>
 </header>
