@@ -1,0 +1,27 @@
+<mat-card class="product-card" *ngFor="let product of products | async">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{product.productName}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://picsum.photos/150?sig=`{{product.id}}`">
+    <mat-card-content>
+        <p>
+            <span class="product-price">{{product.price}} € </span>
+            <span>/ pcs</span>
+        </p>
+        <p>
+            A partir de {{product.orderMin}} pièces
+        </p>
+        <div class="rating">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+            <p>42 avis</p>
+        </div>
+        <p class="delivery-time">
+            Livraison sous 3 à 5 jours
+            <mat-icon aria-hidden="false">departure_board</mat-icon>
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button>Voir les offres</button>
+    </mat-card-actions>
+</mat-card>

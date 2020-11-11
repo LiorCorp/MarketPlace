@@ -1,3 +1,4 @@
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
@@ -17,14 +18,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { ContainerComponent } from './container/container.component';
-import { FiltersComponent } from './filters/filters.component';
 import { ActionButtonsComponent } from './header/action-buttons/action-buttons.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { SearchbarComponent } from './header/searchbar/searchbar.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { FiltersComponent } from './products-list/filters/filters.component';
+import { ProductsCardComponent } from './products-list/products-card/products-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
 
@@ -32,17 +33,17 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContainerComponent,
+    ProductsListComponent,
     HamburgerIconComponent,
     FiltersComponent,
-    ProductsListComponent,
+    ProductsCardComponent,
     MainMenuComponent,
     SigninComponent,
     SignupComponent,
     HomeComponent,
     SearchbarComponent,
     ActionButtonsComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +60,10 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
-    MatTreeModule
+    MatTreeModule,
+    NgxSliderModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

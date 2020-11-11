@@ -1,0 +1,67 @@
+<div class="filters">
+    <div class="label">Promotions</div>
+    <mat-checkbox color="primary">Ventes Flash</mat-checkbox>
+    <div class="line"></div>
+    <div class="label">Avis des practiciens</div>
+    <div class="rating">
+        <div><span class="full">★</span><span class="full">★</span><span class="full">★</span><span
+                class="full">★</span><span class="empty">☆</span> & plus</div>
+        <div><span class="full">★</span><span class="full">★</span><span class="full">★</span><span
+                class="empty">☆</span><span class="empty">☆</span> & plus</div>
+        <div><span class="full">★</span><span class="full">★</span><span class="empty">☆</span><span
+                class="empty">☆</span><span class="empty">☆</span> & plus</div>
+        <div><span class="full">★</span><span class="empty">☆</span><span class="empty">☆</span><span
+                class="empty">☆</span><span class="empty">☆</span> & plus</div>
+    </div>
+    <div class="line"></div>
+    <div class="label">Prix</div>
+    <div class="custom-slider">
+        <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+        <div class="amount-product">1037 Produits</div>
+    </div>
+    <div class="line"></div>
+    <div class="label">Livraison</div>
+    <mat-checkbox color="primary">24 heures</mat-checkbox>
+    <mat-checkbox color="primary">48 heures</mat-checkbox>
+    <mat-checkbox color="primary">72 heures</mat-checkbox>
+    <mat-checkbox color="primary">4 jours</mat-checkbox>
+    <mat-checkbox color="primary">5 jours & plus</mat-checkbox>
+    <div class="line"></div>
+    <div class="label">Marques</div>
+    <div class="brands">
+        <mat-checkbox color="primary">Marque 1</mat-checkbox>
+        <mat-checkbox color="primary">Marque 2</mat-checkbox>
+        <mat-checkbox color="primary">Marque 3</mat-checkbox>
+        <mat-checkbox color="primary">Marque 4</mat-checkbox>
+        <mat-checkbox color="primary">Marque 5</mat-checkbox>
+        <mat-checkbox color="primary">Marque 6</mat-checkbox>
+        <mat-checkbox color="primary">Marque 7</mat-checkbox>
+    </div>
+    <div class="line"></div>
+    <div class="label">Vendeurs</div>
+    <mat-checkbox color="primary">Dentalix</mat-checkbox>
+    <mat-checkbox color="primary">Mercura</mat-checkbox>
+    <mat-checkbox color="primary">Allo Dent</mat-checkbox>
+    <div class="line"></div>
+    <div class="label">Catégories</div>
+    <div class="categories">
+        <a class="category" href="#">Draps d'examen</a>
+        <a class="category" href="#">Gobelets</a>
+        <a class="category" href="#">Canules</a>
+        <a class="category" href="#">Divers</a>
+        <a class="category" href="#">Essuyage</a>
+    </div>
+    <div class="line"></div>
+    <div class="label">Minimum de commande</div>
+    <mat-form-field appearance="outline">
+        <mat-label>pièces</mat-label>
+        <input matInput autocomplete="off">
+    </mat-form-field>
+    <div class="line"></div>
+    <div class="label">Prix par pièce</div>
+    <mat-form-field appearance="outline">
+        <mat-label>prix par pièce maximum</mat-label>
+        <input matInput autocomplete="off">
+        <mat-icon matSuffix>euro</mat-icon>
+    </mat-form-field>
+</div>

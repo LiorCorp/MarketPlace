@@ -1,7 +1,13 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../models/category.model';
 import { FakeService } from '../services/fake.service';
-import { Menu } from './../models/menu.model';
 
 @Component({
   selector: 'app-main-menu',
@@ -9,53 +15,54 @@ import { Menu } from './../models/menu.model';
   styleUrls: ['./main-menu.component.scss'],
   animations: [
     trigger('category', [
-      state('display', style({
-        opacity: '1',
-        transform: 'translateX(0%)',
-      })),
-      state('hide', style({
-        opacity: '0',
-        transform: 'translateX(10%)',
-      }),
+      state(
+        'display',
+        style({
+          opacity: '1',
+          transform: 'translateX(0%)',
+        })
       ),
-      transition('hide <=> display', [
-        animate('300ms'),
-      ])
-    ])
-  ]
+      state(
+        'hide',
+        style({
+          opacity: '0',
+          transform: 'translateX(10%)',
+        })
+      ),
+      transition('hide <=> display', [animate('300ms')]),
+    ]),
+  ],
 })
 export class MainMenuComponent implements OnInit {
-
-  menuItems: Menu[];
-  menuItemSelected: Menu;
-  menuItemChildSelected: Menu;
-  itemHovered: Menu;
-  itemChildHovered: Menu;
-  itemBabyHovered: Menu;
+  menuItems: Category[];
+  menuItemSelected: Category;
+  menuItemChildSelected: Category;
+  itemHovered: Category;
+  itemChildHovered: Category;
+  itemBabyHovered: Category;
   displayCategoriesChild = false;
 
   constructor(private readonly fakeService: FakeService) {
-    this.fakeService.getMenu().subscribe((menuItems => {
+    this.fakeService.getMenu().subscribe((menuItems) => {
       this.menuItems = menuItems;
       this.itemHovered = this.menuItems[0];
       this.menuItemSelected = this.itemHovered;
-    }));
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  hoverMenuItem(item: Menu): void {
+  hoverMenuItem(item: Category): void {
     this.menuItemSelected = item;
     this.itemHovered = item;
   }
 
-  hoverMenuItemChild(item: Menu): void {
+  hoverMenuItemChild(item: Category): void {
     this.menuItemChildSelected = item;
     this.itemChildHovered = item;
   }
 
-  hoverMenuItemBaby(item: Menu): void {
+  hoverMenuItemBaby(item: Category): void {
     this.itemBabyHovered = item;
   }
 

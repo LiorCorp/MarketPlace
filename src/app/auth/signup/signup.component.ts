@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from './../../models/user.model';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-
   signupForm: FormGroup;
   errorMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router) { }
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -28,7 +26,10 @@ export class SignupComponent implements OnInit {
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+      password: [
+        '',
+        [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)],
+      ],
     });
   }
 
@@ -40,8 +41,8 @@ export class SignupComponent implements OnInit {
     const user: User = { firstname, lastname, email };
 
     this.authService.createNewUser(user, password).then(
-      () => {
-        console.log('success');
+      (res) => {
+        console.log(res);
       },
       (error) => {
         this.errorMessage = error;

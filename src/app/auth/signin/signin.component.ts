@@ -37,7 +37,8 @@ export class SigninComponent implements OnInit {
 
   signInUser(email: string, password: string): void {
     this.authService.signInUser(email, password).then(
-      () => {
+      (res) => {
+        console.log(res);
         this.router.navigate(['/']);
       },
       (error) => {

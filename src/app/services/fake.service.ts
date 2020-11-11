@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Menu } from '../models/menu.model';
-import { Product } from '../models/product.model';
+import { Category } from '../models/category.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class FakeService {
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  getMenu(): Observable<Category[]> {
+    return this.http.get('../../assets/json/menu.json') as Observable<
+      Category[]
+    >;
+  }
 
-    getMenu(): Observable<Menu[]> {
-        return this.http.get('../../assets/json/menu.json') as Observable<Menu[]>;
-    }
-
-    getProducts(): Observable<Product[]> {
-        return this.http.get('../../assets/json/product.json') as Observable<Product[]>;
-    }
+  getProducts(): Observable<any[]> {
+    return this.http.get('../../assets/json/product.json') as Observable<any[]>;
+  }
 }

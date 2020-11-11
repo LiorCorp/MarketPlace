@@ -1,6 +1,12 @@
+import { Category } from './category.model';
+
 export interface Product {
-    readonly sellerId: string;
-    readonly product_name: string;
-    readonly price: number;
-    readonly order_min: number;
+  readonly id: string;
+  readonly sellerId: string;
+  readonly productName: string;
+  readonly description: string;
+  readonly price: number;
+  readonly promotion: number;
+  readonly orderMin: number;
+  readonly category: Category;
 }
