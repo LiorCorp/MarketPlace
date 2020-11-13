@@ -1,6 +1,5 @@
 <mat-card class="product-card" *ngFor="let product of products | async">
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{product.productName}}</mat-card-title>
     </mat-card-header>
     <img mat-card-image src="https://picsum.photos/150?sig=`{{product.id}}`">

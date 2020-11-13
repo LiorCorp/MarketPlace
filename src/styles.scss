@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+@font-face {
+  font-family: "bariol";
+  src: url("./assets/font/bariol_regular-webfont.woff") format("woff");
+}
+
+$custom-typography: mat-typography-config(
+  $font-family: "bariol",
+);
+
+@include angular-material-typography($custom-typography);
 
 html,
 body {
@@ -7,5 +18,9 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "bariol", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
