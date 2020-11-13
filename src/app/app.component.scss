@@ -16,6 +16,7 @@
 
 #container {
   margin-top: 7rem;
+  overflow-x: hidden;
 }
 
 .background {
@@ -42,7 +43,6 @@ app-header {
   flex-direction: column;
   position: fixed;
   width: 100%;
-  z-index: 3;
   -webkit-box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);

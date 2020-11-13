@@ -7,6 +7,7 @@ export interface Product {
   readonly description: string;
   readonly price: number;
   readonly promotion: number;
+  readonly brand: string;
   readonly orderMin: number;
   readonly category: Category;
 }

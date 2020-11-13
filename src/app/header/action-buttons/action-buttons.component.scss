@@ -1,3 +1,5 @@
+@import "../../style/style.scss";
+
 .right-buttons {
   color: #ffffff;
   display: flex;
@@ -6,44 +8,46 @@
     border: 2px transparent solid;
     cursor: pointer;
     display: flex;
-    flex-direction: row;
     padding: 3px;
+    margin-right: 0.9rem;
+
+    &:hover {
+      border: 2px white solid;
+      border-radius: 10px;
+    }
 
     .icon {
+      position: relative;
       align-self: center;
       display: flex;
-      flex-direction: column;
+      padding-right: 0.3rem;
 
       img {
         height: 2.2rem;
         width: 2.2rem;
       }
+
+      .items-number {
+        position: absolute;
+        left: 13px;
+        top: 5px;
+        color: $secondary-color;
+      }
     }
+
     .label {
-      align-self: flex-end;
       display: flex;
       flex-direction: column;
       font-size: medium;
 
+      .my-account {
+        white-space: nowrap;
+      }
+
       span {
         font-weight: bold;
-        line-height: 1rem;
+        line-height: 1.3rem;
       }
-    }
-  }
-
-  .account:hover,
-  .cart:hover,
-  .package:hover {
-    border: 2px white solid;
-    border-radius: 10px;
-  }
-
-  .account,
-  .package {
-    margin-right: 0.9rem;
-    .icon {
-      padding-right: 0.3rem;
     }
   }
 }

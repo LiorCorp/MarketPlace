@@ -1,9 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-hamburger-icon',
   templateUrl: './hamburger-icon.component.html',
   styleUrls: ['./hamburger-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HamburgerIconComponent {
   @Output() openMenuEvent = new EventEmitter<boolean>();

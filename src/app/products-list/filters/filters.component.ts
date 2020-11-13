@@ -1,4 +1,4 @@
-import { Options } from '@angular-slider/ngx-slider/options';
+import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +12,16 @@ export class FiltersComponent implements OnInit {
   options: Options = {
     floor: 0,
     ceil: 100,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return value + '€';
+        case LabelType.High:
+          return value + '€';
+        default:
+          return value + '€';
+      }
+    },
   };
   constructor() {}
 

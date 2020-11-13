@@ -1,8 +1,8 @@
 <div class="right-buttons">
-    <div *ngIf="!isAuth" class="btn" [routerLink]="['auth/signin']">
+    <!-- <div *ngIf="!isAuth" class="btn" [routerLink]="['auth/signin']">
         <div class="label"><span>Connexion</span></div>
-    </div>
-    <div *ngIf="isAuth" class="btn account">
+    </div> -->
+    <div class="btn account">
         <div class="icon">
             <img src="../../assets/svg/user.svg">
         </div>
@@ -19,7 +19,8 @@
     <div class="btn cart">
         <div class="icon">
             <img src="../../assets/svg/shopping-cart.svg">
+            <span class="items-number">0</span>
         </div>
-        <div class="label"><span>Panier</span></div>
+        <div class="label"><span>0,00€</span><span>Panier</span></div>
     </div>
 </div>

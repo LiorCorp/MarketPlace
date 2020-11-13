@@ -12,8 +12,8 @@ export const environment = {
     storageBucket: 'medical-supplies-c3986.appspot.com',
     messagingSenderId: '509024725716',
     appId: '1:509024725716:web:9e86071fe07f86bc706941',
-    measurementId: 'G-3F67ME0GE7'
-  }
+    measurementId: 'G-3F67ME0GE7',
+  },
 };
 
 /*

@@ -3,21 +3,10 @@
 .container {
   display: flex;
   padding: 1rem;
-  flex-direction: row;
-  width: 100%;
   background-image: url("../../assets/background/background.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: 0rem 7rem;
-}
-
-app-products-card {
-  display: flex;
-  margin-left: 22%;
-  margin-right: 3%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 app-filters {
@@ -51,4 +40,13 @@ app-filters {
   &::-webkit-scrollbar-track {
     margin: 2rem 0;
   }
+}
+
+app-products-card {
+  display: flex;
+  margin-left: 22%;
+  margin-right: 1%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }

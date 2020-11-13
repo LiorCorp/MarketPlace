@@ -70,6 +70,8 @@ export class AppComponent {
   }
 
   closeMenu(): void {
+    console.log('closeMenu');
+
     if (this.menuOpened) {
       this.menuOpened = false;
       this.menuDisplayed = false;
