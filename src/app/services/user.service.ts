@@ -19,11 +19,10 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.userCollection.add(user).then(
         (res) => {
-          resolve(res);
+          res.get().then((docRef) => resolve(docRef.id));
         },
         (err) => reject(err)
       );
-      resolve();
     });
   }
 

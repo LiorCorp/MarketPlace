@@ -1,8 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/theming";
+
 @font-face {
   font-family: "bariol";
   src: url("./assets/font/bariol_regular-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "bariol";
+  src: url("./assets/font/bariol_bold-webfont.woff") format("woff");
+  font-weight: bold;
 }
 
 $custom-typography: mat-typography-config(
@@ -23,4 +29,5 @@ body {
     "Segoe UI Symbol";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }

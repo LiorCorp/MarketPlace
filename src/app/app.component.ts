@@ -25,12 +25,7 @@ import { Component } from '@angular/core';
           border: '4px solid #ffffff',
         })
       ),
-      state(
-        'closed',
-        style({
-          overflow: 'auto',
-        })
-      ),
+      state('false', style({})),
       transition('open <=> closed', [animate('300ms')]),
     ]),
   ],
@@ -70,8 +65,6 @@ export class AppComponent {
   }
 
   closeMenu(): void {
-    console.log('closeMenu');
-
     if (this.menuOpened) {
       this.menuOpened = false;
       this.menuDisplayed = false;

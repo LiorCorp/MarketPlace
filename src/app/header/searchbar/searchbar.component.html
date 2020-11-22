@@ -1,7 +1,8 @@
 <div class="searchbar">
     <input name="search" placeholder="Cherchez une fourniture">
 
-    <span class="right-side">
+    <span class="right-side" [@search-button]="isClicking ? 'true' : 'false'"
+        (@search-button.done)=cleanSearchButton($event) (click)="search()">
         <mat-icon class="search-icon" aria-hidden="false">search</mat-icon>
     </span>
 </div>

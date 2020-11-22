@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   createNewUser(user: User, password: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -15,10 +15,8 @@ export class AuthService {
         .auth()
         .createUserWithEmailAndPassword(user.email, password)
         .then(
-          (authUser) => {
-            const newUser: User = { ...user, uid: authUser.user.uid };
-            this.userService.createUser(newUser);
-            resolve('Success');
+          (newUser) => {
+            resolve(newUser);
           },
           (error) => {
             reject(error);
@@ -34,7 +32,6 @@ export class AuthService {
         .signInWithEmailAndPassword(email, password)
         .then(
           (res) => {
-            this.userService.getUserByUid(res.user.uid);
             resolve(res);
           },
           (error) => {

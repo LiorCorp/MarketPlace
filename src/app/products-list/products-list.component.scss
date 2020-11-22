@@ -3,10 +3,6 @@
 .container {
   display: flex;
   padding: 1rem;
-  background-image: url("../../assets/background/background.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: 0rem 7rem;
 }
 
 app-filters {

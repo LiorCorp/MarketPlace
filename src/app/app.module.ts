@@ -7,8 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,8 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SigninComponent } from './auth/signin/signin.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { AuthComponent } from './auth/auth.component';
 import { ActionButtonsComponent } from './header/action-buttons/action-buttons.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
@@ -28,6 +29,9 @@ import { FiltersComponent } from './products-list/filters/filters.component';
 import { ProductsCardComponent } from './products-list/products-card/products-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
+import { SigninComponent } from './ui/signin/signin.component';
+import { SignupComponent } from './ui/signup/signup.component';
+import { SnackbarComponent } from './ui/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,8 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
     SearchbarComponent,
     ActionButtonsComponent,
     MenuComponent,
+    AuthComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +68,8 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
     MatCheckboxModule,
     MatTreeModule,
     NgxSliderModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

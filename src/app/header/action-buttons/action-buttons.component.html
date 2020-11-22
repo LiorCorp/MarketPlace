@@ -2,7 +2,7 @@
     <!-- <div *ngIf="!isAuth" class="btn" [routerLink]="['auth/signin']">
         <div class="label"><span>Connexion</span></div>
     </div> -->
-    <div class="btn account">
+    <div class="btn account" (click)="openAuthDialog()">
         <div class="icon">
             <img src="../../assets/svg/user.svg">
         </div>

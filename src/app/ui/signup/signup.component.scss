@@ -1,0 +1,53 @@
+@import "../../style/style.scss";
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  .inputs {
+    display: flex;
+    justify-content: space-between;
+    .input-validation {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+    }
+  }
+
+  .input {
+    cursor: text;
+    outline: none;
+    border-radius: $border-radius;
+    border: 0;
+    height: 2.5rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+  }
+
+  .input-error {
+    border: 1px solid red;
+
+    &::placeholder {
+      color: red;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: red;
+    }
+    &::-ms-input-placeholder {
+      color: red;
+    }
+  }
+
+  .msg-error {
+    display: flex;
+    color: red;
+    align-items: center;
+
+    .error-icon {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<form [formGroup]="signupForm">
+    <div class="inputs">
+        <div class="input-validation">
+            <input [ngClass]='{"input-error": confirmForm && signupForm.controls.lastname.invalid}' class="input"
+                name="lastname" placeholder="Nom de famille" formControlName="lastname"
+                [value]="signupForm.controls.lastname.value | titlecase">
+            <div class="msg-error" *ngIf="confirmForm && signupForm.controls.lastname.invalid">
+                <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un prénom valide.
+            </div>
+        </div>
+        <div class="input-validation">
+            <input [ngClass]='{"input-error": confirmForm && signupForm.controls.firstname.invalid}' class="input"
+                name="firstname" placeholder="Prénom" formControlName="firstname"
+                [value]="signupForm.controls.firstname.value | titlecase">
+            <div class="msg-error" *ngIf="confirmForm && signupForm.controls.firstname.invalid">
+                <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un nom valide.
+            </div>
+        </div>
+    </div>
+    <input [ngClass]='{"input-error": confirmForm && signupForm.controls.email.invalid}' class="input" name="email"
+        type="email" placeholder="Adresse email professionel" formControlName="email">
+    <div class="msg-error" *ngIf="confirmForm && signupForm.controls.email.invalid">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un email valide.
+    </div>
+    <input [ngClass]='{"input-error": confirmForm && !passwordValidation}' class="input" name="password" type="password"
+        placeholder="Mot de passe" formControlName="password">
+    <input [ngClass]='{"input-error": confirmForm && !passwordValidation}' class="input" name="confirm-password"
+        type="password" placeholder="Confirmez le mot de passe" formControlName="confirmPassword">
+    <div class="msg-error" *ngIf="confirmForm && !passwordValidation">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Les mots de passe saisis ne sont pas
+        identiques.
+    </div>
+</form>

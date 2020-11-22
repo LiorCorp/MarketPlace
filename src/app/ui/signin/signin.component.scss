@@ -1,0 +1,57 @@
+@import "../../style/style.scss";
+
+form {
+  display: flex;
+  flex-direction: column;
+  .input {
+    cursor: text;
+    outline: none;
+    border-radius: $border-radius;
+    border: 0;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .input-error {
+    border: 1px solid red;
+
+    &::placeholder {
+      color: red;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: red;
+    }
+
+    &::-ms-input-placeholder {
+      color: red;
+    }
+  }
+
+  .msg-error {
+    display: flex;
+    color: red;
+    align-items: center;
+
+    .error-icon {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+    }
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.3rem 0;
+    font-weight: bold;
+    color: #ffffff;
+
+    .remember-me {
+      &::ng-deep.mat-checkbox-frame {
+        border-color: #ffffff;
+        border-width: 1px;
+      }
+    }
+  }
+}
