@@ -14,6 +14,67 @@ form {
     }
   }
 
+  .password-validation {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+
+    .password {
+      width: -webkit-fill-available;
+      width: -moz-available;
+    }
+    mat-pass-toggle-visibility {
+      position: absolute;
+      top: 1.5rem;
+      right: 1rem;
+      color: #757575;
+    }
+
+    mat-password-strength-info {
+      position: absolute;
+      border-radius: $border-radius;
+      top: 4.4rem;
+      z-index: 1;
+      width: 61%;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-bottom-color: #ffffff;
+        border-top: 0;
+        margin-left: -12px;
+        margin-top: -12px;
+      }
+      &::ng-deep mat-card {
+        border-radius: 20px;
+
+        mat-card-content {
+          font-size: 0.75rem;
+        }
+      }
+    }
+    mat-password-strength {
+      width: 93%;
+      position: absolute;
+      top: 3.4rem;
+
+      &::ng-deep {
+        mat-progress-bar {
+          height: 2px;
+          .mat-progress-bar-fill::after {
+            background-color: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+
   .input {
     cursor: text;
     outline: none;

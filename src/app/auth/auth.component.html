@@ -2,22 +2,30 @@
     <img class="meden-logo" src="../../../assets/logo/logo.svg" alt="meden">
     <div class="sign">
         <div class="signup" (click)=changeSignMode(false)>
-            <div class="label">S'INSCRIRE</div>
+            <div class="label">{{'signup.title' | translate}}</div>
             <div *ngIf="!signinMode" class="line"></div>
         </div>
         <div class="signin" (click)=changeSignMode(true)>
-            <div class="label">SE CONNECTER</div>
+            <div class="label">{{'signin.title' | translate}}</div>
             <div *ngIf="signinMode" class="line"></div>
         </div>
+    </div>
+    <div class="msg-error" *ngIf="errorSignupMessage">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        <p>{{errorSignupMessage}}</p>
+    </div>
+    <div class="msg-error" *ngIf="errorSigninMessage">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        <p>{{errorSigninMessage}}</p>
     </div>
     <app-signin *ngIf="signinMode" [signinForm]="signinForm" [confirmForm]="confirmSigninForm"></app-signin>
     <app-signup *ngIf="!signinMode" [signupForm]="signupForm" [confirmForm]="confirmSignupForm"
         [passwordValidation]="checkPassword()"></app-signup>
-    <button *ngIf="signinMode" type="button" class="confirm-btn" mat-raised-button (click)="signin()">JE ME
-        CONNECTE</button>
-    <button *ngIf="!signinMode" type="button" class="confirm-btn" mat-raised-button (click)="signup()">JE
-        M'INSCRIS</button>
-    <div class="quick-access">ACCÈS RAPIDE : </div>
+    <button *ngIf="signinMode" type="button" class="confirm-btn" mat-raised-button
+        (click)="signin()">{{'signin.confirmBtn' | translate}}</button>
+    <button *ngIf="!signinMode" type="button" class="confirm-btn" mat-raised-button
+        (click)="signup()">{{'signup.confirmBtn' | translate}}</button>
+    <div class="quick-access">{{'signup.quickAccess' | translate}}</div>
     <div class="social-network">
         <img class="logo" src="../../../assets/png/logo-doctolib.png" alt="doctolib">
         <img class="logo" src="../../../assets/png/logo-google.png" alt="google">

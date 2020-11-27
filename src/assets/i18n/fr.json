@@ -1,0 +1,50 @@
+{
+  "signup": {
+    "title": "S'INSCRIRE",
+    "password": {
+      "validation": {
+        "lowerCaseCriteriaMsg": "contient au moins une minuscule",
+        "upperCaseCriteriaMsg": "contient au moins une majuscule",
+        "digitsCriteriaMsg": "contient au moins un chiffre",
+        "minCharsCriteriaMsg": "contient au moins 8 caractères"
+      }
+    },
+    "confirmBtn": "JE M'INSCRIS",
+    "quickAccess": "ACCÈS RAPIDE :",
+    "error": {
+      "firstname": "Entrez un prénom valide.",
+      "lastname": "Entrez un nom valide.",
+      "email": "Entrez un email valide.",
+      "password": "Entrez un mot de passe valide.",
+      "passwords": "Les mots de passe saisis ne sont pas identiques."
+    },
+    "success": {
+      "title": "Bienvenue chez Meden",
+      "description": "Vous allez recevoir un email pour confirmer votre inscription."
+    },
+    "input": {
+      "lastname": "Nom de famille",
+      "firstname": "Prénom",
+      "email": "Adresse email professionel",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmez le mot de passe"
+    }
+  },
+  "signin": {
+    "title": "SE CONNECTER",
+    "confirmBtn": "JE ME CONNECTE",
+    "error": {
+      "email": "Entrez un email valide.",
+      "tooManyRequests": "L'accès à ce compte a été temporairement désactivé en raison de nombreuses tentatives de connexion infructueuses. Vous pouvez le rétablir immédiatement en réinitialisant votre mot de passe ou vous pouvez réessayer plus tard."
+    },
+    "success": {
+      "welcome": "Bonjour "
+    },
+    "input": {
+      "email": "Adresse email professionel",
+      "password": "Mot de passe"
+    },
+    "stayConnected": "Rester connecté",
+    "forgottenPassword": "Mot de passe oublé ?"
+  }
+}

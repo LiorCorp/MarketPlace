@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import * as firebase from 'firebase';
 import { AuthService } from '../../services/auth.service';
 import { AuthComponent } from './../../auth/auth.component';
 
@@ -18,13 +17,13 @@ export class ActionButtonsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    firebase.default.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.isAuth = true;
-      } else {
-        this.isAuth = false;
-      }
-    });
+    // firebase.default.auth().onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.isAuth = true;
+    //   } else {
+    //     this.isAuth = false;
+    //   }
+    // });
   }
 
   openAuthDialog(): void {

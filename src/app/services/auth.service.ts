@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { User } from '../models/user.model';
-import { UserService } from './user.service';
+import { ErroAuthFr } from '../utils/errorAuthFr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor() {}
 
-  createNewUser(user: User, password: string): Promise<any> {
+  createUserWithEmailAndPassword(user: User, password: string): Promise<any> {
     return new Promise((resolve, reject) => {
       firebase.default
         .auth()
@@ -18,8 +18,8 @@ export class AuthService {
           (newUser) => {
             resolve(newUser);
           },
-          (error) => {
-            reject(error);
+          (err) => {
+            reject(ErroAuthFr.convertMessage(err));
           }
         );
     });
@@ -34,25 +34,27 @@ export class AuthService {
           (res) => {
             resolve(res);
           },
-          (error) => {
-            reject(error);
+          (err) => {
+            if (err.code === 'auth/too-many-requests') {
+              reject(err.code);
+            } else {
+              reject(ErroAuthFr.convertMessage(err));
+            }
           }
         );
     });
+  }
+
+  updateProfile(firstname: string, photoURL?: string): void {
+    this.getCurrentUser().updateProfile({ displayName: firstname, photoURL });
   }
 
   signOutUser(): void {
     firebase.default.auth().signOut();
   }
 
-  getCurrentUser(): any {
-    firebase.default.auth().onAuthStateChanged((user) => {
-      if (user) {
-        return user;
-      } else {
-        // No user is signed in.
-      }
-    });
+  getCurrentUser(): firebase.default.User | null {
+    return firebase.default.auth().currentUser;
   }
 
   resetPassword(newPassword): Promise<any> {

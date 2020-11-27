@@ -3,6 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
+import { ErroAuthFr } from '../utils/errorAuthFr';
 import { User } from './../models/user.model';
 
 @Injectable({
@@ -19,9 +20,10 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.userCollection.add(user).then(
         (res) => {
+          console.log(res);
           res.get().then((docRef) => resolve(docRef.id));
         },
-        (err) => reject(err)
+        (err) => reject(ErroAuthFr.convertMessage(err))
       );
     });
   }
@@ -33,7 +35,7 @@ export class UserService {
         .update(user)
         .then(
           (res) => resolve(res),
-          (err) => reject(err)
+          (err) => reject(ErroAuthFr.convertMessage(err))
         );
     });
   }
@@ -49,7 +51,7 @@ export class UserService {
               resolve(res.docs[0].data());
             }
           },
-          (err) => reject(err)
+          (err) => reject(ErroAuthFr.convertMessage(err))
         );
     });
   }

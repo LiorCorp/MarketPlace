@@ -2,32 +2,54 @@
     <div class="inputs">
         <div class="input-validation">
             <input [ngClass]='{"input-error": confirmForm && signupForm.controls.lastname.invalid}' class="input"
-                name="lastname" placeholder="Nom de famille" formControlName="lastname"
-                [value]="signupForm.controls.lastname.value | titlecase">
+                name="lastname" placeholder="{{'signup.input.lastname' | translate}}" formControlName="lastname"
+                [value]="signupForm.controls.lastname.value">
             <div class="msg-error" *ngIf="confirmForm && signupForm.controls.lastname.invalid">
-                <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un prénom valide.
+                <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+                {{'signup.error.firstname' | translate}}
             </div>
         </div>
         <div class="input-validation">
             <input [ngClass]='{"input-error": confirmForm && signupForm.controls.firstname.invalid}' class="input"
-                name="firstname" placeholder="Prénom" formControlName="firstname"
-                [value]="signupForm.controls.firstname.value | titlecase">
+                name="firstname" placeholder="{{'signup.input.firstname' | translate}}" formControlName="firstname"
+                [value]="signupForm.controls.firstname.value">
             <div class="msg-error" *ngIf="confirmForm && signupForm.controls.firstname.invalid">
-                <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un nom valide.
+                <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+                {{'signup.error.lastname' | translate}}
             </div>
         </div>
     </div>
     <input [ngClass]='{"input-error": confirmForm && signupForm.controls.email.invalid}' class="input" name="email"
-        type="email" placeholder="Adresse email professionel" formControlName="email">
+        type="email" placeholder="{{'signup.input.email' | translate}}" formControlName="email">
     <div class="msg-error" *ngIf="confirmForm && signupForm.controls.email.invalid">
-        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un email valide.
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        {{'signup.error.email' | translate}}
     </div>
-    <input [ngClass]='{"input-error": confirmForm && !passwordValidation}' class="input" name="password" type="password"
-        placeholder="Mot de passe" formControlName="password">
+    <div class="password-validation">
+        <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+        <input [ngClass]='{"input-error": confirmForm && !signupForm.controls.password.valid}' class="input password"
+            name="password" type="password" placeholder="{{'signup.input.password' | translate}}"
+            formControlName="password" [type]="toggle.type">
+        <mat-password-strength-info
+            [hidden]="signupForm.controls.password.value.length < 1 || signupForm.controls.password.valid"
+            [lowerCaseCriteriaMsg]="'signup.password.validation.lowerCaseCriteriaMsg' | translate"
+            [upperCaseCriteriaMsg]="'signup.password.validation.upperCaseCriteriaMsg' | translate"
+            [digitsCriteriaMsg]="'signup.password.validation.digitsCriteriaMsg'| translate"
+            [minCharsCriteriaMsg]="'signup.password.validation.minCharsCriteriaMsg' | translate"
+            [passwordComponent]="passwordComponent">
+        </mat-password-strength-info>
+        <mat-password-strength [hidden]="signupForm.controls.password.value.length < 1" #passwordComponent
+            [password]="signupForm.controls.password.value" [enableSpecialCharRule]=false>
+        </mat-password-strength>
+    </div>
+    <div class="msg-error" *ngIf="confirmForm && signupForm.controls.password.invalid">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        {{'signup.error.password' | translate}}
+    </div>
     <input [ngClass]='{"input-error": confirmForm && !passwordValidation}' class="input" name="confirm-password"
-        type="password" placeholder="Confirmez le mot de passe" formControlName="confirmPassword">
-    <div class="msg-error" *ngIf="confirmForm && !passwordValidation">
-        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Les mots de passe saisis ne sont pas
-        identiques.
+        type="password" placeholder="{{'signup.input.confirmPassword' | translate}}" formControlName="confirmPassword">
+    <div class="msg-error" *ngIf="(confirmForm && !passwordValidation) && signupForm.controls.password.valid">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        {{'signup.error.passwords' | translate}}
     </div>
 </form>

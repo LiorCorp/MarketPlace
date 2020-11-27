@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -36,11 +37,12 @@ export class AppComponent {
   menuDisplayed: boolean;
   disabledMenuButton: boolean;
 
-  constructor() {
+  constructor(private readonly translate: TranslateService) {
     this.menuOpened = false;
     this.menuClosed = true;
     this.menuDisplayed = false;
     this.disabledMenuButton = false;
+    translate.setDefaultLang('fr');
   }
 
   openMenu(open: boolean): void {

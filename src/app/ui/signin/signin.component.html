@@ -1,16 +1,14 @@
 <form [formGroup]="signinForm">
     <input [ngClass]='{"input-error": confirmForm && signinForm.controls.email.invalid}' class="input" name="email"
-        type="email" placeholder="Adresse email professionel" formControlName="email">
+        type="email" placeholder="{{'signin.input.email' | translate}}" formControlName="email">
     <div class="msg-error" *ngIf="confirmForm && signinForm.controls.email.invalid">
-        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un email valide.
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>{{'signin.error.email' | translate}}
     </div>
-    <input [ngClass]='{"input-error": confirmForm && signinForm.controls.password.invalid}' class="input"
-        name="password" type="password" placeholder="Mot de passe" formControlName="password">
-    <div class="msg-error" *ngIf="confirmForm && signinForm.controls.email.invalid">
-        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>Entrez un mot de passe valide.
-    </div>
+    <input [ngClass]='{"input-error": confirmForm && signinForm.controls.password.value.length < 1}' class="input"
+        name="password" type="password" placeholder="{{'signin.input.password' | translate}}"
+        formControlName="password">
     <div class="options">
-        <mat-checkbox color="primary" class="remember-me">Rester connecté</mat-checkbox>
-        <div class="password-forget">Mot de passe oublié ?</div>
+        <mat-checkbox color="primary" class="remember-me">{{'signin.stayConnected' | translate}}</mat-checkbox>
+        <div class="password-forget">{{'signin.forgottenPassword' | translate}}</div>
     </div>
 </form>
