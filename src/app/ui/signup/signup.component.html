@@ -36,7 +36,7 @@
             [upperCaseCriteriaMsg]="'signup.password.validation.upperCaseCriteriaMsg' | translate"
             [digitsCriteriaMsg]="'signup.password.validation.digitsCriteriaMsg'| translate"
             [minCharsCriteriaMsg]="'signup.password.validation.minCharsCriteriaMsg' | translate"
-            [passwordComponent]="passwordComponent">
+            [passwordComponent]="passwordComponent" [matIconDone]="'check_circle'" [matIconError]="'cancel'">
         </mat-password-strength-info>
         <mat-password-strength [hidden]="signupForm.controls.password.value.length < 1" #passwordComponent
             [password]="signupForm.controls.password.value" [enableSpecialCharRule]=false>

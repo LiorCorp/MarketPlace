@@ -46,5 +46,21 @@
     },
     "stayConnected": "Rester connecté",
     "forgottenPassword": "Mot de passe oublé ?"
+  },
+  "header": {
+    "hello": "Bonjour",
+    "signin": "Se connecter",
+    "myaccount": {
+      "title": "Mon compte",
+      "wishlist": "Mes listes d'envie",
+      "myVouchers": "Mes bons d'achats",
+      "myReimbursements": "Mes remboursements",
+      "myRecommendations": "Mes recommandations",
+      "frequentlyAskedQuestions": "Questions fréquentes",
+      "logout": "Se déconnecter"
+    },
+    "my": "Mes",
+    "orders": "commandes",
+    "cart": "Panier"
   }
 }

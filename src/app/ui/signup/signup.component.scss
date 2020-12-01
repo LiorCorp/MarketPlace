@@ -58,6 +58,10 @@ form {
           font-size: 0.75rem;
         }
       }
+
+      &::ng-deep mat-icon.mat-primary {
+        color: $secondary-color;
+      }
     }
     mat-password-strength {
       width: 93%;

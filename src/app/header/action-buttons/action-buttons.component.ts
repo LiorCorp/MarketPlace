@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from 'src/app/ui/snackbar/snackbar.component';
 import { AuthService } from '../../services/auth.service';
 import { AuthComponent } from './../../auth/auth.component';
 
@@ -9,28 +11,38 @@ import { AuthComponent } from './../../auth/auth.component';
   styleUrls: ['./action-buttons.component.scss'],
 })
 export class ActionButtonsComponent implements OnInit {
-  isAuth: boolean;
+  isAuthenticated: firebase.default.User;
+  bubbleAccountHover = false;
 
   constructor(
-    private authService: AuthService,
-    public readonly dialog: MatDialog
+    private readonly authService: AuthService,
+    public readonly dialog: MatDialog,
+    private readonly snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    // firebase.default.auth().onAuthStateChanged((user) => {
-    //   if (user) {
-    //     this.isAuth = true;
-    //   } else {
-    //     this.isAuth = false;
-    //   }
-    // });
+    this.authService.authStatusListener();
+    this.authService.currentAuthStatus.subscribe(
+      (authStatus) => (this.isAuthenticated = authStatus)
+    );
   }
 
   openAuthDialog(): void {
-    this.dialog.open(AuthComponent);
+    if (!this.isAuthenticated) {
+      this.dialog.open(AuthComponent);
+    }
   }
 
   onSignOut(): void {
     this.authService.signOutUser();
+    this.snackBar.openFromComponent(SnackbarComponent, {
+      data: {
+        title: 'Déconnexion réussie',
+      },
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['snackbar-success'],
+    });
   }
 }

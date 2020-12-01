@@ -1,26 +1,45 @@
 <div class="right-buttons">
-    <!-- <div *ngIf="!isAuth" class="btn" [routerLink]="['auth/signin']">
-        <div class="label"><span>Connexion</span></div>
-    </div> -->
-    <div class="btn account" (click)="openAuthDialog()">
+    <div class="btn account" (click)="openAuthDialog()" (mouseenter)="bubbleAccountHover=true"
+        (mouseleave)="bubbleAccountHover=false">
         <div class="icon">
             <img src="../../assets/svg/user.svg">
         </div>
         <div class="label">
-            <span class="hello">Bonjour</span><span class="my-account">Mon compte</span>
+            <span class="hello">{{'header.hello' | translate}} {{isAuthenticated?.displayName}}</span>
+            <span class="my-account" *ngIf="!isAuthenticated">{{'header.signin' | translate}}</span>
+            <span class="my-account" *ngIf="isAuthenticated">{{'header.myaccount.title' | translate}}
+                <mat-icon class="material-icons-round" aria-hidden="false">keyboard_arrow_down</mat-icon>
+                <span *ngIf="bubbleAccountHover" class="bubble">
+                    <ul>
+                        <li>{{'header.myaccount.title' | translate}}</li>
+                        <div class="line"></div>
+                        <li>{{'header.myaccount.wishlist' | translate}}</li>
+                        <div class="line"></div>
+                        <li>{{'header.myaccount.myVouchers' | translate}}</li>
+                        <div class="line"></div>
+                        <li>{{'header.myaccount.myReimbursements' | translate}}</li>
+                        <div class="line"></div>
+                        <li>{{'header.myaccount.myRecommendations' | translate}}</li>
+                        <div class="line"></div>
+                        <li>{{'header.myaccount.frequentlyAskedQuestions' | translate}}</li>
+                        <div class="line"></div>
+                        <li (click)="onSignOut()">{{'header.myaccount.logout' | translate}}</li>
+                    </ul>
+                </span>
+            </span>
         </div>
     </div>
     <div class="btn package">
         <div class="icon">
             <img src="../../assets/svg/package.svg">
         </div>
-        <div class="label"><span>Mes </span><span>commandes</span></div>
+        <div class="label"><span>{{'header.my' | translate}}</span><span>{{'header.orders' | translate}}</span></div>
     </div>
     <div class="btn cart">
         <div class="icon">
             <img src="../../assets/svg/shopping-cart.svg">
             <span class="items-number">0</span>
         </div>
-        <div class="label"><span>0,00€</span><span>Panier</span></div>
+        <div class="label"><span>0,00€</span><span>{{'header.cart' | translate}}</span></div>
     </div>
 </div>

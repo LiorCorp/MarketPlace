@@ -42,7 +42,7 @@ export class AppComponent {
     this.menuClosed = true;
     this.menuDisplayed = false;
     this.disabledMenuButton = false;
-    translate.setDefaultLang('fr');
+    this.translate.setDefaultLang('fr');
   }
 
   openMenu(open: boolean): void {

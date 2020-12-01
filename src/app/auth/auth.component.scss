@@ -106,22 +106,16 @@
   }
 }
 
-::ng-deep.mat-dialog-container {
-  padding: 0;
-  box-shadow: unset;
-  background: transparent;
-}
-::ng-deep.snackbar-success {
-  background: linear-gradient(335deg, #52d2ac 0%, #3399ad 43%, #1b30a2 100%);
-  color: #ffffff;
-  font-weight: bold;
-  border: 2px solid #ffffff;
-}
-
-::ng-deep.snackbar-error {
-  background: #ff7e79;
-  color: #ffffff;
-  text-align: center;
-  font-weight: bold;
-  border: 2px solid #ffffff;
+::ng-deep {
+  &.mat-dialog-container {
+    padding: 0;
+    box-shadow: unset;
+    background: transparent;
+  }
+  &.snackbar-success {
+    @extend .snackbar-success;
+  }
+  &.snackbar-error {
+    @extend .snackbar-error;
+  }
 }

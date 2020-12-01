@@ -18,6 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import * as firebase from 'firebase';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,9 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
 import { SigninComponent } from './ui/signin/signin.component';
 import { SignupComponent } from './ui/signup/signup.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+
+firebase.default.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -53,11 +57,13 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     MenuComponent,
     AuthComponent,
     SnackbarComponent,
+    ProductDetailComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,

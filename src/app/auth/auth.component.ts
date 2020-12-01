@@ -135,7 +135,7 @@ export class AuthComponent implements OnInit {
           title: 'signin.success.welcome',
           description: '',
           panelClass: 'snackbar-success',
-          duration: 10000,
+          duration: 3000,
           firstname: res.user.displayName,
         });
       },
@@ -144,7 +144,7 @@ export class AuthComponent implements OnInit {
           this.openSnackBar({
             title: 'signin.error.tooManyRequests',
             panelClass: 'snackbar-error',
-            duration: 30000,
+            duration: 10000,
           });
         } else {
           this.errorSigninMessage = error;
@@ -178,7 +178,7 @@ export class AuthComponent implements OnInit {
                 title: 'signup.success.title',
                 description: 'signup.success.description',
                 panelClass: 'snackbar-success',
-                duration: 10000,
+                duration: 8000,
               });
             },
             (error) => {
@@ -199,7 +199,6 @@ export class AuthComponent implements OnInit {
     duration,
     firstname = '',
   }): void {
-    console.log(title, description, panelClass, duration, firstname);
     this.snackBar.openFromComponent(SnackbarComponent, {
       data: {
         title: title !== '' ? this.translate.instant(title) + firstname : '',

@@ -20,8 +20,4 @@ export class SignupComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  onStrengthChanged(event): void {
-    console.log(event);
-  }
 }
