@@ -21,6 +21,7 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button>Voir les offres</button>
+        <button mat-raised-button [routerLink]="['/product', product.productName + product.id]">Voir les
+            offres</button>
     </mat-card-actions>
 </mat-card>

@@ -62,5 +62,27 @@
     "my": "Mes",
     "orders": "commandes",
     "cart": "Panier"
+  },
+  "product": {
+    "seller": "Vendeur",
+    "evaluations": "évaluations",
+    "contactHim": "Contacter le",
+    "price": "Prix",
+    "inStock": "En Stock",
+    "unavailable": "Indisponible",
+    "weightArticle": "Poids de l'article",
+    "disclaimerArticle": "Dimensions de l'article",
+    "brand": "Marque",
+    "aboutArticle": "À propos de l'article",
+    "delivered": "Livré",
+    "desiredColors": "Teintes souhaitée",
+    "quantity": "Quantité",
+    "addToCart": "Ajouter au panier",
+    "automatePurchasing": "Automatiser l'achat",
+    "buyArticle": "Acheter cet article",
+    "secureTransaction": "Transaction sécurisée",
+    "shippedAndSoldBy": "Expédié et vendu par",
+    "guarantee": "Couvert par la garantie Meden Marketplace",
+    "addToMyList": "Ajouter à ma liste"
   }
 }

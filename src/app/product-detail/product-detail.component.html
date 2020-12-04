@@ -1,1 +1,76 @@
-<p>product-detail works!</p>
+<div class="container">
+    <div class="img-product">
+        <img src="https://picsum.photos/500">
+    </div>
+    <div class="product-description">
+        <div class="product-name">3M™ Filtek™ One</div>
+        <div class="seller">{{('product.seller' | translate) | uppercase}} : <span class="seller-brand">3M</span><img
+                class="flag" src="../../assets/svg/flags/united-states-of-america.svg" alt="usa"></div>
+        <div class="price">{{'product.price' | translate}} : <span class="amount">59€90 TTC</span></div>
+        <div class="stock"><span class="available">{{'product.inStock' | translate}}</span> / <span
+                class="unavailable">{{'product.unavailable' | translate}}</span></div>
+        <div class="weight-article">{{'product.weightArticle' | translate}} : <span class="value">10 Grammes</span>
+        </div>
+        <div class="disclaimer-article">{{'product.disclaimerArticle' | translate}} (L x L x H) : <span class="value">
+                14.7 x 3 x 1.7 cm</span>
+        </div>
+        <div class="brand">{{'product.brand' | translate}} : <span class="value">3M</span></div>
+        <div class="about">
+            <div class="label">{{'product.aboutArticle' | translate}} :</div>
+            <div class="value">Conçu pour les restaurations
+                postérieures, ce matériau possède des
+                propriétés optiques uniques et son opacité améliorée permet une obturation facile en un seul incrément
+                jusqu’à 5 mm, sans compromettre l’esthétisme de la restauration.
+
+                Mise en place rapide et facile en un seul incrément
+                Opacité améliorée pour une esthétique optimisée
+                Réduction du stress pour permettre l’obturation de cavités pouvant atteindre 5 mm de profondeur.
+                Excellente adaptation
+                Pas de surcouche occlusale ou d’équipements supplémentaires onéreux
+                Excellente mise en œuvre et sculpture aisée
+                La vraie nanotechnologie de 3M offre une résistance à l’usure exceptionnelle et une excellente pérennité
+                du
+                poli
+                Haute radio-opacité
+                Conception unique de l’embout pour un accès facilité au fond de cavités profondes.</div>
+        </div>
+    </div>
+    <div class="product-action">
+        <div class="price">59€90 TTC</div>
+        <div class="delivered">{{'product.delivered' | translate}} : <span class="date">3 - 5 déc. </span><span
+                class="detail">Détails</span></div>
+        <div class="line"></div>
+        <div class="desired-colors">{{'product.desiredColors' | translate}} :</div>
+        <div class="desired-colors-value"><span>A1</span><span>A2</span><span>A3</span><span>B1</span><span>C2</span>
+        </div>
+        <div class="quantity">{{'product.quantity' | translate}} :
+            <select (change)="quantityValue()" [(ngModel)]="selectedQuantity">
+                <option *ngFor="let quantity of quantities">{{quantity}}</option>
+            </select>
+        </div>
+        <button class="add-to-card btn">
+            <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">shopping_cart</mat-icon>
+            {{'product.addToCart' | translate}}
+        </button>
+        <button class="automate-purchasing btn">
+            <mat-icon class="icon" class="material-icons-round" aria-hidden="false">autorenew</mat-icon>
+            {{'product.automatePurchasing' | translate}}
+        </button>
+        <button class="btn buy-article">
+            <mat-icon class="icon" class="material-icons-round" aria-hidden="false">credit_card</mat-icon>
+            {{'product.buyArticle' | translate}}
+        </button>
+        <div class="line"></div>
+        <div class="secure-transaction">
+            <mat-icon class="icon" class="material-icons-round" aria-hidden="false">lock</mat-icon>
+            <span class="label">{{'product.secureTransaction' | translate}}</span>
+        </div>
+        <div class="shipped-and-sold">{{'product.shippedAndSoldBy' | translate}} : <span class="brand">3M</span></div>
+        <div class="guarantee">{{'product.guarantee' | translate}}</div>
+        <div class="line"></div>
+        <div class="address">{{'product.delivered' | translate}} à Anthony, Toulouse 31200</div>
+        <div class="line"></div>
+        <button class="btn add-to-my-list">{{'product.addToMyList' | translate}}<mat-icon class="material-icons-round"
+                aria-hidden="false">keyboard_arrow_down</mat-icon></button>
+    </div>
+</div>

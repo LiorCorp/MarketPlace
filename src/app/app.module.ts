@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
@@ -29,6 +30,7 @@ import { MenuComponent } from './header/menu/menu.component';
 import { SearchbarComponent } from './header/searchbar/searchbar.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FiltersComponent } from './products-list/filters/filters.component';
 import { ProductsCardComponent } from './products-list/products-card/products-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
@@ -36,7 +38,6 @@ import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.compo
 import { SigninComponent } from './ui/signin/signin.component';
 import { SignupComponent } from './ui/signup/signup.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 firebase.default.initializeApp(environment.firebaseConfig);
 
@@ -63,7 +64,6 @@ firebase.default.initializeApp(environment.firebaseConfig);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     BrowserAnimationsModule,
-
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
@@ -79,6 +79,7 @@ firebase.default.initializeApp(environment.firebaseConfig);
     NgxSliderModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSelectModule,
     MatPasswordStrengthModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
