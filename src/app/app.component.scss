@@ -22,25 +22,6 @@
   z-index: 1;
 }
 
-app-header {
-  background: linear-gradient(
-    5deg,
-    rgba(82, 210, 172, 1) 0%,
-    rgba(51, 181, 179, 1) 44%,
-    rgba(27, 48, 162, 1) 100%
-  );
-  color: #52d2ac;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  height: 7rem;
-  z-index: 1;
-  width: 100vw;
-  -webkit-box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
-}
-
 #container {
   overflow-x: hidden;
   background-image: url("../assets/background/background.jpg");

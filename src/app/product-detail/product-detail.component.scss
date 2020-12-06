@@ -36,8 +36,41 @@
         margin-left: 0.5rem;
       }
     }
+    .rating {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        cursor: pointer;
+      }
+      .full {
+        color: #ffa41d;
+        -webkit-text-stroke: 0.06rem $primary-color;
+        font-size: 1.2rem;
+      }
+      .empty {
+        font-size: 1.2rem;
+      }
+      mat-icon {
+        color: $primary-color;
+        vertical-align: bottom;
+      }
+      .evaluation {
+        color: $primary-color;
+      }
+      .contact {
+        color: $primary-color;
+      }
+    }
+    .line {
+      border-bottom: 1px solid #d5dbdb;
+      width: 100%;
+      margin: 0.5rem 0;
+      align-self: center;
+      margin-bottom: 0.5rem;
+    }
     .price {
-      margin-bottom: 1rem;
+      margin: 1rem 0;
       font-size: large;
       .amount {
         font-weight: bold;
