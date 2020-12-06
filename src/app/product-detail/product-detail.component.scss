@@ -95,6 +95,14 @@
       }
       .value {
         font-weight: normal;
+        ul {
+          list-style: none;
+          list-style-type: "-";
+          padding: 0;
+          li {
+            padding-left: 0.5rem;
+          }
+        }
       }
     }
   }
@@ -148,7 +156,7 @@
         border: 1px solid #ffffff;
         padding: 0.25rem;
         margin-right: 0.3rem;
-        border-radius: 5px;
+        border-radius: 8px;
       }
     }
     .quantity {
@@ -157,7 +165,7 @@
       font-weight: bold;
       margin-bottom: 1rem;
       select {
-        border-radius: 5px;
+        border-radius: 8px;
         background: linear-gradient(
           300deg,
           rgba(82, 210, 172, 0.8) 0%,
@@ -173,7 +181,6 @@
 
     .btn {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       padding: 0 0.5rem;
       width: 100%;
@@ -182,6 +189,11 @@
       border: 1.5px solid #ffffff;
       white-space: nowrap;
       margin-bottom: 0.5rem;
+
+      .label {
+        text-align: center;
+        width: 100%;
+      }
     }
     .add-to-card {
       background-color: $primary-color;
@@ -220,8 +232,14 @@
       margin-bottom: 0.8rem;
     }
     .address {
-      color: $primary-color;
       text-align: center;
+      span {
+        color: $primary-color;
+        vertical-align: super;
+      }
+      mat-icon {
+        color: #ffffff;
+      }
     }
     .add-to-my-list {
       margin-top: 0.8rem;
