@@ -124,12 +124,11 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  signinUser(): void {
+  async signinUser(): Promise<void> {
     const email = this.signinForm.controls.email.value;
     const password = this.signinForm.controls.password.value;
-    this.authService.signInUser(email, password).then(
+    await this.authService.signInUser(email, password).then(
       (res) => {
-        console.log(res);
         this.dialog.closeAll();
         this.openSnackBar({
           title: 'signin.success.welcome',
@@ -153,7 +152,7 @@ export class AuthComponent implements OnInit {
     );
   }
 
-  signupUser(): void {
+  async signupUser(): Promise<void> {
     const user: User = {
       firstname: StringUtil.capitalize(
         this.signupForm.controls.firstname.value
@@ -161,35 +160,62 @@ export class AuthComponent implements OnInit {
       lastname: StringUtil.capitalize(this.signupForm.controls.lastname.value),
       email: this.signupForm.controls.email.value,
     };
-    this.authService
+    await this.authService
       .createUserWithEmailAndPassword(
         user,
         this.signupForm.controls.password.value
       )
       .then(
-        (newuser) => {
-          console.log(newuser);
-          const newUser: User = { ...user, uid: newuser.user.uid };
-          this.userService.createUser(newUser).then(
-            () => {
-              this.authService.updateProfile(newUser.firstname);
-              this.dialog.closeAll();
-              this.openSnackBar({
-                title: 'signup.success.title',
-                description: 'signup.success.description',
-                panelClass: 'snackbar-success',
-                duration: 8000,
-              });
-            },
-            (error) => {
-              this.errorSignupMessage = error;
-            }
-          );
+        () => {
+          this.createUser(user);
         },
         (error) => {
           this.errorSignupMessage = error;
         }
       );
+  }
+
+  async loginWithGoogle(): Promise<void> {
+    await this.authService.loginWithGoogle().then(async (res) => {
+      const user: User = {
+        firstname: res.additionalUserInfo.profile.given_name,
+        lastname: res.additionalUserInfo.profile.family_name,
+        email: res.additionalUserInfo.profile.email,
+      };
+      this.authService.updateProfile(user.firstname);
+      await this.userService.userExist(user.email).then((isExist) => {
+        if (!isExist) {
+          this.createUser(user);
+        } else {
+          this.openSnackBar({
+            title: 'signin.success.welcome',
+            description: '',
+            panelClass: 'snackbar-success',
+            duration: 3000,
+            firstname: user.firstname,
+          });
+        }
+      });
+      this.dialog.closeAll();
+    });
+  }
+
+  async createUser(newUser: User): Promise<void> {
+    await this.userService.createUser(newUser).then(
+      () => {
+        this.authService.updateProfile(newUser.firstname);
+        this.dialog.closeAll();
+        this.openSnackBar({
+          title: 'signup.success.title',
+          description: 'signup.success.description',
+          panelClass: 'snackbar-success',
+          duration: 8000,
+        });
+      },
+      (error) => {
+        this.errorSignupMessage = error;
+      }
+    );
   }
 
   openSnackBar({

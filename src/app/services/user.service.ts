@@ -16,11 +16,10 @@ export class UserService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  createUser(user: User): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async createUser(user: User): Promise<any> {
+    return await new Promise((resolve, reject) => {
       this.userCollection.add(user).then(
         (res) => {
-          console.log(res);
           res.get().then((docRef) => resolve(docRef.id));
         },
         (err) => reject(ErroAuthFr.convertMessage(err))
@@ -28,8 +27,8 @@ export class UserService {
     });
   }
 
-  updateUser(userId: string, user: User): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async updateUser(userId: string, user: User): Promise<any> {
+    return await new Promise((resolve, reject) => {
       this.userCollection
         .doc(userId)
         .update(user)
@@ -40,15 +39,17 @@ export class UserService {
     });
   }
 
-  getUserByUid(uid: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async userExist(email: string): Promise<boolean> {
+    return await new Promise((resolve, reject) => {
       this.userCollection.ref
-        .where('uid', '==', uid)
+        .where('email', '==', email)
         .get()
         .then(
           (res) => {
             if (!res.empty) {
-              resolve(res.docs[0].data());
+              resolve(true);
+            } else {
+              resolve(false);
             }
           },
           (err) => reject(ErroAuthFr.convertMessage(err))

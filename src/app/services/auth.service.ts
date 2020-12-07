@@ -26,8 +26,11 @@ export class AuthService {
     });
   }
 
-  createUserWithEmailAndPassword(user: User, password: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async createUserWithEmailAndPassword(
+    user: User,
+    password: string
+  ): Promise<any> {
+    return await new Promise((resolve, reject) => {
       firebase.default
         .auth()
         .createUserWithEmailAndPassword(user.email, password)
@@ -45,8 +48,24 @@ export class AuthService {
     });
   }
 
-  signInUser(email: string, password: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async loginWithGoogle(): Promise<any> {
+    return await new Promise((resolve, reject) => {
+      firebase.default
+        .auth()
+        .signInWithPopup(new firebase.default.auth.GoogleAuthProvider())
+        .then(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(ErroAuthFr.convertMessage(err));
+          }
+        );
+    });
+  }
+
+  async signInUser(email: string, password: string): Promise<any> {
+    return await new Promise((resolve, reject) => {
       firebase.default
         .auth()
         .signInWithEmailAndPassword(email, password)
@@ -93,8 +112,8 @@ export class AuthService {
     firebase.default.auth().signOut();
   }
 
-  resetPassword(newPassword: string): Promise<any> {
-    return new Promise((resolve, reject) => {
+  async resetPassword(newPassword: string): Promise<any> {
+    return await new Promise((resolve, reject) => {
       firebase.default
         .auth()
         .currentUser.updatePassword(newPassword)
