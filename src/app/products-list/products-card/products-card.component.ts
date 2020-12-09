@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FakeService } from 'src/app/services/fake.service';
-import { Product } from './../../models/product.model';
+import { Product } from './../../models/Product.model';
 
 @Component({
   selector: 'app-products-card',

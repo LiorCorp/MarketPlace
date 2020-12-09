@@ -3,7 +3,7 @@
 .home {
   display: flex;
   align-items: center;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   flex-direction: column;
 
   .home-banner {
@@ -14,7 +14,7 @@
   .advantages {
     display: flex;
     justify-content: space-evenly;
-    margin: 1.5rem 0;
+    margin-top: 1.5rem;
 
     .advantage {
       display: flex;
@@ -41,73 +41,8 @@
       }
     }
   }
-
-  .promo-section {
+  app-home-card {
     display: flex;
-    flex-direction: column;
-    width: 85%;
-    background: linear-gradient(
-      257deg,
-      rgba(82, 210, 172, 0.3) 0%,
-      rgba(51, 181, 179, 0.3) 44%,
-      rgba(27, 48, 162, 0.3) 100%
-    );
-    border-radius: $border-radius;
-    color: $primary-color;
-    margin-top: 3rem;
-
-    .title {
-      display: flex;
-      align-items: center;
-      margin-top: 0.5rem;
-      margin-left: 1rem;
-      font-size: larger;
-      font-weight: bold;
-      text-decoration: none;
-
-      &:visited {
-        color: $primary-color;
-      }
-
-      .percent {
-        width: 2rem;
-        margin-right: 0.5rem;
-      }
-    }
-    .promo-cards {
-      display: flex;
-      justify-content: space-evenly;
-      margin: 1rem;
-
-      .promo-card {
-        display: flex;
-        flex-direction: column;
-        background: #ffffff;
-        border-radius: $border-radius;
-        padding: 0.5rem;
-        width: 12%;
-        justify-content: space-between;
-
-        .product-name {
-          text-align: center;
-          font-size: medium;
-          margin: 0 1rem;
-        }
-        .product-img {
-          width: 100%;
-        }
-        .price {
-          display: flex;
-          justify-content: center;
-          .base {
-            margin-right: 1rem;
-            font-weight: bold;
-          }
-          .discount {
-            text-decoration: line-through;
-          }
-        }
-      }
-    }
+    justify-content: center;
   }
 }

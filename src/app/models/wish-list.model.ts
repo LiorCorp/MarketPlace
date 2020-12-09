@@ -1,5 +1,5 @@
-import { Product } from './product.model';
+import { Product } from './Product.model';
 
 export interface WishList {
-    readonly products: Product[];
+  readonly products: Product[];
 }

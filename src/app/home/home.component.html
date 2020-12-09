@@ -1,75 +1,36 @@
 <div class="home">
-    <img class="home-banner" src="https://picsum.photos/1500/250?">
-    <div class="promo-section">
-        <a class="title" [routerLink]="['/products']"><img class="percent"
-                src="../../assets/svg/percent.svg"><span>Promos &
-                Ventes
-                Flash</span></a>
-        <div class="promo-cards">
-            <div class="promo-card">
-                <div class="product-name">Gants latex</div>
-                <img class="product-img" src="../../assets/jpg/gants-latex.jpg">
-                <div class="price">
-                    <div class="base">9,90€</div>
-                    <div class="discount">13,90€</div>
-                </div>
-            </div>
-            <div class="promo-card">
-                <div class="product-name">Contre-Angles S-Max</div>
-                <img class="product-img" src="../../assets/jpg/contre-angles-s-max.jpg">
-                <div class="price">
-                    <div class="base">486,97€</div>
-                    <div class="discount">809,00€</div>
-                </div>
-            </div>
-            <div class="promo-card">
-                <div class="product-name">Désinfection instruments</div>
-                <img class="product-img" src="../../assets/jpg/desinfection-instruments.jpg">
-                <div class="price">
-                    <div class="base">13,99€</div>
-                    <div class="discount">32,00€</div>
-                </div>
-            </div>
-            <div class="promo-card">
-                <div class="product-name">Blouses imperméables</div>
-                <img class="product-img" src="../../assets/jpg/blouses-impermeables.jpg">
-                <div class="price">
-                    <div class="base">37,04€</div>
-                    <div class="discount">44,90€</div>
-                </div>
-            </div>
-            <div class="promo-card">
-                <div class="product-name">Kit polissage</div>
-                <img class="product-img" src="../../assets/jpg/kit-polissage.jpg">
-                <div class="price">
-                    <div class="base">21,90€</div>
-                    <div class="discount">33,90€</div>
-                </div>
-            </div>
-            <div class="promo-card">
-                <div class="product-name">Adhésif</div>
-                <img class="product-img" src="../../assets/jpg/adhesif.jpg">
-                <div class="price">
-                    <div class="base">11,73€</div>
-                    <div class="discount">19,90€</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <img class="home-banner" src="https://picsum.photos/1500/300">
+    <app-home-card *ngIf="products && products.length > 0" [title]="'Promos & Ventes Flash'"
+        [icon]="'../../assets/png/promo.png'" [backgroundClass]="'backgournd-card-1'" [products]=products>
+    </app-home-card>
+    <app-home-card *ngIf="products && products.length > 0" [title]="'Les mieux notés'"
+        [icon]="'../../assets/png/ranking.png'" [backgroundClass]="'backgournd-card-2'" [products]=products>
+    </app-home-card>
+    <app-home-card *ngIf="products && products.length > 0" [title]="'Recommandations'"
+        [icon]="'../../assets/png/top-selection.png'" [backgroundClass]="'backgournd-card-1'" [products]=products>
+    </app-home-card>
+    <app-home-card *ngIf="products && products.length > 0" [title]="'Nouveautés'" [icon]="'../../assets/png/new.png'"
+        [backgroundClass]="'backgournd-card-2'" [products]=products>
+    </app-home-card>
+    <app-home-card *ngIf="products && products.length > 0" [title]="'Vendeurs du moment'"
+        [icon]="'../../assets/png/shop.png'" [backgroundClass]="'backgournd-card-1'" [products]=products>
+    </app-home-card>
+    <app-home-card *ngIf="products && products.length > 0" [title]="'Notre sélection éco-responsable'"
+        [icon]="'../../assets/png/eco.png'" [backgroundClass]="'backgournd-card-2'" [products]=products></app-home-card>
     <div class="advantages">
-        <div class="advantage">
-            <img class="icon" src="../../assets/svg/time.svg">
-            <div class="title">UN GAIN DE TEMPS</div>
-            <div class="description">Commandez en une seule fois auprès de plusieurs fournisseurs, en quelques clics ou
-                en automatisants vos
-                commandes.</div>
-        </div>
         <div class="advantage">
             <img class="icon" src="../../assets/svg/saving.svg">
             <div class="title">UN GAIN D’ARGENT</div>
             <div class="description">Optimisez vos dépenses en prenant le contrôle et sélectionnez vos références au
                 meilleur rapport
                 qualité prix.</div>
+        </div>
+        <div class="advantage">
+            <img class="icon" src="../../assets/svg/time.svg">
+            <div class="title">UN GAIN DE TEMPS</div>
+            <div class="description">Commandez en une seule fois auprès de plusieurs fournisseurs, en quelques clics ou
+                en automatisants vos
+                commandes.</div>
         </div>
         <div class="advantage">
             <img class="icon" src="../../assets/svg/certified-sellers.svg">

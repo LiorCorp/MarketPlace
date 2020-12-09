@@ -49,15 +49,15 @@ header {
 
     .action {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       margin: 1.5rem 0 0.5rem 0;
 
       app-searchbar {
-        width: 100%;
+        width: 60%;
       }
       app-action-buttons {
         display: flex;
+        width: 40%;
         justify-content: center;
       }
     }

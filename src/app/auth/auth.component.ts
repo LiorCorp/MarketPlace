@@ -167,7 +167,11 @@ export class AuthComponent implements OnInit {
       )
       .then(
         () => {
-          this.createUser(user);
+          this.createUser(
+            user,
+            'signup.success.title',
+            'signup.success.description'
+          );
         },
         (error) => {
           this.errorSignupMessage = error;
@@ -178,14 +182,16 @@ export class AuthComponent implements OnInit {
   async loginWithGoogle(): Promise<void> {
     await this.authService.loginWithGoogle().then(async (res) => {
       const user: User = {
-        firstname: res.additionalUserInfo.profile.given_name,
-        lastname: res.additionalUserInfo.profile.family_name,
-        email: res.additionalUserInfo.profile.email,
+        firstname: res.additionalUserInfo.profile['given_name'],
+        lastname: res.additionalUserInfo.profile['family_name'],
+        email: res.additionalUserInfo.profile['email'],
       };
+      console.log(user);
+      // vérfier si on a déjà ces infos pas besoin de update à chaque fois...
       this.authService.updateProfile(user.firstname);
       await this.userService.userExist(user.email).then((isExist) => {
         if (!isExist) {
-          this.createUser(user);
+          this.createUser(user, 'signin.success.welcome', '');
         } else {
           this.openSnackBar({
             title: 'signin.success.welcome',
@@ -200,14 +206,45 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  async createUser(newUser: User): Promise<void> {
+  async loginWithFacebook(): Promise<void> {
+    await this.authService.loginWithFacebook().then(async (res) => {
+      const user: User = {
+        firstname: res.additionalUserInfo.profile['first_name'],
+        lastname: res.additionalUserInfo.profile['last_name'],
+        email: res.additionalUserInfo.profile['email'],
+      };
+      console.log(user);
+      // vérfier si on a déjà ces infos pas besoin de update à chaque fois...
+      this.authService.updateProfile(user.firstname);
+      await this.userService.userExist(user.email).then((isExist) => {
+        if (!isExist) {
+          this.createUser(user, 'signin.success.welcome', '');
+        } else {
+          this.openSnackBar({
+            title: 'signin.success.welcome',
+            description: '',
+            panelClass: 'snackbar-success',
+            duration: 3000,
+            firstname: user.firstname,
+          });
+        }
+      });
+      this.dialog.closeAll();
+    });
+  }
+
+  async createUser(
+    newUser: User,
+    title: string,
+    description: string
+  ): Promise<void> {
     await this.userService.createUser(newUser).then(
       () => {
         this.authService.updateProfile(newUser.firstname);
         this.dialog.closeAll();
         this.openSnackBar({
-          title: 'signup.success.title',
-          description: 'signup.success.description',
+          title,
+          description,
           panelClass: 'snackbar-success',
           duration: 8000,
         });

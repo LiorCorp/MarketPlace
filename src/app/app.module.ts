@@ -1,8 +1,10 @@
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import '@angular/common/locales/global/fr';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +21,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import * as firebase from 'firebase';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,11 +36,10 @@ import { FiltersComponent } from './products-list/filters/filters.component';
 import { ProductsCardComponent } from './products-list/products-card/products-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
+import { HomeCardComponent } from './ui/home-card/home-card.component';
 import { SigninComponent } from './ui/signin/signin.component';
 import { SignupComponent } from './ui/signup/signup.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
-
-firebase.default.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -59,12 +59,14 @@ firebase.default.initializeApp(environment.firebaseConfig);
     AuthComponent,
     SnackbarComponent,
     ProductDetailComponent,
+    HomeCardComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -89,7 +91,10 @@ firebase.default.initializeApp(environment.firebaseConfig);
       },
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
