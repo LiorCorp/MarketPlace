@@ -1,22 +1,29 @@
 <div class="home">
     <img class="home-banner" src="https://picsum.photos/1500/300">
-    <app-home-card *ngIf="products && products.length > 0" [title]="'Promos & Ventes Flash'"
-        [icon]="'../../assets/png/promo.png'" [backgroundClass]="'backgournd-card-1'" [products]=products>
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Promos & Ventes Flash'"
+        [icon]="'../../assets/png/promo.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList [start]=0
+        [end]=6 [promo]=true>
     </app-home-card>
-    <app-home-card *ngIf="products && products.length > 0" [title]="'Les mieux notés'"
-        [icon]="'../../assets/png/ranking.png'" [backgroundClass]="'backgournd-card-2'" [products]=products>
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Les mieux notés'"
+        [icon]="'../../assets/png/ranking.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList
+        [start]=6 [end]=12>
     </app-home-card>
-    <app-home-card *ngIf="products && products.length > 0" [title]="'Recommandations'"
-        [icon]="'../../assets/png/top-selection.png'" [backgroundClass]="'backgournd-card-1'" [products]=products>
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Recommandations'"
+        [icon]="'../../assets/png/top-selection.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList
+        [start]=12 [end]=18>
     </app-home-card>
-    <app-home-card *ngIf="products && products.length > 0" [title]="'Nouveautés'" [icon]="'../../assets/png/new.png'"
-        [backgroundClass]="'backgournd-card-2'" [products]=products>
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Nouveautés'"
+        [icon]="'../../assets/png/new.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList [start]=18
+        [end]=24>
     </app-home-card>
-    <app-home-card *ngIf="products && products.length > 0" [title]="'Vendeurs du moment'"
-        [icon]="'../../assets/png/shop.png'" [backgroundClass]="'backgournd-card-1'" [products]=products>
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Vendeurs du moment'"
+        [icon]="'../../assets/png/shop.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList [start]=24
+        [end]=30>
     </app-home-card>
-    <app-home-card *ngIf="products && products.length > 0" [title]="'Notre sélection éco-responsable'"
-        [icon]="'../../assets/png/eco.png'" [backgroundClass]="'backgournd-card-2'" [products]=products></app-home-card>
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Notre sélection éco-responsable'"
+        [icon]="'../../assets/png/eco.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList [start]=30
+        [end]=36>
+    </app-home-card>
     <div class="advantages">
         <div class="advantage">
             <img class="icon" src="../../assets/svg/saving.svg">

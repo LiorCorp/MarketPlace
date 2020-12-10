@@ -3,6 +3,8 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
   DocumentReference,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
 } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { Product } from '../models/Product.model';
@@ -17,27 +19,47 @@ export class ProductService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  async getHomeProducts(): Promise<Product[]> {
+  async getHomeProducts(limit: number): Promise<Product[]> {
     const products: Product[] = [];
-    const first = this.productCollection.ref.limit(6);
-    return await first
+    return await this.productCollection.ref
+      .limit(limit)
       .get()
-      .then(
-        (
-          documentSnapshots: firebase.default.firestore.QuerySnapshot<Product>
-        ) => {
-          documentSnapshots.docs.forEach(
-            (
-              doc: firebase.default.firestore.QueryDocumentSnapshot<Product>
-            ) => {
-              products.push(doc.data());
-            }
-          );
-          return this.getProductsImg(products).then((res: Product[]) => res);
-          // const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1];
-          // const next = this.productCollection.ref.startAfter(lastVisible).limit(6);
-        }
-      );
+      .then((documentSnapshots: QuerySnapshot<Product>) => {
+        documentSnapshots.docs.forEach(
+          (doc: QueryDocumentSnapshot<Product>) => {
+            products.push(doc.data());
+          }
+        );
+        return this.getProductsImg(products).then((res: Product[]) => res);
+      });
+  }
+
+  async getProducts(
+    documentSnapshot: QuerySnapshot<Product>
+  ): Promise<Product[]> {
+    const products: Product[] = [];
+    documentSnapshot.docs.forEach((doc: QueryDocumentSnapshot<Product>) => {
+      products.push(doc.data());
+    });
+    return this.getProductsImg(products).then((res: Product[]) => res);
+  }
+
+  async getDocumentSnapshot(limit: number): Promise<QuerySnapshot<Product>> {
+    return await this.productCollection.ref
+      .limit(limit)
+      .get()
+      .then((doc: QuerySnapshot<Product>) => doc);
+  }
+
+  async getNextDocumentSnapshot(
+    limit: number,
+    documentSnapshots: QuerySnapshot<Product>
+  ): Promise<QuerySnapshot<Product>> {
+    return await this.productCollection.ref
+      .startAt(documentSnapshots.docs[documentSnapshots.docs.length - 1])
+      .limit(limit)
+      .get()
+      .then((doc: QuerySnapshot<Product>) => doc);
   }
 
   async createProduct(product: Product): Promise<DocumentReference<Product>> {
@@ -57,10 +79,10 @@ export class ProductService {
         firebase.default
           .storage()
           .ref()
-          .child('products/' + product.productImg)
+          .child('products/' + product.img)
           .getDownloadURL()
           .then((url) => {
-            _products.push({ ...product, productImg: url });
+            _products.push({ ...product, img: url });
             if (_products.length === products.length) {
               resolve(_products);
             }

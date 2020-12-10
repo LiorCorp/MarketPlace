@@ -1,6 +1,9 @@
 @import "../../style/style.scss";
 
 .product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: $border-radius;
   width: 190px;
   color: $primary-color;
@@ -18,21 +21,36 @@
   }
 
   mat-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
     margin: 0;
 
     p {
       margin: 0;
     }
 
+    .seller {
+      display: flex;
+      align-items: center;
+      margin-top: 0.3rem;
+
+      .flag {
+        width: 0.9rem;
+        margin-left: 0.3rem;
+      }
+    }
+
     .delivery-time {
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      margin-top: 1rem;
     }
 
     .product-price {
       font-weight: bold;
+      font-size: x-large;
     }
 
     .rating {
@@ -53,8 +71,9 @@
     justify-content: center;
 
     button {
-      background-color: $primary-color;
+      background: linear-gradient(0deg, #52d2ac 0%, #33b5b3 0%, #1b30a2 100%);
       color: #ffffff;
+      font-weight: bold;
     }
   }
 }

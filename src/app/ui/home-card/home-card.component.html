@@ -3,11 +3,11 @@
         <span>{{title}}</span>
     </a>
     <div class="cards" *ngIf="products && products.length > 0">
-        <div class="card" *ngFor="let product of products">
-            <div class="product-name">{{product.productName}}</div>
-            <img class="product-img" src="{{product.productImg}}">
+        <div class="card" *ngFor="let product of products | slice:start:end">
+            <div class="product-name">{{product.name}}</div>
+            <img class="product-img" src="{{product.img}}">
             <div class="price">
-                <div class="base">{{product.price | currency}}</div>
+                <div class="base" *ngIf="promo">{{product.price | currency}}</div>
                 <div class="discount">{{product.discountPrice | currency}}</div>
             </div>
         </div>

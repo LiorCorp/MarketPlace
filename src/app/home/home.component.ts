@@ -8,13 +8,13 @@ import { ProductService } from './../services/product.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  products: Product[];
+  productsList: Product[];
+
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getHomeProducts().then((products) => {
-      console.log(products);
-      this.products = products;
-    });
+    this.productService
+      .getHomeProducts(36)
+      .then((products) => (this.productsList = products));
   }
 }

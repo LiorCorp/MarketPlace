@@ -20,6 +20,9 @@ export class HomeCardComponent implements OnInit {
   @Input() icon: string;
   @Input() backgroundClass: string;
   @Input() products: Product[];
+  @Input() start: number;
+  @Input() end: number;
+  @Input() promo = false;
 
   constructor(
     @Inject(DEFAULT_CURRENCY_CODE) public currency: string,

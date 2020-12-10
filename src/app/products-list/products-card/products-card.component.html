@@ -1,19 +1,26 @@
-<mat-card class="product-card" *ngFor="let product of products | async">
+<mat-card class="product-card" *ngFor="let product of productsList">
     <mat-card-header>
-        <mat-card-title>{{product.productName}}</mat-card-title>
+        <mat-card-title>{{product.name}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="https://picsum.photos/150?sig=`{{product.id}}`">
+    <img mat-card-image src="{{product.img}}">
     <mat-card-content>
         <p>
             <span class="product-price">{{product.price}} € </span>
             <span>/ pcs</span>
         </p>
         <p>
-            A partir de {{product.orderMin}} pièces
+            A partir de 10 pièces
         </p>
         <div class="rating">
             <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
             <p>42 avis</p>
+        </div>
+        <div class="seller">
+            Vendeur : Mega Dental
+            <img class="flag" src="../../../assets/png/flags/france.png" alt="france">
+        </div>
+        <div>
+            Marque : 3M
         </div>
         <p class="delivery-time">
             Livraison sous 3 à 5 jours
@@ -21,7 +28,7 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button [routerLink]="['/product', product.productName + product.id]">Voir les
+        <button mat-raised-button [routerLink]="['/product', product.name + product.id]">Voir les
             offres</button>
     </mat-card-actions>
 </mat-card>

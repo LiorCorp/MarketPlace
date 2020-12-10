@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FakeService } from 'src/app/services/fake.service';
+import { ProductService } from 'src/app/services/product.service';
 import { Product } from './../../models/Product.model';
 
 @Component({
@@ -9,11 +9,16 @@ import { Product } from './../../models/Product.model';
   styleUrls: ['./products-card.component.scss'],
 })
 export class ProductsCardComponent implements OnInit {
-  products: Observable<Product[]>;
+  productsList: Product[];
 
-  constructor(readonly fakeService: FakeService) {}
+  constructor(
+    readonly fakeService: FakeService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
-    this.products = this.fakeService.getProducts();
+    this.productService
+      .getHomeProducts(36)
+      .then((products) => (this.productsList = products));
   }
 }
