@@ -6,8 +6,9 @@
     <div class="header">
         <div class="action">
             <app-searchbar></app-searchbar>
-            <app-action-buttons></app-action-buttons>
+            <app-header-buttons [isAuthenticated]=isAuthenticated [bubbleAccountHover]=bubbleAccountHover
+                (authDialog)="openAuthDialog()" (signout)="onSignOut()"></app-header-buttons>
         </div>
-        <app-menu></app-menu>
+        <app-header-categories></app-header-categories>
     </div>
 </header>

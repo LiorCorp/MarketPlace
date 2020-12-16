@@ -61,7 +61,16 @@
     },
     "my": "Mes",
     "orders": "commandes",
-    "cart": "Panier"
+    "cart": "Panier",
+    "categories": {
+      "general-practitioner": "Meden Omnipraticien",
+      "prosthesis": "Meden Prothèse",
+      "implotology": "Meden Implantologie",
+      "orthodontist": "Meden Orthodontiste",
+      "start-pack": "Meden Starter-pack",
+      "student": "Meden Etudiants",
+      "green": "Meden Green"
+    }
   },
   "product": {
     "seller": "Vendeur",

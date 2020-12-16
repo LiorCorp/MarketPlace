@@ -1,0 +1,8 @@
+<span *ngIf="bubbleHover" class="bubble">
+    <ul>
+        <li *ngFor="let item of menuItems" (click)=onMethod(item.method)>
+            <div class="item">{{'header.myaccount.' + item.name | translate}}</div>
+            <div class="line"></div>
+        </li>
+    </ul>
+</span>

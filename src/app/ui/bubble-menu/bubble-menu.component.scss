@@ -1,0 +1,60 @@
+@import "../../style/style.scss";
+
+.bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.93);
+  color: $primary-color;
+  border-radius: 0.4em;
+  top: 30px;
+  left: 3px;
+  -webkit-box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.3);
+
+  ul {
+    display: flex;
+    margin: 0.5rem 0;
+    padding: 0;
+    align-items: center;
+    flex-direction: column;
+
+    li {
+      list-style-type: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      height: 1.7rem;
+      margin: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .item:hover {
+        background-color: $primary-color;
+        color: $secondary-color;
+        width: 100%;
+      }
+      .line {
+        border-bottom: 1px solid #d5dbdb;
+        width: 90%;
+        margin: 0.2rem 0;
+        align-self: center;
+      }
+    }
+  }
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 56.5%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.93);
+  border-top: 0;
+  margin-left: -20px;
+  margin-top: -10px;
+}

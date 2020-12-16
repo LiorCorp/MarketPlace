@@ -25,17 +25,18 @@ import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
-import { ActionButtonsComponent } from './header/action-buttons/action-buttons.component';
 import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './header/menu/menu.component';
-import { SearchbarComponent } from './header/searchbar/searchbar.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FiltersComponent } from './products-list/filters/filters.component';
 import { ProductsCardComponent } from './products-list/products-card/products-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { BubbleMenuComponent } from './ui/bubble-menu/bubble-menu.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
+import { HeaderButtonsComponent } from './ui/header/header-buttons/header-buttons.component';
+import { HeaderCategoriesComponent } from './ui/header/header-categories/header-categories.component';
+import { SearchbarComponent } from './ui/header/searchbar/searchbar.component';
 import { HomeCardComponent } from './ui/home-card/home-card.component';
 import { SigninComponent } from './ui/signin/signin.component';
 import { SignupComponent } from './ui/signup/signup.component';
@@ -54,12 +55,13 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     SignupComponent,
     HomeComponent,
     SearchbarComponent,
-    ActionButtonsComponent,
-    MenuComponent,
     AuthComponent,
     SnackbarComponent,
     ProductDetailComponent,
     HomeCardComponent,
+    HeaderButtonsComponent,
+    BubbleMenuComponent,
+    HeaderCategoriesComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

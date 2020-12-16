@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionButtonsComponent } from './action-buttons.component';
+import { HeaderCategoriesComponent } from './header-categories.component';
 
-describe('ActionButtonsComponent', () => {
-  let component: ActionButtonsComponent;
-  let fixture: ComponentFixture<ActionButtonsComponent>;
+describe('HeaderCategoriesComponent', () => {
+  let component: HeaderCategoriesComponent;
+  let fixture: ComponentFixture<HeaderCategoriesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActionButtonsComponent ]
+      declarations: [ HeaderCategoriesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActionButtonsComponent);
+    fixture = TestBed.createComponent(HeaderCategoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

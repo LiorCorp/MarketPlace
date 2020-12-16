@@ -1,0 +1,65 @@
+@import "../../../style/style.scss";
+
+.right-buttons {
+  color: #ffffff;
+  display: flex;
+
+  .btn {
+    border: 2px transparent solid;
+    cursor: pointer;
+    display: flex;
+    padding: 3px;
+    margin-right: 0.9rem;
+
+    &:hover {
+      border: 2px white solid;
+      border-radius: 10px;
+    }
+
+    .icon {
+      position: relative;
+      align-self: center;
+      display: flex;
+      padding-right: 0.3rem;
+
+      img {
+        height: 2.2rem;
+        width: 2.2rem;
+      }
+
+      .items-number {
+        position: absolute;
+        left: 13px;
+        top: 5px;
+        color: $secondary-color;
+      }
+    }
+
+    .label {
+      display: flex;
+      flex-direction: column;
+      font-size: medium;
+
+      .hello {
+        white-space: nowrap;
+      }
+
+      .my-account {
+        white-space: nowrap;
+        display: flex;
+        position: relative;
+      }
+
+      span {
+        font-weight: bold;
+        line-height: 1.3rem;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  &.snackbar-success {
+    @extend .snackbar-success;
+  }
+}

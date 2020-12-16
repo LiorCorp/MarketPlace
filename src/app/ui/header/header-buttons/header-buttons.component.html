@@ -9,23 +9,8 @@
             <span class="my-account" *ngIf="!isAuthenticated">{{'header.signin' | translate}}</span>
             <span class="my-account" *ngIf="isAuthenticated">{{'header.myaccount.title' | translate}}
                 <mat-icon class="material-icons-round" aria-hidden="false">keyboard_arrow_down</mat-icon>
-                <span *ngIf="bubbleAccountHover" class="bubble">
-                    <ul>
-                        <li>{{'header.myaccount.title' | translate}}</li>
-                        <div class="line"></div>
-                        <li>{{'header.myaccount.wishlist' | translate}}</li>
-                        <div class="line"></div>
-                        <li>{{'header.myaccount.myVouchers' | translate}}</li>
-                        <div class="line"></div>
-                        <li>{{'header.myaccount.myReimbursements' | translate}}</li>
-                        <div class="line"></div>
-                        <li>{{'header.myaccount.myRecommendations' | translate}}</li>
-                        <div class="line"></div>
-                        <li>{{'header.myaccount.frequentlyAskedQuestions' | translate}}</li>
-                        <div class="line"></div>
-                        <li (click)="onSignOut()">{{'header.myaccount.logout' | translate}}</li>
-                    </ul>
-                </span>
+                <app-bubble-menu [bubbleHover]=bubbleAccountHover (signout)="onSignOut()" [menuItems]=accountMenuItems>
+                </app-bubble-menu>
             </span>
         </div>
     </div>
