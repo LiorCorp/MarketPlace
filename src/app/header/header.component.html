@@ -1,14 +1,14 @@
-<header>
+<div class="header">
     <div class="burger-menu">
         <app-hamburger-icon></app-hamburger-icon>
     </div>
     <a class="logo" [routerLink]="['/']"><img src="../../assets/logo/logo.svg"></a>
-    <div class="header">
-        <div class="action">
+    <div class="action">
+        <div class="action-elements">
             <app-searchbar></app-searchbar>
             <app-header-buttons [isAuthenticated]=isAuthenticated [bubbleAccountHover]=bubbleAccountHover
                 (authDialog)="openAuthDialog()" (signout)="onSignOut()"></app-header-buttons>
         </div>
         <app-header-categories></app-header-categories>
     </div>
-</header>
+</div>

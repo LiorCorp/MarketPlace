@@ -23,7 +23,6 @@ import { TranslateService } from '@ngx-translate/core';
           'border-radius': '1rem',
           cursor: 'pointer',
           'box-shadow': '21px -14px 50px 0px rgba(0,0,0,0.68)',
-          border: '4px solid #ffffff',
         })
       ),
       state('false', style({})),
