@@ -54,7 +54,7 @@ export class AppComponent {
     }
   }
 
-  closeMenuDone(event): void {
+  closeMenuDone(event: any): void {
     if (event.fromState !== 'void') {
       this.disabledMenuButton = false;
       if (!this.menuOpened) {

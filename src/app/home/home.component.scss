@@ -8,7 +8,14 @@
 
   .home-banner {
     width: 85%;
+    height: 15rem;
     border-radius: $border-radius;
+    background: linear-gradient(
+      5deg,
+      rgba(82, 210, 172, 1) 0%,
+      rgba(51, 181, 179, 1) 44%,
+      rgba(27, 48, 162, 1) 100%
+    );
   }
 
   .advantages {
