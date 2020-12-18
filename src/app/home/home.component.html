@@ -1,66 +1,34 @@
 <div class="home">
-    <!-- <img class="home-banner" src="https://picsum.photos/1500/300"> -->
-    <!-- <img class="home-banner" src="../../assets/png/building.png"> -->
     <div class="home-banner"></div>
-    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Promos & Ventes Flash'"
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.promo'"
         [icon]="'../../assets/png/promo.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList [start]=0
         [end]=6 [promo]=true>
     </app-home-card>
-    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Les mieux notés'"
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.ranking'"
         [icon]="'../../assets/png/ranking.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList
         [start]=6 [end]=12>
     </app-home-card>
-    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Recommandations'"
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.top-selection'"
         [icon]="'../../assets/png/top-selection.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList
         [start]=12 [end]=18>
     </app-home-card>
-    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Nouveautés'"
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.news'"
         [icon]="'../../assets/png/new.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList [start]=18
         [end]=24>
     </app-home-card>
-    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Vendeurs du moment'"
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.best-sellers'"
         [icon]="'../../assets/png/shop.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList [start]=24
         [end]=30>
     </app-home-card>
-    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'Notre sélection éco-responsable'"
+    <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.eco'"
         [icon]="'../../assets/png/eco.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList [start]=30
         [end]=36>
     </app-home-card>
     <div class="advantages">
-        <div class="advantage">
-            <img class="icon" src="../../assets/svg/saving.svg">
-            <div class="title">UN GAIN D’ARGENT</div>
-            <div class="description">Optimisez vos dépenses en prenant le contrôle et sélectionnez vos références au
-                meilleur rapport
-                qualité prix.</div>
-        </div>
-        <div class="advantage">
-            <img class="icon" src="../../assets/svg/time.svg">
-            <div class="title">UN GAIN DE TEMPS</div>
-            <div class="description">Commandez en une seule fois auprès de plusieurs fournisseurs, en quelques clics ou
-                en automatisants vos
-                commandes.</div>
-        </div>
-        <div class="advantage">
-            <img class="icon" src="../../assets/svg/certified-sellers.svg">
-            <div class="title">DES VENDEURS CERTIFIÉS</div>
-            <div class="description">Nous prenons soin de sélectionner des vendeurs certifiés afin de vous garantir une
-                large sélection de
-                produits et le meilleur service.</div>
-        </div>
-        <div class="advantage">
-            <img class="icon" src="../../assets/svg/privacy.svg">
-            <div class="title">DES DONNÉES SÉCURISÉES</div>
-            <div class="description">Nous accordons une très grande importance à la confidentialité et la sécurité de
-                vos données et de vos
-                paiements.</div>
-        </div>
-        <div class="advantage">
-            <img class="icon" src="../../assets/svg/feedback.svg">
-            <div class="title">L’AVIS DES PRATICIENS</div>
-            <div class="description">Profitez des notes et des commentaires de vos confrères afin de vous assurer de
-                faire les bon choix.
-            </div>
+        <div class="advantage" *ngFor="let advantage of advantages">
+            <img class="icon" [src]="advantage.icon">
+            <div class="title">{{(advantage.title | translate) | uppercase}}</div>
+            <div class="description">{{advantage.description | translate}}</div>
         </div>
     </div>
 </div>

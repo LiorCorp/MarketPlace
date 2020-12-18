@@ -72,6 +72,43 @@
       "green": "Meden Green"
     }
   },
+  "home": {
+    "banner": {
+      "promo": "Promos & Ventes Flash ",
+      "ranking": "Les Mieux Notés",
+      "top-selection": "Vos Recommandations",
+      "news": "Les Nouveautés",
+      "best-sellers": "Les Meilleurs Vendeurs",
+      "eco": "Notre Sélection Eco-Responsable"
+    },
+    "advantages": {
+      "money-gain": {
+        "title": "Un gain d'argent",
+        "icon": "saving",
+        "description": "Optimisez vos dépenses en prenant le contrôle et sélectionnez vos références au meilleur rapport qualité prix."
+      },
+      "time-gain": {
+        "title": "Un gain de temps",
+        "icon": "time",
+        "description": "Commandez en une seule fois auprès de plusieurs fournisseurs, en quelques clics ou en automatisants vos commandes."
+      },
+      "certified-sellers": {
+        "title": "Des vendeurs certifiés",
+        "icon": "certified-sellers",
+        "description": "Nous prenons soin de sélectionner des vendeurs certifiés afin de vous garantir une large sélection de produits et le meilleur service."
+      },
+      "secured-data": {
+        "title": "Des données sécurisées",
+        "icon": "privacy",
+        "description": "Nous accordons une très grande importance à la confidentialité et la sécurité de vos données et de vos paiements."
+      },
+      "advice-practitioners": {
+        "title": "L'avis des praticiens",
+        "icon": "feedback",
+        "descripton": "Profitez des notes et des commentaires de vos confrères afin de vous assurer de faire les bons choix."
+      }
+    }
+  },
   "product": {
     "seller": "Vendeur",
     "evaluations": "évaluations",

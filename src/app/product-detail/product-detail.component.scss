@@ -2,7 +2,10 @@
 
 .container {
   display: flex;
-  padding: 2rem 4rem;
+  padding: 0 4rem;
+  padding-top: 1.5rem;
+  height: calc(100vh - 8.5rem);
+
   .img-product {
     img {
       max-width: 100%;

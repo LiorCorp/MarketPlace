@@ -1,6 +1,6 @@
 <div class="banner-card" [ngClass]="[backgroundClass]">
     <a class="title" [routerLink]="['/products']"><img class="icon" src={{icon}}>
-        <span>{{title}}</span>
+        <span>{{title | translate}}</span>
     </a>
     <div class="cards" *ngIf="products && products.length > 0">
         <div class="card" *ngFor="let product of products | slice:start:end">

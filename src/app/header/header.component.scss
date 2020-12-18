@@ -9,6 +9,8 @@
     rgba(27, 48, 162, 1) 100%
   );
   position: sticky;
+  position: -webkit-sticky;
+  height: 7rem;
   -webkit-box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.5);
@@ -40,8 +42,8 @@
     &-elements {
       display: flex;
       align-items: center;
-      margin: 1.5rem 0 0.5rem 0;
-
+      margin-top: 1.5rem;
+      margin-bottom: 0.1rem;
       app-searchbar {
         flex: 1 1 auto;
         flex-grow: 4;
