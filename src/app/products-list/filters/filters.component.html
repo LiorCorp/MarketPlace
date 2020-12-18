@@ -1,8 +1,8 @@
 <div class="filters">
-    <div class="label">Promotions</div>
-    <mat-checkbox color="primary">Ventes Flash</mat-checkbox>
+    <div class="label">{{'filter.promo' | translate}}</div>
+    <mat-checkbox color="primary">{{'filter.flash-sales' | translate}}</mat-checkbox>
     <div class="line"></div>
-    <div class="label">Avis des praticiens</div>
+    <div class="label">{{'filter.advice-practitioners' | translate}}</div>
     <div class="rating">
         <div><span class="full">★</span><span class="full">★</span><span class="full">★</span><span
                 class="full">★</span><span class="empty">☆</span> & plus</div>
@@ -14,36 +14,36 @@
                 class="empty">☆</span><span class="empty">☆</span> & plus</div>
     </div>
     <div class="line"></div>
-    <div class="label">Prix</div>
+    <div class="label">{{'filter.price' | translate}}</div>
     <div class="custom-slider">
         <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
-        <div class="amount-product">1037 Produits</div>
+        <div class="amount-product">1037 {{'filter.products' | translate}}</div>
     </div>
     <div class="line"></div>
-    <div class="label">Livraison</div>
-    <mat-checkbox color="primary">24 heures</mat-checkbox>
-    <mat-checkbox color="primary">48 heures</mat-checkbox>
-    <mat-checkbox color="primary">72 heures</mat-checkbox>
-    <mat-checkbox color="primary">4 jours</mat-checkbox>
-    <mat-checkbox color="primary">5 jours & plus</mat-checkbox>
+    <div class="label">{{'filter.delivery' | translate}}</div>
+    <mat-checkbox color="primary">24 {{'filter.hours' | translate}}</mat-checkbox>
+    <mat-checkbox color="primary">48 {{'filter.hours' | translate}}</mat-checkbox>
+    <mat-checkbox color="primary">72 {{'filter.hours' | translate}}</mat-checkbox>
+    <mat-checkbox color="primary">4 {{'filter.days' | translate}}</mat-checkbox>
+    <mat-checkbox color="primary">5 {{'filter.days' | translate}} & plus</mat-checkbox>
     <div class="line"></div>
-    <div class="label">Marques</div>
+    <div class="label">{{'filter.brands' | translate}}</div>
     <div class="brands">
-        <mat-checkbox color="primary">Marque 1</mat-checkbox>
-        <mat-checkbox color="primary">Marque 2</mat-checkbox>
-        <mat-checkbox color="primary">Marque 3</mat-checkbox>
-        <mat-checkbox color="primary">Marque 4</mat-checkbox>
-        <mat-checkbox color="primary">Marque 5</mat-checkbox>
-        <mat-checkbox color="primary">Marque 6</mat-checkbox>
-        <mat-checkbox color="primary">Marque 7</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 1</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 2</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 3</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 4</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 5</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 6</mat-checkbox>
+        <mat-checkbox color="primary">{{'filter.brands' | translate}} 7</mat-checkbox>
     </div>
     <div class="line"></div>
-    <div class="label">Vendeurs</div>
+    <div class="label">{{'filter.sellers' | translate}}</div>
     <mat-checkbox color="primary">Dentalix</mat-checkbox>
     <mat-checkbox color="primary">Mercura</mat-checkbox>
     <mat-checkbox color="primary">Allo Dent</mat-checkbox>
     <div class="line"></div>
-    <div class="label">Catégories</div>
+    <div class="label">{{'filter.categories' | translate}}</div>
     <div class="categories">
         <a class="category" href="#">Draps d'examen</a>
         <a class="category" href="#">Gobelets</a>
@@ -52,16 +52,16 @@
         <a class="category" href="#">Essuyage</a>
     </div>
     <div class="line"></div>
-    <div class="label">Minimum de commande</div>
+    <div class="label">{{'filter.minimum-order' | translate}}</div>
     <mat-form-field appearance="outline">
-        <mat-label>pièces</mat-label>
+        <mat-label>{{'filter.piece' | translate}}</mat-label>
         <input matInput autocomplete="off">
     </mat-form-field>
     <div class="line"></div>
-    <div class="label">Prix par pièce</div>
+    <div class="label">{{'filter.price-by-piece' | translate}}</div>
     <mat-form-field appearance="outline">
-        <mat-label>prix par pièce maximum</mat-label>
+        <mat-label>{{'filter.price-by-piece-max' | translate}}</mat-label>
         <input matInput autocomplete="off">
-        <mat-icon matSuffix>euro</mat-icon>
+        <mat-icon matSuffix>{{'filter.euro' | translate}}</mat-icon>
     </mat-form-field>
 </div>

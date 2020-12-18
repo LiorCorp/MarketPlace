@@ -130,5 +130,22 @@
     "shippedAndSoldBy": "Expédié et vendu par",
     "guarantee": "Couvert par la garantie Meden Marketplace",
     "addToMyList": "Ajouter à ma liste"
+  },
+  "filter": {
+    "promo": "Promotions",
+    "flash-sales": "Ventes Flash",
+    "advice-practitioners": "Avis des praticiens",
+    "price": "Prix",
+    "products": "Produits",
+    "delivery": "Livraison",
+    "hours": "heures",
+    "brands": "Marques",
+    "sellers": "Vendeurs",
+    "categories": "Catégories",
+    "minimum-order": "Minimum de commande",
+    "piece": "pièce",
+    "price-by-piece": "Prix par pièce",
+    "price-by-piece-max": "Prix par pièce maximum",
+    "euro": "euro"
   }
 }
