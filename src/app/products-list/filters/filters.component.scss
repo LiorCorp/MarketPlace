@@ -19,15 +19,8 @@
     margin: 0.5rem 0;
   }
 
-  .rating {
-    span {
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-    .full {
-      color: #ffa41d;
-      -webkit-text-stroke: 0.06rem $primary-color;
-    }
+  app-rating {
+    font-size: 1rem;
   }
 
   .custom-slider {

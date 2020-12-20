@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,6 +39,7 @@ import { HeaderButtonsComponent } from './ui/header/header-buttons/header-button
 import { HeaderCategoriesComponent } from './ui/header/header-categories/header-categories.component';
 import { SearchbarComponent } from './ui/header/searchbar/searchbar.component';
 import { HomeCardComponent } from './ui/home-card/home-card.component';
+import { RatingComponent } from './ui/rating/rating.component';
 import { SigninComponent } from './ui/signin/signin.component';
 import { SignupComponent } from './ui/signup/signup.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
@@ -62,6 +64,7 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     HeaderButtonsComponent,
     BubbleMenuComponent,
     HeaderCategoriesComponent,
+    RatingComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -84,6 +87,7 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     MatDialogModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     MatPasswordStrengthModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

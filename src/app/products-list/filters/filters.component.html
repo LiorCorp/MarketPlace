@@ -3,15 +3,17 @@
     <mat-checkbox color="primary">{{'filter.flash-sales' | translate}}</mat-checkbox>
     <div class="line"></div>
     <div class="label">{{'filter.advice-practitioners' | translate}}</div>
-    <div class="rating">
-        <div><span class="full">★</span><span class="full">★</span><span class="full">★</span><span
-                class="full">★</span><span class="empty">☆</span> & plus</div>
-        <div><span class="full">★</span><span class="full">★</span><span class="full">★</span><span
-                class="empty">☆</span><span class="empty">☆</span> & plus</div>
-        <div><span class="full">★</span><span class="full">★</span><span class="empty">☆</span><span
-                class="empty">☆</span><span class="empty">☆</span> & plus</div>
-        <div><span class="full">★</span><span class="empty">☆</span><span class="empty">☆</span><span
-                class="empty">☆</span><span class="empty">☆</span> & plus</div>
+    <div>
+        <app-rating [fullStar]=4></app-rating>{{'filter.and-more' | translate}}
+    </div>
+    <div>
+        <app-rating [fullStar]=3></app-rating>{{'filter.and-more' | translate}}
+    </div>
+    <div>
+        <app-rating [fullStar]=2></app-rating>{{'filter.and-more' | translate}}
+    </div>
+    <div>
+        <app-rating [fullStar]=1></app-rating>{{'filter.and-more' | translate}}
     </div>
     <div class="line"></div>
     <div class="label">{{'filter.price' | translate}}</div>
@@ -25,7 +27,7 @@
     <mat-checkbox color="primary">48 {{'filter.hours' | translate}}</mat-checkbox>
     <mat-checkbox color="primary">72 {{'filter.hours' | translate}}</mat-checkbox>
     <mat-checkbox color="primary">4 {{'filter.days' | translate}}</mat-checkbox>
-    <mat-checkbox color="primary">5 {{'filter.days' | translate}} & plus</mat-checkbox>
+    <mat-checkbox color="primary">5 {{'filter.days' | translate}} {{'filter.and-more' | translate}}</mat-checkbox>
     <div class="line"></div>
     <div class="label">{{'filter.brands' | translate}}</div>
     <div class="brands">

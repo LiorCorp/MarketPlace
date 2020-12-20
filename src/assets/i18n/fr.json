@@ -23,7 +23,7 @@
       "description": "Vous allez recevoir un email pour confirmer votre inscription."
     },
     "input": {
-      "lastname": "Nom de famille",
+      "lastname": "Nom",
       "firstname": "Prénom",
       "email": "Adresse email professionel",
       "password": "Mot de passe",
@@ -129,7 +129,13 @@
     "secureTransaction": "Transaction sécurisée",
     "shippedAndSoldBy": "Expédié et vendu par",
     "guarantee": "Couvert par la garantie Meden Marketplace",
-    "addToMyList": "Ajouter à ma liste"
+    "addToMyList": "Ajouter à ma liste",
+    "advice": "avis",
+    "from": "A partir de",
+    "piece": "pièce",
+    "delivery-under": "Livraison sous",
+    "days": "jours",
+    "see-offers": "Voir les offres"
   },
   "filter": {
     "promo": "Promotions",
@@ -139,6 +145,7 @@
     "products": "Produits",
     "delivery": "Livraison",
     "hours": "heures",
+    "days": "jours",
     "brands": "Marques",
     "sellers": "Vendeurs",
     "categories": "Catégories",
@@ -146,6 +153,7 @@
     "piece": "pièce",
     "price-by-piece": "Prix par pièce",
     "price-by-piece-max": "Prix par pièce maximum",
-    "euro": "euro"
+    "euro": "euro",
+    "and-more": " & plus"
   }
 }

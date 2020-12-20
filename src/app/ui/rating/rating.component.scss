@@ -1,0 +1,7 @@
+@import "../../style/style.scss";
+
+span {
+  cursor: pointer;
+  color: #ffa41d;
+  -webkit-text-stroke: 0.03rem $primary-color;
+}

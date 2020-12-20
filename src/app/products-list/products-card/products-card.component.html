@@ -1,3 +1,4 @@
+<mat-spinner *ngIf="!productsList"></mat-spinner>
 <mat-card class="product-card" *ngFor="let product of productsList">
     <mat-card-header>
         <mat-card-title>{{product.name}}</mat-card-title>
@@ -9,26 +10,26 @@
             <span>/ pcs</span>
         </p>
         <p>
-            A partir de 10 pièces
+            {{'product.from' | translate}} 10 {{'product.piece' | translate}}
         </p>
         <div class="rating">
-            <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
-            <p>42 avis</p>
+            <app-rating [fullStar]=4></app-rating>
+            <p>42 {{'product.advice' | translate}}</p>
         </div>
         <div class="seller">
-            Vendeur : Mega Dental
+            {{'product.seller' | translate}} : Mega Dental
             <img class="flag" src="../../../assets/png/flags/france.png" alt="france">
         </div>
         <div>
-            Marque : 3M
+            {{'product.brand' | translate}} : 3M
         </div>
         <p class="delivery-time">
-            Livraison sous 3 à 5 jours
+            {{'product.delivery-under' | translate}} 3 à 5 {{'product.days' | translate}}
             <mat-icon class="material-icons-outlined" aria-hidden="false">local_shipping</mat-icon>
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button [routerLink]="['/product', product.name + product.id]">Voir les
-            offres</button>
+        <button mat-raised-button [routerLink]="['/product', product.name + product.id]">{{'product.see-offers' |
+            translate}}</button>
     </mat-card-actions>
 </mat-card>
