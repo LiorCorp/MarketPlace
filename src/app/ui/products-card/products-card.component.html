@@ -6,7 +6,7 @@
     <img mat-card-image src="{{product.img}}">
     <mat-card-content>
         <p>
-            <span class="product-price">{{product.price}} € </span>
+            <span class="product-price">{{product.price | currency}}</span>
             <span>/ pcs</span>
         </p>
         <p>

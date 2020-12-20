@@ -7,6 +7,7 @@ import {
 } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category.model';
+import { AuthService } from '../services/auth.service';
 import { FakeService } from '../services/fake.service';
 
 @Component({
@@ -41,13 +42,22 @@ export class MainMenuComponent implements OnInit {
   itemChildHovered: Category;
   itemBabyHovered: Category;
   displayCategoriesChild = false;
+  isAuthenticated: firebase.default.User;
 
-  constructor(private readonly fakeService: FakeService) {
+  constructor(
+    private readonly fakeService: FakeService,
+    private readonly authService: AuthService
+  ) {
     this.fakeService.getMenu().subscribe((menuItems) => {
       this.menuItems = menuItems;
       this.itemHovered = this.menuItems[0];
       this.menuItemSelected = this.itemHovered;
     });
+
+    this.authService.authStatusListener();
+    this.authService.currentAuthStatus.subscribe(
+      (authStatus) => (this.isAuthenticated = authStatus)
+    );
   }
 
   ngOnInit(): void {}

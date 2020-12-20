@@ -1,12 +1,13 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-filters',
-  templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss'],
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FiltersComponent implements OnInit {
+export class FilterComponent implements OnInit {
   value = 0;
   highValue = 100;
   options: Options = {
@@ -23,6 +24,7 @@ export class FiltersComponent implements OnInit {
       }
     },
   };
+
   constructor() {}
 
   ngOnInit(): void {}

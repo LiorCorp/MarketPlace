@@ -1,7 +1,7 @@
 <div class="menu">
     <div class="categories-parent category" [@category]="menuItems ? 'display' : 'hide'"
         (@category.done)="categoriesParentAnimationDone($event)">
-        <div class="header">Bonjour, Anthony</div>
+        <div class="header">Bonjour, {{isAuthenticated?.displayName}}</div>
         <div class="container" (mouseenter)="itemChildHovered=null">
             <div class="menu-items" *ngFor="let item of menuItems" (mouseenter)="hoverMenuItem(item)">
                 <div class="menu-item" [ngClass]='{"menu-item-hover": itemHovered === item}'>{{item.name}}</div>
