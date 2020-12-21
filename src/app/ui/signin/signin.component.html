@@ -9,6 +9,6 @@
         formControlName="password">
     <div class="options">
         <mat-checkbox color="primary" class="remember-me">{{'signin.stayConnected' | translate}}</mat-checkbox>
-        <div class="password-forget">{{'signin.forgottenPassword' | translate}}</div>
+        <div class="password-forget" (click)="forgotPassword()">{{'signin.forgottenPassword' | translate}}</div>
     </div>
 </form>

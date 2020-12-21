@@ -3,8 +3,9 @@
 .home {
   display: flex;
   align-items: center;
-  margin: 1.5rem 0;
   flex-direction: column;
+  min-height: calc(100vh - 7rem);
+  justify-content: center;
 
   .home-banner {
     width: 85%;
@@ -16,16 +17,17 @@
       rgba(51, 181, 179, 1) 44%,
       rgba(27, 48, 162, 1) 100%
     );
+    margin-top: 1.5rem;
   }
 
   mat-spinner {
-    margin-top: 1.5rem;
+    align-self: center;
   }
 
   .advantages {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
 
     .advantage {
       display: flex;

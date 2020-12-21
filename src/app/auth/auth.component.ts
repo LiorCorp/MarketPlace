@@ -27,6 +27,7 @@ export class AuthComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   errorSignupMessage: string;
   errorSigninMessage: string;
+  resetPassword = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -130,12 +131,24 @@ export class AuthComponent implements OnInit {
     await this.authService.signInUser(email, password).then(
       (res) => {
         this.dialog.closeAll();
-        this.openSnackBar({
-          title: 'signin.success.welcome',
-          description: '',
-          panelClass: 'snackbar-success',
-          duration: 3000,
-          firstname: res.user.displayName,
+        this.authService.isLoggedIn.then((userVerified) => {
+          if (userVerified) {
+            this.openSnackBar({
+              title: 'signin.success.welcome',
+              description: '',
+              panelClass: 'snackbar-success',
+              duration: 3000,
+              firstname: res.user.displayName,
+            });
+          } else {
+            this.openSnackBar({
+              title: 'signin.warning.welcome',
+              description: 'signin.warning.description',
+              panelClass: 'snackbar-warning',
+              duration: 800000,
+              firstname: res.user.displayName,
+            });
+          }
         });
       },
       (error) => {
@@ -253,6 +266,10 @@ export class AuthComponent implements OnInit {
         this.errorSignupMessage = error;
       }
     );
+  }
+
+  forgotPassword(email: string): void {
+    this.authService.resetPassword(email);
   }
 
   openSnackBar({

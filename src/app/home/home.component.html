@@ -1,5 +1,5 @@
 <div class="home">
-    <div class="home-banner"></div>
+    <div class="home-banner" *ngIf="productsList && productsList.length > 0"></div>
     <mat-spinner *ngIf="!productsList"></mat-spinner>
     <div *ngIf="productsList && productsList.length > 0">
         <app-home-card [title]="'home.banner.promo'" [icon]="'../../assets/png/promo.png'"
@@ -26,7 +26,7 @@
             [start]=30 [end]=36>
         </app-home-card>
     </div>
-    <div class="advantages">
+    <div class="advantages" *ngIf="productsList && productsList.length > 0">
         <div class="advantage" *ngFor="let advantage of advantages">
             <img class="icon" [src]="advantage.icon">
             <div class="title">{{(advantage.title | translate) | uppercase}}</div>

@@ -24,6 +24,7 @@
   background-image: url("../assets/background/background.jpg");
   background-size: cover;
   width: 100vw;
+  min-height: calc(100vh - 7rem);
 }
 
 app-hamburger-icon {

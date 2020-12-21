@@ -13,7 +13,14 @@ $border-radius: max(0px, min(15px, calc((100vw - 4px - 100%) * 9999))) / 15px;
 .snackbar-error {
   background: #ff7e79;
   color: #ffffff;
-  text-align: center;
+  font-weight: bold;
+  border: 2px solid #ffffff;
+}
+
+.snackbar-warning {
+  text-shadow: 0px 0px 3px #000000;
+  background: linear-gradient(335deg, #f0932b 36%, #1b30a2 90%);
+  color: #ffffff;
   font-weight: bold;
   border: 2px solid #ffffff;
 }

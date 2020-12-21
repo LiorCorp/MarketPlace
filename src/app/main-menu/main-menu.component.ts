@@ -53,8 +53,6 @@ export class MainMenuComponent implements OnInit {
       this.itemHovered = this.menuItems[0];
       this.menuItemSelected = this.itemHovered;
     });
-
-    this.authService.authStatusListener();
     this.authService.currentAuthStatus.subscribe(
       (authStatus) => (this.isAuthenticated = authStatus)
     );

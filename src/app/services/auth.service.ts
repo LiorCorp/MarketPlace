@@ -14,13 +14,16 @@ export class AuthService {
     private firestore: AngularFirestore,
     public fireAuth: AngularFireAuth
   ) {}
+
   private authStatusSub = new BehaviorSubject(
     this.firestore.firestore.app.auth().currentUser
   );
   currentAuthStatus = this.authStatusSub.asObservable();
 
-  async getCurrentUser(): Promise<firebase.default.User> {
-    return await this.fireAuth.currentUser.then((user) => user);
+  get isLoggedIn(): Promise<boolean> {
+    return this.getCurrentUser().then(
+      (user) => user !== null && user.emailVerified !== false
+    );
   }
 
   authStatusListener(): void {
@@ -33,6 +36,10 @@ export class AuthService {
     });
   }
 
+  async getCurrentUser(): Promise<firebase.default.User> {
+    return await this.fireAuth.currentUser.then((user) => user);
+  }
+
   async createUserWithEmailAndPassword(
     user: User,
     password: string
@@ -41,8 +48,7 @@ export class AuthService {
       this.fireAuth.createUserWithEmailAndPassword(user.email, password).then(
         (newUser: firebase.default.auth.UserCredential) => {
           if (newUser !== null) {
-            this.sendEmailVerification();
-            resolve(newUser);
+            this.sendEmailVerification().then(() => resolve(newUser));
           }
         },
         (err) => {
@@ -102,22 +108,20 @@ export class AuthService {
     });
   }
 
-  sendEmailVerification(): void {
-    this.getCurrentUser().then((user) => {
-      user
-        .sendEmailVerification()
-        .then(() => {
-          // Verification email sent.
-        })
-        .catch((error) => {
-          console.log(error);
-          // Error occurred. Inspect error.code.
-        });
+  async sendEmailVerification(): Promise<void> {
+    return await this.getCurrentUser().then((user) => {
+      user.sendEmailVerification();
     });
   }
 
   async emailIsVerified(): Promise<boolean> {
     return await this.getCurrentUser().then((user) => user.emailVerified);
+  }
+
+  async resetPassword(email: string): Promise<void> {
+    return await this.firestore.firestore.app
+      .auth()
+      .sendPasswordResetEmail(email);
   }
 
   updateProfile(firstname: string, photoURL?: string): void {
@@ -128,9 +132,5 @@ export class AuthService {
 
   signOutUser(): void {
     this.firestore.firestore.app.auth().signOut();
-  }
-
-  async resetPassword(newPassword: string): Promise<void> {
-    this.firestore.firestore.app.auth().currentUser.updatePassword(newPassword);
   }
 }

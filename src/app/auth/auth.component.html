@@ -1,30 +1,37 @@
 <form class="dialog" [formGroup]="signForm">
     <img class="meden-logo" src="../../../assets/logo/logo.svg" alt="meden">
-    <div class="sign">
-        <div class="signup" (click)=changeSignMode(false)>
-            <div class="label">{{'signup.title' | translate}}</div>
-            <div *ngIf="!signinMode" class="line"></div>
+    <div *ngIf="!resetPassword" class="sign">
+        <div class="sign-label">
+            <div class="signup" (click)=changeSignMode(false)>
+                <div class="label">{{'signup.title' | translate}}</div>
+                <div *ngIf="!signinMode" class="line"></div>
+            </div>
+            <div class="signin" (click)=changeSignMode(true)>
+                <div class="label">{{'signin.title' | translate}}</div>
+                <div *ngIf="signinMode" class="line"></div>
+            </div>
         </div>
-        <div class="signin" (click)=changeSignMode(true)>
-            <div class="label">{{'signin.title' | translate}}</div>
-            <div *ngIf="signinMode" class="line"></div>
+        <div class="msg-error" *ngIf="errorSignupMessage">
+            <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+            <p>{{errorSignupMessage}}</p>
+        </div>
+        <div class="msg-error" *ngIf="errorSigninMessage">
+            <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+            <p>{{errorSigninMessage}}</p>
+        </div>
+        <app-signin *ngIf="signinMode" [signinForm]="signinForm" [confirmForm]="confirmSigninForm"
+            (resetPassword)="forgotPassword($event)"></app-signin>
+        <app-signup *ngIf="!signinMode" [signupForm]="signupForm" [confirmForm]="confirmSignupForm"
+            [passwordValidation]="checkPassword()"></app-signup>
+        <button *ngIf="signinMode" type="button" class="confirm-btn" mat-raised-button
+            (click)="signin()">{{'signin.confirmBtn' | translate}}</button>
+        <button *ngIf="!signinMode" type="button" class="confirm-btn" mat-raised-button
+            (click)="signup()">{{'signup.confirmBtn' | translate}}</button>
+    </div>
+    <div *ngIf="resetPassword" class="reset-password">
+        <div class="reset-password-label">{{('reset-password.label' | translate) | uppercase}}
         </div>
     </div>
-    <div class="msg-error" *ngIf="errorSignupMessage">
-        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
-        <p>{{errorSignupMessage}}</p>
-    </div>
-    <div class="msg-error" *ngIf="errorSigninMessage">
-        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
-        <p>{{errorSigninMessage}}</p>
-    </div>
-    <app-signin *ngIf="signinMode" [signinForm]="signinForm" [confirmForm]="confirmSigninForm"></app-signin>
-    <app-signup *ngIf="!signinMode" [signupForm]="signupForm" [confirmForm]="confirmSignupForm"
-        [passwordValidation]="checkPassword()"></app-signup>
-    <button *ngIf="signinMode" type="button" class="confirm-btn" mat-raised-button
-        (click)="signin()">{{'signin.confirmBtn' | translate}}</button>
-    <button *ngIf="!signinMode" type="button" class="confirm-btn" mat-raised-button
-        (click)="signup()">{{'signup.confirmBtn' | translate}}</button>
     <div class="quick-access">{{'signup.quickAccess' | translate}}</div>
     <div class="social-network">
         <img class="logo" src="../../../assets/png/logo-doctolib.png" alt="doctolib">
