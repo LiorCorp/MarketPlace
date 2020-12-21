@@ -27,7 +27,7 @@
     font-weight: bold;
     justify-content: center;
     flex-direction: column;
-    width: 85%;
+    width: 90%;
     align-items: center;
 
     &-label {
@@ -59,36 +59,9 @@
       margin-top: 3px;
     }
 
-    app-signin,
-    app-signup {
+    app-signin-form,
+    app-signup-form {
       width: 75%;
-    }
-
-    .msg-error {
-      display: flex;
-      color: red;
-      align-items: center;
-
-      .error-icon {
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-      }
-      p {
-        margin: 0;
-      }
-    }
-
-    .confirm-btn {
-      width: 75%;
-      background-color: $secondary-color;
-      color: $primary-color;
-      border-radius: $border-radius;
-      border: 2px solid #ffffff;
-      font-weight: bold;
-      font-size: 1.3rem;
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
     }
   }
 

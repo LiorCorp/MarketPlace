@@ -1,4 +1,8 @@
 <form [formGroup]="signinForm">
+    <div class="msg-error" *ngIf="errorMessage">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        <p>{{errorMessage}}</p>
+    </div>
     <input [ngClass]='{"input-error": confirmForm && signinForm.controls.email.invalid}' class="input" name="email"
         type="email" placeholder="{{'signin.input.email' | translate}}" formControlName="email">
     <div class="msg-error" *ngIf="confirmForm && signinForm.controls.email.invalid">
@@ -9,6 +13,9 @@
         formControlName="password">
     <div class="options">
         <mat-checkbox color="primary" class="remember-me">{{'signin.stayConnected' | translate}}</mat-checkbox>
-        <div class="password-forget" (click)="forgotPassword()">{{'signin.forgottenPassword' | translate}}</div>
+        <div class="password-forget" (click)="forgotPassword(signinForm.controls.email.value)">
+            {{'signin.forgottenPassword' | translate}}</div>
     </div>
+    <button type="button" class="confirm-btn" mat-raised-button (click)="signin()">{{'signin.confirmBtn' |
+        translate}}</button>
 </form>

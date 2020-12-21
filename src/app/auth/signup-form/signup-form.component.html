@@ -1,4 +1,8 @@
 <form [formGroup]="signupForm">
+    <div class="msg-error" *ngIf="errorMessage">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
+        <p>{{errorMessage}}</p>
+    </div>
     <div class="inputs">
         <div class="input-validation">
             <input [ngClass]='{"input-error": confirmForm && signupForm.controls.lastname.invalid}' class="input"
@@ -46,10 +50,12 @@
         <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
         {{'signup.error.password' | translate}}
     </div>
-    <input [ngClass]='{"input-error": confirmForm && !passwordValidation}' class="input" name="confirm-password"
+    <input [ngClass]='{"input-error": confirmForm && !checkPassword()}' class="input" name="confirm-password"
         type="password" placeholder="{{'signup.input.confirmPassword' | translate}}" formControlName="confirmPassword">
-    <div class="msg-error" *ngIf="(confirmForm && !passwordValidation) && signupForm.controls.password.valid">
+    <div class="msg-error" *ngIf="(confirmForm && !checkPassword()) && signupForm.controls.password.valid">
         <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>
         {{'signup.error.passwords' | translate}}
     </div>
+    <button type="button" class="confirm-btn" mat-raised-button (click)="signup()">{{'signup.confirmBtn' |
+        translate}}</button>
 </form>

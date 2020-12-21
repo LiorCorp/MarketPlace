@@ -114,5 +114,20 @@ form {
       align-items: center;
       font-size: 1rem;
     }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .confirm-btn {
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: $border-radius;
+    border: 2px solid #ffffff;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
   }
 }
