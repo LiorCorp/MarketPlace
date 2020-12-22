@@ -22,7 +22,7 @@ export class UserService {
         (res) => {
           res.get().then((docRef) => resolve(docRef.id));
         },
-        (err) => reject(ErroAuthFr.convertMessage(err))
+        (err) => reject(err)
       );
     });
   }
@@ -52,7 +52,7 @@ export class UserService {
               resolve(false);
             }
           },
-          (err) => reject(ErroAuthFr.convertMessage(err))
+          (err) => reject(err)
         );
     });
   }

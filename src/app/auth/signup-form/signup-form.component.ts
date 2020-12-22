@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { ErroAuthFr } from 'src/app/utils/errorAuthFr';
 import { StringUtil } from 'src/app/utils/stringUtil';
 
 @Component({
@@ -21,8 +21,7 @@ export class SignupFormComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService,
-    public readonly dialog: MatDialog,
-    private readonly userService: UserService
+    public readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +52,7 @@ export class SignupFormComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/),
+          Validators.minLength(8),
         ],
       ],
       confirmPassword: ['', [Validators.required]],
@@ -97,7 +97,12 @@ export class SignupFormComponent implements OnInit {
           });
         },
         (error) => {
-          this.errorMessage = error;
+          this.snackbar.emit({
+            title: ErroAuthFr.convertMessage(error),
+            panelClass: 'snackbar-error',
+            duration: 15000,
+          });
+          this.errorMessage = ErroAuthFr.convertMessage(error);
         }
       );
   }

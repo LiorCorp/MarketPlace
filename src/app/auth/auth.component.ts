@@ -8,6 +8,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { ErroAuthFr } from '../utils/errorAuthFr';
 import { UserService } from './../services/user.service';
 import { SnackbarComponent } from './../ui/snackbar/snackbar.component';
 
@@ -43,17 +44,20 @@ export class AuthComponent implements OnInit {
         lastname: res.additionalUserInfo.profile['family_name'],
         email: res.additionalUserInfo.profile['email'],
       };
-      // vérfier si on a déjà ces infos pas besoin de update à chaque fois...
-      this.authService.updateProfile(user.firstname);
       await this.userService.userExist(user.email).then((isExist) => {
         if (!isExist) {
-          this.createUser({ user, title: 'signin.success.welcome' });
+          this.authService.updateProfile(user.firstname);
+          this.createUser({
+            user,
+            title: 'signup.success-with-popup.title',
+            description: 'signup.success-with-popup.description',
+          });
         } else {
           this.openSnackBar({
-            title: 'signin.success.welcome',
-            description: '',
+            title: 'signin.success.title',
+            description: 'signin.success.description',
             panelClass: 'snackbar-success',
-            duration: 3000,
+            duration: 5000,
             firstname: user.firstname,
           });
         }
@@ -69,17 +73,20 @@ export class AuthComponent implements OnInit {
         lastname: res.additionalUserInfo.profile['last_name'],
         email: res.additionalUserInfo.profile['email'],
       };
-      // vérfier si on a déjà ces infos pas besoin de update à chaque fois...
-      this.authService.updateProfile(user.firstname);
       await this.userService.userExist(user.email).then((isExist) => {
         if (!isExist) {
-          this.createUser({ user, title: 'signin.success.welcome' });
+          this.authService.updateProfile(user.firstname);
+          this.createUser({
+            user,
+            title: 'signup.success-with-popup.title',
+            description: 'signup.success-with-popup.description',
+          });
         } else {
           this.openSnackBar({
-            title: 'signin.success.welcome',
-            description: '',
+            title: 'signin.success.title',
+            description: 'signin.success.description',
             panelClass: 'snackbar-success',
-            duration: 3000,
+            duration: 5000,
             firstname: user.firstname,
           });
         }
@@ -88,22 +95,26 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  async createUser({ user, title, description = '' }): Promise<void> {
-    await this.userService.createUser(user).then(
-      () => {
-        this.authService.updateProfile(user.firstname);
-        this.dialog.closeAll();
-        this.openSnackBar({
-          title,
-          description,
-          panelClass: 'snackbar-success',
-          duration: 8000,
-        });
-      },
-      (error) => {
-        console.error(error);
+  async createUser({ user, title, description }): Promise<void> {
+    await this.userService.userExist(user.email).then(async (isExist) => {
+      if (!isExist) {
+        await this.userService.createUser(user).then(
+          () => {
+            this.authService.updateProfile(user.firstname);
+            this.dialog.closeAll();
+            this.openSnackBar({
+              title,
+              description,
+              panelClass: 'snackbar-success',
+              duration: 8000,
+            });
+          },
+          (error) => {
+            console.error(ErroAuthFr.convertMessage(error));
+          }
+        );
       }
-    );
+    });
   }
 
   openSnackBar({

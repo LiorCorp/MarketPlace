@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErroAuthFr } from 'src/app/utils/errorAuthFr';
 
 @Component({
   selector: 'app-signin-form',
@@ -27,7 +28,7 @@ export class SigninFormComponent implements OnInit {
   initSigninForm(): FormGroup {
     return this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -52,32 +53,35 @@ export class SigninFormComponent implements OnInit {
         this.authService.isLoggedIn.then((userVerified) => {
           if (userVerified) {
             this.snackbar.emit({
-              title: 'signin.success.welcome',
-              description: '',
+              title: 'signin.success.title',
+              description: 'signin.success.description',
               panelClass: 'snackbar-success',
-              duration: 3000,
+              duration: 5000,
               firstname: res.user.displayName,
             });
           } else {
             this.snackbar.emit({
-              title: 'signin.warning.welcome',
+              title: 'signin.warning.title',
               description: 'signin.warning.description',
               panelClass: 'snackbar-warning',
-              duration: 8000,
+              duration: 10000,
               firstname: res.user.displayName,
             });
           }
         });
       },
       (error) => {
-        if (error === 'auth/too-many-requests') {
-          this.snackbar.emit({
-            title: 'signin.error.tooManyRequests',
-            panelClass: 'snackbar-error',
-            duration: 10000,
-          });
-        } else {
-          this.errorMessage = error;
+        this.snackbar.emit({
+          title: ErroAuthFr.convertMessage(error),
+          panelClass: 'snackbar-error',
+          duration: 15000,
+        });
+        this.errorMessage = ErroAuthFr.convertMessage(error);
+        if (error.code === 'auth/wrong-password') {
+          this.signinForm.controls.password.setErrors({ incorrect: true });
+        } else if (error.code === 'auth/user-not-found') {
+          this.signinForm.controls.email.setErrors({ incorrect: true });
+          this.signinForm.controls.password.setErrors({ incorrect: true });
         }
       }
     );

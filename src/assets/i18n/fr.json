@@ -22,6 +22,10 @@
       "title": "Bienvenue chez Meden",
       "description": "Vous allez recevoir un email pour confirmer votre inscription."
     },
+    "success-with-popup": {
+      "title": "Bienvenue chez Meden",
+      "description": "Nous sommes heureux de vous rencontrer !"
+    },
     "input": {
       "lastname": "Nom",
       "firstname": "Prénom",
@@ -35,14 +39,15 @@
     "confirmBtn": "JE ME CONNECTE",
     "error": {
       "email": "Entrez un email valide.",
-      "tooManyRequests": "L'accès à ce compte a été temporairement désactivé en raison de nombreuses tentatives de connexion infructueuses. Vous pouvez le rétablir immédiatement en réinitialisant votre mot de passe ou vous pouvez réessayer plus tard."
+      "password": "Entrez un mot de passe valide"
     },
     "warning": {
-      "welcome": "Bonjour ",
+      "title": "Bonjour ",
       "description": "Pensez à valider votre compte dans le mail de confirmation qui vous a été envoyé."
     },
     "success": {
-      "welcome": "Bonjour "
+      "title": "Bonjour ",
+      "description": "Nous sommes heureux de vous revoir parmi nous !"
     },
     "input": {
       "email": "Adresse email professionel",
@@ -64,7 +69,8 @@
       "myReimbursements": "Mes remboursements",
       "myRecommendations": "Mes recommandations",
       "frequentlyAskedQuestions": "Questions fréquentes",
-      "logout": "Se déconnecter"
+      "logout": "Se déconnecter",
+      "logout-success": "Déconnexion réussie"
     },
     "my": "Mes",
     "orders": "commandes",

@@ -5,12 +5,16 @@
     </div>
     <input [ngClass]='{"input-error": confirmForm && signinForm.controls.email.invalid}' class="input" name="email"
         type="email" placeholder="{{'signin.input.email' | translate}}" formControlName="email">
-    <div class="msg-error" *ngIf="confirmForm && signinForm.controls.email.invalid">
+    <div class="msg-error-input" *ngIf="(confirmForm && signinForm.controls.email.invalid) && errorMessage.length < 1">
         <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>{{'signin.error.email' | translate}}
     </div>
-    <input [ngClass]='{"input-error": confirmForm && signinForm.controls.password.value.length < 1}' class="input"
+    <input [ngClass]='{"input-error": confirmForm && signinForm.controls.password.invalid}' class="input"
         name="password" type="password" placeholder="{{'signin.input.password' | translate}}"
         formControlName="password">
+    <div class="msg-error-input"
+        *ngIf="(confirmForm && signinForm.controls.password.invalid) && errorMessage.length < 1">
+        <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>{{'signin.error.password' | translate}}
+    </div>
     <div class="options">
         <mat-checkbox color="primary" class="remember-me">{{'signin.stayConnected' | translate}}</mat-checkbox>
         <div class="password-forget" (click)="forgotPassword(signinForm.controls.email.value)">

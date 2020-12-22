@@ -52,7 +52,7 @@ export class AuthService {
           }
         },
         (err) => {
-          reject(ErroAuthFr.convertMessage(err));
+          reject(err);
         }
       );
     });
@@ -98,11 +98,7 @@ export class AuthService {
           resolve(res);
         },
         (err) => {
-          if (err.code === 'auth/too-many-requests') {
-            reject(err.code);
-          } else {
-            reject(ErroAuthFr.convertMessage(err));
-          }
+          reject(err);
         }
       );
     });
@@ -126,7 +122,9 @@ export class AuthService {
 
   updateProfile(firstname: string, photoURL?: string): void {
     this.getCurrentUser().then((user) =>
-      user.updateProfile({ displayName: firstname, photoURL })
+      user
+        .updateProfile({ displayName: firstname, photoURL })
+        .then(() => this.authStatusSub.next({ ...user }))
     );
   }
 

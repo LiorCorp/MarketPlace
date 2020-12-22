@@ -1,5 +1,5 @@
 export class StringUtil {
-  static capitalize(str): string {
-    return str.replace(/(^|[\s-])\S/g, (match) => match.toUpperCase());
+  static capitalize(str: string): string {
+    return str.replace(/(^|[\s-])\S/g, (match: any) => match.toUpperCase());
   }
 }

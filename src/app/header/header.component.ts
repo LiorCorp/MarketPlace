@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthComponent } from '../auth/auth.component';
 import { AuthService } from '../services/auth.service';
 import { SnackbarComponent } from '../ui/snackbar/snackbar.component';
@@ -17,14 +18,15 @@ export class HeaderComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly dialog: MatDialog,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly translate: TranslateService
   ) {}
 
   ngOnInit(): void {
     this.authService.authStatusListener();
-    this.authService.currentAuthStatus.subscribe(
-      (authStatus) => (this.isAuthenticated = authStatus)
-    );
+    this.authService.currentAuthStatus.subscribe((authStatus) => {
+      this.isAuthenticated = authStatus;
+    });
   }
 
   openAuthDialog(): void {
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit {
     this.authService.signOutUser();
     this.snackBar.openFromComponent(SnackbarComponent, {
       data: {
-        title: 'Déconnexion réussie',
+        title: this.translate.instant('header.myaccount.logout-success'),
       },
       duration: 3000,
       horizontalPosition: 'end',

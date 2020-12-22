@@ -19,9 +19,6 @@ export class ErroAuthFr {
       case 'auth/invalid-email': {
         return 'Cet email est incorrect.';
       }
-      case 'auth/invalid-email': {
-        return 'Cet email est incorrect.';
-      }
       case 'auth/invalid-phone-number': {
         return 'Ce numéro de téléphone est incorrect.';
       }
@@ -32,10 +29,7 @@ export class ErroAuthFr {
         return 'Ce mot de passe est incorrect.';
       }
       case 'auth/too-many-requests': {
-        return 'Ce mot de passe est incorrect.';
-      }
-      case 'auth/too-many-requests': {
-        return 'Ce mot de passe est incorrect.';
+        return "L'accès à ce compte a été temporairement désactivé en raison de nombreuses tentatives de connexion infructueuses. Vous pouvez le rétablir immédiatement en réinitialisant votre mot de passe ou vous pouvez réessayer plus tard.";
       }
       default: {
         return error.message;

@@ -4,6 +4,7 @@ $secondary-color: #52d2ac;
 $border-radius: max(0px, min(15px, calc((100vw - 4px - 100%) * 9999))) / 15px;
 
 .snackbar-success {
+  text-shadow: 0px 0px 3px #000000;
   background: linear-gradient(335deg, #52d2ac 0%, #3399ad 43%, #1b30a2 100%);
   color: #ffffff;
   font-weight: bold;
@@ -11,6 +12,7 @@ $border-radius: max(0px, min(15px, calc((100vw - 4px - 100%) * 9999))) / 15px;
 }
 
 .snackbar-error {
+  text-shadow: 0px 0px 3px #000000;
   background: #ff7e79;
   color: #ffffff;
   font-weight: bold;
