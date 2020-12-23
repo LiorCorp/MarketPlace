@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user.model';
-import { ErroAuthFr } from '../utils/errorAuthFr';
 
 @Injectable({
   providedIn: 'root',
@@ -67,7 +66,7 @@ export class AuthService {
             resolve(res);
           },
           (err) => {
-            reject(ErroAuthFr.convertMessage(err));
+            reject(err);
           }
         );
     });
@@ -82,7 +81,7 @@ export class AuthService {
             resolve(res);
           },
           (err) => {
-            reject(ErroAuthFr.convertMessage(err));
+            reject(err);
           }
         );
     });

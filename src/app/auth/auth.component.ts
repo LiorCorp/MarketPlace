@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit {
     private readonly userService: UserService,
     private readonly snackBar: MatSnackBar,
     public readonly dialog: MatDialog,
-    private translate: TranslateService
+    private readonly translate: TranslateService
   ) {}
 
   ngOnInit(): void {}
@@ -38,83 +38,80 @@ export class AuthComponent implements OnInit {
   }
 
   async loginWithGoogle(): Promise<void> {
-    await this.authService.loginWithGoogle().then(async (res) => {
-      const user: User = {
-        firstname: res.additionalUserInfo.profile['given_name'],
-        lastname: res.additionalUserInfo.profile['family_name'],
-        email: res.additionalUserInfo.profile['email'],
-      };
-      await this.userService.userExist(user.email).then((isExist) => {
-        if (!isExist) {
-          this.authService.updateProfile(user.firstname);
-          this.createUser({
-            user,
-            title: 'signup.success-with-popup.title',
-            description: 'signup.success-with-popup.description',
-          });
-        } else {
-          this.openSnackBar({
-            title: 'signin.success.title',
-            description: 'signin.success.description',
-            panelClass: 'snackbar-success',
-            duration: 5000,
-            firstname: user.firstname,
-          });
-        }
-      });
-      this.dialog.closeAll();
-    });
+    await this.authService.loginWithGoogle().then(
+      async (res) => {
+        const user: User = {
+          firstname: res.additionalUserInfo.profile['given_name'],
+          lastname: res.additionalUserInfo.profile['family_name'],
+          email: res.additionalUserInfo.profile['email'],
+        };
+        this.signInWithPopup(user);
+      },
+      (err) =>
+        this.openSnackBar({
+          title: ErroAuthFr.convertMessage(err),
+          panelClass: 'snackbar-error',
+          duration: 15000,
+        })
+    );
   }
 
   async loginWithFacebook(): Promise<void> {
-    await this.authService.loginWithFacebook().then(async (res) => {
-      const user: User = {
-        firstname: res.additionalUserInfo.profile['first_name'],
-        lastname: res.additionalUserInfo.profile['last_name'],
-        email: res.additionalUserInfo.profile['email'],
-      };
-      await this.userService.userExist(user.email).then((isExist) => {
-        if (!isExist) {
-          this.authService.updateProfile(user.firstname);
-          this.createUser({
-            user,
-            title: 'signup.success-with-popup.title',
-            description: 'signup.success-with-popup.description',
-          });
-        } else {
-          this.openSnackBar({
-            title: 'signin.success.title',
-            description: 'signin.success.description',
-            panelClass: 'snackbar-success',
-            duration: 5000,
-            firstname: user.firstname,
-          });
-        }
-      });
-      this.dialog.closeAll();
+    await this.authService.loginWithFacebook().then(
+      async (res) => {
+        const user: User = {
+          firstname: res.additionalUserInfo.profile['first_name'],
+          lastname: res.additionalUserInfo.profile['last_name'],
+          email: res.additionalUserInfo.profile['email'],
+        };
+        this.signInWithPopup(user);
+      },
+      (err) =>
+        this.openSnackBar({
+          title: ErroAuthFr.convertMessage(err),
+          panelClass: 'snackbar-error',
+          duration: 15000,
+        })
+    );
+  }
+
+  async signInWithPopup(user: User): Promise<void> {
+    await this.userService.userExist(user.email).then((isExist) => {
+      if (!isExist) {
+        this.createUser({
+          user,
+          title: 'signup.success-with-popup.title',
+          description: 'signup.success-with-popup.description',
+        });
+      } else {
+        this.openSnackBar({
+          title: 'signin.success.title',
+          description: 'signin.success.description',
+          panelClass: 'snackbar-success',
+          duration: 5000,
+          firstname: user.firstname,
+        });
+        this.dialog.closeAll();
+      }
     });
   }
 
   async createUser({ user, title, description }): Promise<void> {
-    await this.userService.userExist(user.email).then(async (isExist) => {
-      if (!isExist) {
-        await this.userService.createUser(user).then(
-          () => {
-            this.authService.updateProfile(user.firstname);
-            this.dialog.closeAll();
-            this.openSnackBar({
-              title,
-              description,
-              panelClass: 'snackbar-success',
-              duration: 8000,
-            });
-          },
-          (error) => {
-            console.error(ErroAuthFr.convertMessage(error));
-          }
-        );
+    await this.userService.createUser(user).then(
+      () => {
+        this.authService.updateProfile(user.firstname);
+        this.dialog.closeAll();
+        this.openSnackBar({
+          title,
+          description,
+          panelClass: 'snackbar-success',
+          duration: 8000,
+        });
+      },
+      (error) => {
+        console.error(ErroAuthFr.convertMessage(error));
       }
-    });
+    );
   }
 
   openSnackBar({

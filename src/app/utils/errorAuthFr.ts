@@ -31,6 +31,18 @@ export class ErroAuthFr {
       case 'auth/too-many-requests': {
         return "L'accès à ce compte a été temporairement désactivé en raison de nombreuses tentatives de connexion infructueuses. Vous pouvez le rétablir immédiatement en réinitialisant votre mot de passe ou vous pouvez réessayer plus tard.";
       }
+      case 'auth/account-exists-with-different-credential': {
+        return "Un compte existe déjà avec l'email qui est rattaché à ce compte";
+      }
+      case 'auth/cancelled-popup-request': {
+        return "Plusieurs popup d'authentification ont été déclenchées successivement.";
+      }
+      case 'auth/popup-blocked': {
+        return "La popup d'authentification a été bloquée par votre navigateur.";
+      }
+      case 'auth/popup-closed-by-user': {
+        return "La popup d'authentification a été fermée avant que la connexion soit établie.";
+      }
       default: {
         return error.message;
       }
