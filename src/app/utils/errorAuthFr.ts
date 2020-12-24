@@ -44,7 +44,7 @@ export class ErroAuthFr {
         return "La popup d'authentification a été fermée avant que la connexion soit établie.";
       }
       default: {
-        return error.message;
+        return "Une erreur s'est produite : " + error.message;
       }
     }
   }

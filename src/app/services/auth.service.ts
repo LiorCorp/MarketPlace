@@ -114,9 +114,12 @@ export class AuthService {
   }
 
   async resetPassword(email: string): Promise<void> {
-    return await this.firestore.firestore.app
-      .auth()
-      .sendPasswordResetEmail(email);
+    return await new Promise((resolve, reject) => {
+      this.fireAuth.sendPasswordResetEmail(email).then(
+        () => resolve(),
+        (err) => reject(err)
+      );
+    });
   }
 
   updateProfile(firstname: string, photoURL?: string): void {

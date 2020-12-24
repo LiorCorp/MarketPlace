@@ -17,8 +17,7 @@
     </div>
     <div class="options">
         <mat-checkbox color="primary" class="remember-me">{{'signin.stayConnected' | translate}}</mat-checkbox>
-        <div class="password-forget" (click)="forgotPassword(signinForm.controls.email.value)">
-            {{'signin.forgottenPassword' | translate}}</div>
+        <div class="password-forget" (click)="passwordForget()">{{'signin.forgottenPassword' | translate}}</div>
     </div>
     <button type="button" class="confirm-btn" mat-raised-button (click)="signin()">{{'signin.confirmBtn' |
         translate}}</button>

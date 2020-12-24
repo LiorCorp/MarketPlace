@@ -26,6 +26,7 @@ import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SigninFormComponent } from './auth/signin-form/signin-form.component';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { HeaderComponent } from './header/header.component';
@@ -65,6 +66,7 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     FilterComponent,
     SigninFormComponent,
     SignupFormComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),

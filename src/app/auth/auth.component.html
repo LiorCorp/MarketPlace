@@ -1,29 +1,37 @@
 <div class="dialog">
+    <img *ngIf="signMode === SignModeEnum.ResetPassword" (click)="signMode=SignModeEnum.SignIn" class="back-icon"
+        src="../../assets/png/back-icon.png" alt="back">
     <img class="meden-logo" src="../../../assets/logo/logo.svg" alt="meden">
-    <div *ngIf="!resetPassword" class="sign">
-        <div class="sign-label">
-            <div class="signup" (click)=changeSignMode(false)>
-                <div class="label">{{'signup.title' | translate}}</div>
-                <div *ngIf="!signinMode" class="line"></div>
+    <div class="sign">
+        <div *ngIf="signMode !== SignModeEnum.ResetPassword" class="sign-label">
+            <div class="signup-title" (click)=changeSignMode(SignModeEnum.SignUp)>
+                <div>{{'signup.title' | translate}}</div>
+                <div *ngIf="signMode === SignModeEnum.SignUp" class="line"></div>
             </div>
-            <div class="signin" (click)=changeSignMode(true)>
-                <div class="label">{{'signin.title' | translate}}</div>
-                <div *ngIf="signinMode" class="line"></div>
+            <div class="signin-title" (click)=changeSignMode(SignModeEnum.SignIn)>
+                <div>{{'signin.title' | translate}}</div>
+                <div *ngIf="signMode === SignModeEnum.SignIn" class="line"></div>
             </div>
         </div>
-        <app-signin-form *ngIf="signinMode" (snackbar)="openSnackBar($event)"></app-signin-form>
-        <app-signup-form *ngIf="!signinMode" (snackbar)="openSnackBar($event)" (createUser)="createUser($event)">
+        <div class="sign-label" *ngIf="signMode === SignModeEnum.ResetPassword">
+            <div>{{('reset-password.title' | translate) | uppercase}}</div>
+        </div>
+        <app-signin-form *ngIf="signMode === SignModeEnum.SignIn" (snackbar)="openSnackBar($event)"
+            (resetPassword)=showResetPassword()></app-signin-form>
+        <app-signup-form *ngIf="signMode === SignModeEnum.SignUp" (snackbar)="openSnackBar($event)"
+            (createUser)="createUser($event)">
         </app-signup-form>
+        <app-reset-password *ngIf="signMode === SignModeEnum.ResetPassword" (snackbar)="openSnackBar($event)">
+        </app-reset-password>
     </div>
-    <div *ngIf="resetPassword" class="reset-password">
-        <div class="reset-password-label">{{('reset-password.label' | translate) | uppercase}}
+
+    <div class="quick-access" *ngIf="signMode !== SignModeEnum.ResetPassword">
+        <div>{{'signup.quickAccess' | translate}}</div>
+        <div class="social-network">
+            <img class="logo" src="../../../assets/png/logo-doctolib.png" alt="doctolib">
+            <img class="logo" src="../../../assets/png/logo-google.png" alt="google" (click)="loginWithGoogle()">
+            <img class="logo" src="../../../assets/png/logo-linkedin.png" alt="linkedin">
+            <img class="logo" src="../../../assets/png/logo-facebook.png" alt="facebook" (click)="loginWithFacebook()">
         </div>
-    </div>
-    <div class="quick-access">{{'signup.quickAccess' | translate}}</div>
-    <div class="social-network">
-        <img class="logo" src="../../../assets/png/logo-doctolib.png" alt="doctolib">
-        <img class="logo" src="../../../assets/png/logo-google.png" alt="google" (click)="loginWithGoogle()">
-        <img class="logo" src="../../../assets/png/logo-linkedin.png" alt="linkedin">
-        <img class="logo" src="../../../assets/png/logo-facebook.png" alt="facebook" (click)="loginWithFacebook()">
     </div>
 </div>

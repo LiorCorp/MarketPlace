@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from 'src/app/services/auth.service';
-import { ErroAuthFr } from 'src/app/utils/errorAuthFr';
+import { AuthService } from '../../services/auth.service';
+import { ErroAuthFr } from '../../utils/errorAuthFr';
 
 @Component({
   selector: 'app-signin-form',
@@ -13,7 +13,8 @@ export class SigninFormComponent implements OnInit {
   signinForm: FormGroup;
   confirmForm = false;
   errorMessage: string;
-  @Output() snackbar = new EventEmitter();
+  @Output() snackbar = new EventEmitter<any>();
+  @Output() resetPassword = new EventEmitter<boolean>();
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -40,17 +41,13 @@ export class SigninFormComponent implements OnInit {
     }
   }
 
-  forgotPassword(email: string): void {
-    this.authService.resetPassword(email);
-  }
-
   async signinUser(): Promise<void> {
     const email = this.signinForm.controls.email.value;
     const password = this.signinForm.controls.password.value;
     await this.authService.signInUser(email, password).then(
       (res) => {
-        this.dialog.closeAll();
         this.authService.isLoggedIn.then((userVerified) => {
+          this.dialog.closeAll();
           if (userVerified) {
             this.snackbar.emit({
               title: 'signin.success.title',
@@ -85,5 +82,9 @@ export class SigninFormComponent implements OnInit {
         }
       }
     );
+  }
+
+  passwordForget(): void {
+    this.resetPassword.emit();
   }
 }

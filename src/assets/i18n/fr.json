@@ -57,7 +57,10 @@
     "forgottenPassword": "Mot de passe oublé ?"
   },
   "reset-password": {
-    "label": "Mot de passe oublié"
+    "title": "Mot de passe oublié",
+    "email": "Adresse email titulaire",
+    "confirm": "Envoyer",
+    "email-send-successful": "Vous allez recevoir un email de réinitialisation de mot de passe."
   },
   "header": {
     "hello": "Bonjour",

@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 import { ErroAuthFr } from '../utils/errorAuthFr';
 import { UserService } from './../services/user.service';
 import { SnackbarComponent } from './../ui/snackbar/snackbar.component';
+import { SignModeEnum } from './enum/sign-mode.enum';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,9 @@ import { SnackbarComponent } from './../ui/snackbar/snackbar.component';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  signinMode = true;
+  signMode = SignModeEnum.SignIn;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  resetPassword = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -33,8 +33,12 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  changeSignMode(signin: boolean): void {
-    this.signinMode = signin;
+  get SignModeEnum(): typeof SignModeEnum {
+    return SignModeEnum;
+  }
+
+  changeSignMode(signin: SignModeEnum): void {
+    this.signMode = signin;
   }
 
   async loginWithGoogle(): Promise<void> {
@@ -100,18 +104,22 @@ export class AuthComponent implements OnInit {
     await this.userService.createUser(user).then(
       () => {
         this.authService.updateProfile(user.firstname);
-        this.dialog.closeAll();
         this.openSnackBar({
           title,
           description,
           panelClass: 'snackbar-success',
           duration: 8000,
         });
+        this.dialog.closeAll();
       },
       (error) => {
         console.error(ErroAuthFr.convertMessage(error));
       }
     );
+  }
+
+  showResetPassword(): void {
+    this.signMode = SignModeEnum.ResetPassword;
   }
 
   openSnackBar({
