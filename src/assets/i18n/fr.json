@@ -67,7 +67,8 @@
     "signin": "Se connecter",
     "myaccount": {
       "title": "Mon compte",
-      "wishlist": "Mes listes d'envie",
+      "wishlist": "Mes produits favoris",
+      "myRecurrentList": "Ma liste récurrente",
       "myVouchers": "Mes bons d'achats",
       "myReimbursements": "Mes remboursements",
       "myRecommendations": "Mes recommandations",

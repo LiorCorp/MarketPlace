@@ -32,6 +32,7 @@ import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { BubbleMenuComponent } from './ui/bubble-menu/bubble-menu.component';
 import { FilterComponent } from './ui/filter/filter.component';
@@ -40,7 +41,6 @@ import { HeaderButtonsComponent } from './ui/header/header-buttons/header-button
 import { HeaderCategoriesComponent } from './ui/header/header-categories/header-categories.component';
 import { SearchbarComponent } from './ui/header/searchbar/searchbar.component';
 import { HomeCardComponent } from './ui/home-card/home-card.component';
-import { ProductDetailComponent } from './ui/product-detail/product-detail.component';
 import { ProductsCardComponent } from './ui/products-card/products-card.component';
 import { RatingComponent } from './ui/rating/rating.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';

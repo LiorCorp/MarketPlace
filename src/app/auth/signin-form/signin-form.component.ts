@@ -11,8 +11,9 @@ import { ErroAuthFr } from '../../utils/errorAuthFr';
 })
 export class SigninFormComponent implements OnInit {
   signinForm: FormGroup;
-  confirmForm = false;
   errorMessage: string;
+  confirmForm = false;
+  rememberMe: boolean;
   @Output() snackbar = new EventEmitter<any>();
   @Output() resetPassword = new EventEmitter<boolean>();
 
@@ -30,6 +31,7 @@ export class SigninFormComponent implements OnInit {
     return this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      rememberMe: true,
     });
   }
 
@@ -44,7 +46,8 @@ export class SigninFormComponent implements OnInit {
   async signinUser(): Promise<void> {
     const email = this.signinForm.controls.email.value;
     const password = this.signinForm.controls.password.value;
-    await this.authService.signInUser(email, password).then(
+    const rememberMe = this.signinForm.controls.rememberMe.value;
+    await this.authService.signInUser(email, password, rememberMe).then(
       (res) => {
         this.authService.isLoggedIn.then((userVerified) => {
           this.dialog.closeAll();

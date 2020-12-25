@@ -21,6 +21,7 @@ export class HeaderButtonsComponent implements OnInit {
   accountMenuItems = [
     { name: 'title' },
     { name: 'wishlist' },
+    { name: 'myRecurrentList' },
     { name: 'myVouchers' },
     { name: 'myReimbursements' },
     { name: 'myRecommendations' },

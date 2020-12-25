@@ -89,17 +89,21 @@ export class AuthService {
 
   async signInUser(
     email: string,
-    password: string
+    password: string,
+    rememberMe: boolean
   ): Promise<firebase.default.auth.UserCredential> {
-    return await new Promise((resolve, reject) => {
-      this.fireAuth.signInWithEmailAndPassword(email, password).then(
-        (res: firebase.default.auth.UserCredential) => {
-          resolve(res);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+    const persistence = rememberMe ? 'local' : 'session';
+    return this.fireAuth.setPersistence(persistence).then(async () => {
+      return await new Promise((resolve, reject) => {
+        this.fireAuth.signInWithEmailAndPassword(email, password).then(
+          (res: firebase.default.auth.UserCredential) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+      });
     });
   }
 

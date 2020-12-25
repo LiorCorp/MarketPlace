@@ -16,7 +16,9 @@
         <mat-icon class="error-icon" aria-hidden="false">error_outline</mat-icon>{{'signin.error.password' | translate}}
     </div>
     <div class="options">
-        <mat-checkbox color="primary" class="remember-me">{{'signin.stayConnected' | translate}}</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="rememberMe" class="remember-me">
+            {{'signin.stayConnected' | translate}}
+        </mat-checkbox>
         <div class="password-forget" (click)="passwordForget()">{{'signin.forgottenPassword' | translate}}</div>
     </div>
     <button type="button" class="confirm-btn" mat-raised-button (click)="signin()">{{'signin.confirmBtn' |
