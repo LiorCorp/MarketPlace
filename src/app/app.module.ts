@@ -32,7 +32,7 @@ import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductDetailComponent } from './products-list/product-detail/product-detail.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { BubbleMenuComponent } from './ui/bubble-menu/bubble-menu.component';
 import { FilterComponent } from './ui/filter/filter.component';

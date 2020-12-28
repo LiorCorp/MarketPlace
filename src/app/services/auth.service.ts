@@ -35,6 +35,14 @@ export class AuthService {
     });
   }
 
+  updateProfile(firstname: string, photoURL?: string): void {
+    this.getCurrentUser().then((user) =>
+      user
+        .updateProfile({ displayName: firstname, photoURL })
+        .then(() => this.authStatusSub.next({ ...user }))
+    );
+  }
+
   async getCurrentUser(): Promise<firebase.default.User> {
     return await this.fireAuth.currentUser.then((user) => user);
   }
@@ -126,15 +134,7 @@ export class AuthService {
     });
   }
 
-  updateProfile(firstname: string, photoURL?: string): void {
-    this.getCurrentUser().then((user) =>
-      user
-        .updateProfile({ displayName: firstname, photoURL })
-        .then(() => this.authStatusSub.next({ ...user }))
-    );
-  }
-
-  signOutUser(): void {
-    this.firestore.firestore.app.auth().signOut();
+  async signOutUser(): Promise<void> {
+    return await this.fireAuth.signOut();
   }
 }

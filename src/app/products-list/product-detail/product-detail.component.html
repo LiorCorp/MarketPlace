@@ -1,9 +1,9 @@
 <div class="container">
     <div class="img-product">
-        <img src="../../assets/jpg/filtek.jpg">
+        <img src={{product?.img}}>
     </div>
     <div class="product-description">
-        <div class="product-name">3M™ Filtek™ One</div>
+        <div class="product-name">{{product?.name}}</div>
         <div class="seller">{{('product.seller' | translate) | uppercase}} : <span class="seller-brand">3M</span><img
                 class="flag" src="../../assets/png/flags/usa.png" alt="usa"></div>
         <div class="rating">
@@ -15,7 +15,15 @@
             <span class="contact">Contacter le vendeur</span>
         </div>
         <div class="line"></div>
-        <div class="price">{{'product.price' | translate}} : <span class="amount">59€90 TTC</span></div>
+        <div class="price-and-action">
+            <div class="price">{{'product.price' | translate}} : <span class="amount">{{product?.price | currency}}
+                    TTC</span>
+            </div>
+            <div class="action"><img class="wish-list" src="../../../assets/png/wish-list.png" alt="wishlist"><img
+                    class="favorite" src="../../../assets/png/like.png" alt="favorite">
+                <img src="../../../assets/png/thumb.png" alt="recommend">
+            </div>
+        </div>
         <div class="stock"><span class="available">{{'product.inStock' | translate}}</span> / <span
                 class="unavailable">{{'product.unavailable' | translate}}</span></div>
         <div class="weight-article">{{'product.weightArticle' | translate}} : <span class="value">10 Grammes</span>
@@ -33,23 +41,23 @@
                 jusqu’à 5 mm, sans compromettre l’esthétisme de la restauration.
                 <ul>
                     <li>
-                        Mise en place rapide et facile en un seul incrément
+                        Mise en place rapide et facile en un seul incrément.
                     </li>
                     <li>
-                        Opacité améliorée pour une esthétique optimisée
+                        Opacité améliorée pour une esthétique optimisée.
                     </li>
                     <li>
                         Réduction du stress pour permettre l’obturation de cavités pouvant atteindre 5 mm de profondeur.
                     </li>
                     <li>
-                        Excellente adaptation
+                        Excellente adaptation.
                     </li>
                     <li>
-                        Excellente mise en œuvre et sculpture aisée
+                        Excellente mise en œuvre et sculpture aisée.
                     </li>
                     <li>
                         La vraie nanotechnologie de 3M offre une résistance à l’usure exceptionnelle et une excellente
-                        pérennité du poli Haute radio-opacité
+                        pérennité du poli Haute radio-opacité.
                     </li>
                     <li>
                         Conception unique de l’embout pour un accès facilité au fond de cavités profondes.
@@ -59,7 +67,7 @@
         </div>
     </div>
     <div class="product-action">
-        <div class="price">59€90 TTC</div>
+        <div class="price">{{product?.price | currency}} TTC</div>
         <div class="delivered"><span class="date">{{'product.delivered' | translate}} : 3 - 5 déc. </span><span
                 class="detail">Détails</span></div>
         <div class="line"></div>

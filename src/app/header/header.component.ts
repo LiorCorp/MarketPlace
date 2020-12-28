@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,13 +19,15 @@ export class HeaderComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly dialog: MatDialog,
     private readonly snackBar: MatSnackBar,
-    private readonly translate: TranslateService
+    private readonly translate: TranslateService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.authService.authStatusListener();
     this.authService.currentAuthStatus.subscribe((authStatus) => {
       this.isAuthenticated = authStatus;
+      this.cdRef.detectChanges();
     });
   }
 
@@ -36,15 +38,16 @@ export class HeaderComponent implements OnInit {
   }
 
   onSignOut(): void {
-    this.authService.signOutUser();
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      data: {
-        title: this.translate.instant('header.myaccount.logout-success'),
-      },
-      duration: 3000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      panelClass: ['snackbar-success'],
+    this.authService.signOutUser().then(() => {
+      this.snackBar.openFromComponent(SnackbarComponent, {
+        data: {
+          title: this.translate.instant('header.myaccount.logout-success'),
+        },
+        duration: 3000,
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        panelClass: ['snackbar-success'],
+      });
     });
   }
 }

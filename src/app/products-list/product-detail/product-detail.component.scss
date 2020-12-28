@@ -1,4 +1,4 @@
-@import "../style/style.scss";
+@import "../../style/style.scss";
 
 .container {
   display: flex;
@@ -81,26 +81,47 @@
       align-self: center;
       margin-bottom: 0.5rem;
     }
-    .price {
-      margin: 1rem 0;
-      font-size: x-large;
-      .amount {
+
+    .price-and-action {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 2rem;
+      .price {
+        margin: 1rem 0;
+        font-size: x-large;
         font-weight: bold;
-        background: linear-gradient(
-          300deg,
-          rgba(82, 210, 172, 0.75) 0%,
-          rgba(51, 153, 173, 0.75) 50%,
-          rgba(27, 48, 162, 0.75) 100%
-        );
-        box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
-        -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
-        -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
-        color: #ffffff;
-        border-radius: 5px;
-        padding: 0.5rem;
-        text-shadow: 0px 0px 2px #000000;
+        .amount {
+          font-weight: bold;
+          background: linear-gradient(
+            300deg,
+            rgba(82, 210, 172, 0.75) 0%,
+            rgba(51, 153, 173, 0.75) 50%,
+            rgba(27, 48, 162, 0.75) 100%
+          );
+          box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+          -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+          -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+          color: #ffffff;
+          border-radius: 5px;
+          padding: 0.5rem;
+          text-shadow: 0px 0px 2px #000000;
+        }
+      }
+      .action {
+        img {
+          width: 2.5rem;
+          cursor: pointer;
+        }
+        .favorite,
+        .wish-list {
+          margin-right: 1rem;
+        }
+        .wish-list {
+          width: 1.9rem;
+        }
       }
     }
+
     .stock {
       margin-bottom: 1rem;
       font-weight: bold;
@@ -252,6 +273,7 @@
       border: 1px solid #ffffff;
       white-space: nowrap;
       margin-bottom: 0.5rem;
+      text-shadow: 0px 0px 2px #000000;
       box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 1);
       -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 1);
       -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 1);

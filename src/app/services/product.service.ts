@@ -7,6 +7,7 @@ import {
   QuerySnapshot,
 } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs';
 import { Product } from '../models/Product.model';
 
 @Injectable({
@@ -19,6 +20,12 @@ export class ProductService {
 
   constructor(private firestore: AngularFirestore) {}
 
+  getProductById(
+    productId: string
+  ): Observable<QueryDocumentSnapshot<Product>> {
+    return this.productCollection.doc(productId).get();
+  }
+
   async getHomeProducts(limit: number): Promise<Product[]> {
     const products: Product[] = [];
     return await this.productCollection.ref
@@ -27,7 +34,7 @@ export class ProductService {
       .then((documentSnapshots: QuerySnapshot<Product>) => {
         documentSnapshots.docs.forEach(
           (doc: QueryDocumentSnapshot<Product>) => {
-            products.push(doc.data());
+            products.push({ ...doc.data(), id: doc.id });
           }
         );
         return this.getProductsImg(products).then((res: Product[]) => res);
@@ -72,6 +79,19 @@ export class ProductService {
     return await this.productCollection.doc(productId).update(product);
   }
 
+  async getProductImg(img: string): Promise<string> {
+    return await new Promise((resolve) => {
+      firebase.default
+        .storage()
+        .ref()
+        .child('products/' + img)
+        .getDownloadURL()
+        .then((url: string) => {
+          resolve(url);
+        });
+    });
+  }
+
   private async getProductsImg(products: Product[]): Promise<Product[] | void> {
     const _products: Product[] = [];
     return await new Promise((resolve) => {
@@ -81,7 +101,7 @@ export class ProductService {
           .ref()
           .child('products/' + product.img)
           .getDownloadURL()
-          .then((url) => {
+          .then((url: string) => {
             _products.push({ ...product, img: url });
             if (_products.length === products.length) {
               resolve(_products);
