@@ -1,0 +1,64 @@
+<div class="product-overview">
+    <div class="product-name">{{product?.name}}</div>
+    <div class="seller">{{('product.seller' | translate) | uppercase}} : <span class="seller-brand">3M</span><img
+            class="flag" src="../../assets/png/flags/usa.png" alt="usa"></div>
+    <div class="rating">
+        <div>
+            <app-rating [fullStar]=3></app-rating>
+            <mat-icon class="material-icons-round" aria-hidden="false">keyboard_arrow_down</mat-icon>
+            <span class="evaluation">368 évaluations</span>
+        </div>
+        <span class="contact">Contacter le vendeur</span>
+    </div>
+    <div class="line"></div>
+    <div class="price-and-action">
+        <div class="price">{{'product.price' | translate}} : <span class="amount">{{product?.price | currency}}
+                TTC</span>
+        </div>
+        <div class="action"><img class="wish-list" src="../../../assets/png/wish-list.png" alt="wishlist"><img
+                class="favorite" src="../../../assets/png/like.png" alt="favorite">
+            <img src="../../../assets/png/thumb.png" alt="recommend">
+        </div>
+    </div>
+    <div class="stock"><span class="available">{{'product.inStock' | translate}}</span> / <span
+            class="unavailable">{{'product.unavailable' | translate}}</span></div>
+    <div class="weight-article">{{'product.weightArticle' | translate}} : <span class="value">10 Grammes</span>
+    </div>
+    <div class="disclaimer-article">{{'product.disclaimerArticle' | translate}} (L x L x H) : <span class="value">
+            14.7 x 3 x 1.7 cm</span>
+    </div>
+    <div class="brand">{{'product.brand' | translate}} : <span class="value">3M</span></div>
+    <div class="line"></div>
+    <div class="about">
+        <div class="label">{{'product.aboutArticle' | translate}} :</div>
+        <div class="value">Conçu pour les restaurations
+            postérieures, ce matériau possède des
+            propriétés optiques uniques et son opacité améliorée permet une obturation facile en un seul incrément
+            jusqu’à 5 mm, sans compromettre l’esthétisme de la restauration.
+            <ul>
+                <li>
+                    Mise en place rapide et facile en un seul incrément.
+                </li>
+                <li>
+                    Opacité améliorée pour une esthétique optimisée.
+                </li>
+                <li>
+                    Réduction du stress pour permettre l’obturation de cavités pouvant atteindre 5 mm de profondeur.
+                </li>
+                <li>
+                    Excellente adaptation.
+                </li>
+                <li>
+                    Excellente mise en œuvre et sculpture aisée.
+                </li>
+                <li>
+                    La vraie nanotechnologie de 3M offre une résistance à l’usure exceptionnelle et une excellente
+                    pérennité du poli Haute radio-opacité.
+                </li>
+                <li>
+                    Conception unique de l’embout pour un accès facilité au fond de cavités profondes.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

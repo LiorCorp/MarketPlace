@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from './../../models/Product.model';
@@ -9,13 +10,12 @@ import { ProductService } from './../../services/product.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  quantities = ['1', '2', '3', '4', '5'];
-  selectedQuantity = '1';
   product: Product;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly productService: ProductService
+    private readonly productService: ProductService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class ProductDetailComponent implements OnInit {
       });
   }
 
-  quantityValue(): void {
-    console.log(this.selectedQuantity);
+  back(): void {
+    this.location.back();
   }
 }

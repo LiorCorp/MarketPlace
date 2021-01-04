@@ -1,0 +1,44 @@
+<div class="product-action">
+    <div class="price">{{product?.price | currency}} TTC</div>
+    <div class="delivered"><span class="date">{{'product.delivered' | translate}} : 3 - 5 déc. </span><span
+            class="detail">Détails</span></div>
+    <div class="line"></div>
+    <div class="desired-colors">{{'product.desiredColors' | translate}} :</div>
+    <div class="desired-colors-value"><span>A1</span><span>A2</span><span>A3</span><span>B1</span><span>C2</span>
+    </div>
+    <div class="quantity">{{'product.quantity' | translate}} :
+        <select (change)="quantityValue()" [(ngModel)]="selectedQuantity">
+            <option *ngFor="let quantity of quantities">{{quantity}}</option>
+        </select>
+    </div>
+    <button class="btn add-to-card">
+        <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">shopping_cart</mat-icon>
+        <span class="label">{{'product.addToCart' | translate}}</span>
+    </button>
+    <button class="btn automate-purchasing">
+        <mat-icon class="icon" class="material-icons-round" aria-hidden="false">autorenew</mat-icon>
+        <span class="label">{{'product.automatePurchasing' | translate}}</span>
+    </button>
+    <button class="btn buy-article">
+        <mat-icon class="icon" class="material-icons-round" aria-hidden="false">credit_card</mat-icon>
+        <span class="label">{{'product.buyArticle' | translate}}</span>
+    </button>
+    <div class="line"></div>
+    <div class="secure-transaction">
+        <mat-icon class="icon" class="material-icons-round" aria-hidden="false">lock</mat-icon>
+        <span class="label">{{'product.secureTransaction' | translate}}</span>
+    </div>
+    <div class="shipped-and-sold"><span class="label">{{'product.shippedAndSoldBy' | translate}} : </span><span
+            class="brand">3M</span></div>
+    <div class="guarantee">{{'product.guarantee' | translate}}</div>
+    <div class="line"></div>
+    <div class="address">
+        <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">place</mat-icon>
+        <span>{{'product.delivered' | translate}} à Anthony, Toulouse 31200</span>
+    </div>
+    <div class="line"></div>
+    <button class="btn add-to-my-list">
+        <span class="label">{{'product.addToMyList' | translate}}</span>
+        <mat-icon class="material-icons-round" aria-hidden="false">keyboard_arrow_down</mat-icon>
+    </button>
+</div>

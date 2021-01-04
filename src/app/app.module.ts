@@ -44,6 +44,8 @@ import { HomeCardComponent } from './ui/home-card/home-card.component';
 import { ProductsCardComponent } from './ui/products-card/products-card.component';
 import { RatingComponent } from './ui/rating/rating.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
+import { ProductOverviewComponent } from './products-list/product-detail/product-overview/product-overview.component';
+import { ProductActionComponent } from './products-list/product-detail/product-action/product-action.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     SigninFormComponent,
     SignupFormComponent,
     ResetPasswordComponent,
+    ProductOverviewComponent,
+    ProductActionComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
