@@ -1,0 +1,32 @@
+@import "../style/style.scss";
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+
+  .title-card {
+    font-size: xx-large;
+    font-weight: bold;
+  }
+
+  .line {
+    border-bottom: 1px solid #a0aaaa;
+    width: 33%;
+    margin-top: 1rem;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    app-product-card-cart {
+      width: 65%;
+      margin: 1.5rem 0;
+    }
+    app-overview-cart {
+      height: fit-content;
+      position: sticky;
+      top: 6rem;
+    }
+  }
+}

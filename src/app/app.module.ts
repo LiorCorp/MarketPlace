@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,10 +30,13 @@ import { AuthComponent } from './auth/auth.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SigninFormComponent } from './auth/signin-form/signin-form.component';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
+import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { ProductActionComponent } from './products-list/product-detail/product-action/product-action.component';
 import { ProductDetailComponent } from './products-list/product-detail/product-detail.component';
+import { ProductOverviewComponent } from './products-list/product-detail/product-overview/product-overview.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { BubbleMenuComponent } from './ui/bubble-menu/bubble-menu.component';
 import { FilterComponent } from './ui/filter/filter.component';
@@ -44,8 +48,8 @@ import { HomeCardComponent } from './ui/home-card/home-card.component';
 import { ProductsCardComponent } from './ui/products-card/products-card.component';
 import { RatingComponent } from './ui/rating/rating.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
-import { ProductOverviewComponent } from './products-list/product-detail/product-overview/product-overview.component';
-import { ProductActionComponent } from './products-list/product-detail/product-action/product-action.component';
+import { ProductCardCartComponent } from './cart/product-card-cart/product-card-cart.component';
+import { OverviewCartComponent } from './cart/overview-cart/overview-cart.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,9 @@ import { ProductActionComponent } from './products-list/product-detail/product-a
     ResetPasswordComponent,
     ProductOverviewComponent,
     ProductActionComponent,
+    CartComponent,
+    ProductCardCartComponent,
+    OverviewCartComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -94,6 +101,7 @@ import { ProductActionComponent } from './products-list/product-detail/product-a
     MatSnackBarModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     MatPasswordStrengthModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
