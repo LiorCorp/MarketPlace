@@ -1,4 +1,4 @@
-<mat-spinner *ngIf="!productsList"></mat-spinner>
+<mat-spinner *ngIf="!products"></mat-spinner>
 <mat-card class="product-card" *ngFor="let product of productsList">
     <mat-card-header>
         <mat-card-title>{{product.name}}</mat-card-title>
@@ -17,7 +17,7 @@
             <p>42 {{'product.advice' | translate}}</p>
         </div>
         <div class="seller">
-            {{'product.seller' | translate}} : Mega Dental
+            {{'product.seller' | translate}} : {{sellersMap.get(product.seller)}}
             <img class="flag" src="../../../assets/png/flags/france.png" alt="france">
         </div>
         <div>

@@ -23,6 +23,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,8 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { SigninFormComponent } from './auth/signin-form/signin-form.component';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { CartComponent } from './cart/cart.component';
+import { OverviewCartComponent } from './cart/overview-cart/overview-cart.component';
+import { ProductCardCartComponent } from './cart/product-card-cart/product-card-cart.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
@@ -48,8 +51,6 @@ import { HomeCardComponent } from './ui/home-card/home-card.component';
 import { ProductsCardComponent } from './ui/products-card/products-card.component';
 import { RatingComponent } from './ui/rating/rating.component';
 import { SnackbarComponent } from './ui/snackbar/snackbar.component';
-import { ProductCardCartComponent } from './cart/product-card-cart/product-card-cart.component';
-import { OverviewCartComponent } from './cart/overview-cart/overview-cart.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { OverviewCartComponent } from './cart/overview-cart/overview-cart.compon
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     { provide: LOCALE_ID, useValue: 'fr-FR' },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

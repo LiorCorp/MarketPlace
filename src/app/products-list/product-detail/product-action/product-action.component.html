@@ -11,7 +11,7 @@
             <option *ngFor="let quantity of quantities">{{quantity}}</option>
         </select>
     </div>
-    <button class="btn add-to-card">
+    <button class="btn add-to-card" (click)=addProductInCart()>
         <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">shopping_cart</mat-icon>
         <span class="label">{{'product.addToCart' | translate}}</span>
     </button>

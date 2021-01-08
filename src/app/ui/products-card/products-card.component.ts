@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { Product } from 'src/app/models/Product.model';
+import { Product } from '../../models/Product.model';
 
 @Component({
   selector: 'app-products-card',
@@ -14,6 +14,8 @@ import { Product } from 'src/app/models/Product.model';
 })
 export class ProductsCardComponent implements OnInit {
   @Input() productsList: Product[];
+  @Input() sellersMap = new Map();
+  products: Product[] = [];
 
   constructor() {}
 

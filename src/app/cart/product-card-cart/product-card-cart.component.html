@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngFor="let product of productsList">
     <div>
         <div class="estimated-date">Date de livraison estimé : 14 mars 2021 - 18 mars 2021</div>
         <div class="shipped-by">Expédié par [vendeur 1] <img class="flag" src="../../../assets/png/flags/france.png"
@@ -9,11 +9,11 @@
             <mat-checkbox class="checkbox" checked="true">
             </mat-checkbox>
             <div class="img-product">
-                <img src="../../assets/jpg/filtek.jpg" alt="">
+                <img src="{{product.img}}" alt="{{product.name}}">
             </div>
             <div class="info-product">
-                <div class="title-product">Titre produit</div>
-                <div class="price-product">0,00€ (0,00€/unité)</div>
+                <div class="title-product">{{product.name}}</div>
+                <div class="price-product">{{product.price | currency}} ({{product.price | currency}}/unité)</div>
                 <div class="quantity-and-remove">
                     <div class="quantity">
                         Qté:
@@ -42,6 +42,8 @@
             </div>
         </div>
     </div>
-    <div class="free-shipping-msg">Il manque 100€ pour bénéficier de la livraison gratuite cher vendeur 1
+    <div class="line"></div>
+    <div class="free-shipping-msg">Il manque <span class="important">100€</span> pour bénéficier de la livraison
+        gratuite cher <span class="important">vendeur 1</span>
     </div>
 </div>

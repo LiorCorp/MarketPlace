@@ -7,7 +7,6 @@
 
   .title-card {
     font-size: xx-large;
-    font-weight: bold;
   }
 
   .line {
@@ -18,10 +17,11 @@
 
   .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-top: 2rem;
     app-product-card-cart {
-      width: 65%;
-      margin: 1.5rem 0;
+      width: 53%;
+      margin-right: 3rem;
     }
     app-overview-cart {
       height: fit-content;

@@ -2,7 +2,7 @@ import { Category } from './category.model';
 
 export interface Product {
   readonly id?: string;
-  readonly sellerId?: string;
+  readonly seller?: string;
   readonly name?: string;
   readonly img?: string;
   readonly description?: string;

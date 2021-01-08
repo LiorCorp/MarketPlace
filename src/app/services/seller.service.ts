@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { Product } from '../models/Product.model';
 import { Seller } from './../models/seller.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SellerService {
-  sellerCollection: AngularFirestoreCollection<
-    Seller
-  > = this.firestore.collection('Seller');
+  sellerCollection: AngularFirestoreCollection<Seller> = this.firestore.collection(
+    'Seller'
+  );
 
   constructor(private firestore: AngularFirestore) {}
 
@@ -23,7 +27,6 @@ export class SellerService {
         },
         (err) => reject(err)
       );
-      resolve();
     });
   }
 
@@ -39,19 +42,11 @@ export class SellerService {
     });
   }
 
-  getSellerByUid(uid: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.sellerCollection.ref
-        .where('uid', '==', uid)
-        .get()
-        .then(
-          (res) => {
-            if (!res.empty) {
-              resolve(res.docs[0].data());
-            }
-          },
-          (err) => reject(err)
-        );
-    });
+  getSellerById(sellerId: string): Observable<QueryDocumentSnapshot<Product>> {
+    return this.sellerCollection.doc(sellerId).get();
+  }
+
+  getAllSeller(): Observable<QuerySnapshot<Product>> {
+    return this.sellerCollection.get();
   }
 }
