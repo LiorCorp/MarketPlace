@@ -1,4 +1,5 @@
 <div class="container">
     <app-filter></app-filter>
-    <app-products-card *ngIf="productsList" [productsList]=productsList [sellersMap]=sellersMap></app-products-card>
+    <app-products-card [productsList$]=productsList$>
+    </app-products-card>
 </div>

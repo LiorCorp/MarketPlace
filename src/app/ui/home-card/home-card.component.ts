@@ -19,7 +19,7 @@ export class HomeCardComponent implements OnInit {
   @Input() title: string;
   @Input() icon: string;
   @Input() backgroundClass: string;
-  @Input() products: Product[];
+  @Input() productsList: Product[];
   @Input() start: number;
   @Input() end: number;
   @Input() promo = false;

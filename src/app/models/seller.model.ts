@@ -2,6 +2,7 @@ import { Address } from './address.model';
 import { LegalRepresentative } from './legal-representative.model';
 
 export interface Seller {
+  readonly id?: string;
   readonly name?: string;
   readonly companyStatus?: string;
   readonly country?: string;

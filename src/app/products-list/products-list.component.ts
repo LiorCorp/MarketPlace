@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from '../models/Product.model';
 import { ProductService } from '../services/product.service';
-import { SellerService } from '../services/seller.service';
 
 @Component({
   selector: 'app-products-list',
@@ -9,21 +9,11 @@ import { SellerService } from '../services/seller.service';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent implements OnInit {
-  productsList: Product[];
-  sellersMap = new Map();
-  constructor(
-    private readonly productService: ProductService,
-    private readonly sellerService: SellerService
-  ) {}
+  productsList$: Observable<Product[]>;
+
+  constructor(private readonly productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getHomeProducts(36).then((products) => {
-      this.productsList = products;
-    });
-    this.sellerService.getAllSeller().subscribe((sellers) => {
-      sellers.forEach((seller) => {
-        this.sellersMap.set(seller.id, seller.data().name);
-      });
-    });
+    this.productsList$ = this.productService.getProducts();
   }
 }

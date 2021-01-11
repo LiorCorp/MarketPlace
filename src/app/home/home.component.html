@@ -1,32 +1,28 @@
 <div class="home">
-    <div class="home-banner" *ngIf="productsList && productsList.length > 0"></div>
-    <mat-spinner *ngIf="!productsList"></mat-spinner>
-    <div *ngIf="productsList && productsList.length > 0">
+    <div class="home-banner" *ngIf="productsList$ | async"></div>
+    <mat-spinner *ngIf="!(productsList$ | async)"></mat-spinner>
+    <div>
         <app-home-card [title]="'home.banner.promo'" [icon]="'../../assets/png/promo.png'"
-            [backgroundClass]="'backgournd-card-1'" [products]=productsList [start]=0 [end]=6 [promo]=true>
+            [backgroundClass]="'backgournd-card-1'" [productsList]="productsList$ | async" [start]=0 [end]=6
+            [promo]=true>
         </app-home-card>
-        <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.ranking'"
-            [icon]="'../../assets/png/ranking.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList
-            [start]=6 [end]=12>
+        <app-home-card [title]="'home.banner.ranking'" [icon]="'../../assets/png/ranking.png'"
+            [backgroundClass]="'backgournd-card-2'" [productsList]="productsList$ | async" [start]=6 [end]=12>
         </app-home-card>
-        <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.top-selection'"
-            [icon]="'../../assets/png/top-selection.png'" [backgroundClass]="'backgournd-card-1'"
-            [products]=productsList [start]=12 [end]=18>
+        <app-home-card [title]="'home.banner.top-selection'" [icon]="'../../assets/png/top-selection.png'"
+            [backgroundClass]="'backgournd-card-1'" [productsList]="productsList$ | async" [start]=12 [end]=18>
         </app-home-card>
-        <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.news'"
-            [icon]="'../../assets/png/new.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList
-            [start]=18 [end]=24>
+        <app-home-card [title]="'home.banner.news'" [icon]="'../../assets/png/new.png'"
+            [backgroundClass]="'backgournd-card-2'" [productsList]="productsList$ | async" [start]=18 [end]=24>
         </app-home-card>
-        <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.best-sellers'"
-            [icon]="'../../assets/png/shop.png'" [backgroundClass]="'backgournd-card-1'" [products]=productsList
-            [start]=24 [end]=30>
+        <app-home-card [title]="'home.banner.best-sellers'" [icon]="'../../assets/png/shop.png'"
+            [backgroundClass]="'backgournd-card-1'" [productsList]="productsList$ | async" [start]=24 [end]=30>
         </app-home-card>
-        <app-home-card *ngIf="productsList && productsList.length > 0" [title]="'home.banner.eco'"
-            [icon]="'../../assets/png/eco.png'" [backgroundClass]="'backgournd-card-2'" [products]=productsList
-            [start]=30 [end]=36>
+        <app-home-card [title]="'home.banner.eco'" [icon]="'../../assets/png/eco.png'"
+            [backgroundClass]="'backgournd-card-2'" [productsList]="productsList$ | async" [start]=30 [end]=36>
         </app-home-card>
     </div>
-    <div class="advantages" *ngIf="productsList && productsList.length > 0">
+    <div class="advantages" *ngIf="productsList$ | async">
         <div class="advantage" *ngFor="let advantage of advantages">
             <img class="icon" [src]="advantage.icon">
             <div class="title">{{(advantage.title | translate) | uppercase}}</div>

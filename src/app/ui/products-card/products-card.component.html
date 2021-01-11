@@ -1,5 +1,5 @@
-<mat-spinner *ngIf="!products"></mat-spinner>
-<mat-card class="product-card" *ngFor="let product of productsList">
+<mat-spinner *ngIf="!(productsList$ | async)"></mat-spinner>
+<mat-card class="product-card" *ngFor="let product of productsList$ | async">
     <mat-card-header>
         <mat-card-title>{{product.name}}</mat-card-title>
     </mat-card-header>
@@ -17,11 +17,11 @@
             <p>42 {{'product.advice' | translate}}</p>
         </div>
         <div class="seller">
-            {{'product.seller' | translate}} : {{sellersMap.get(product.seller)}}
+            {{'product.seller' | translate}} : {{product.seller?.name}}
             <img class="flag" src="../../../assets/png/flags/france.png" alt="france">
         </div>
         <div>
-            {{'product.brand' | translate}} : 3M
+            {{'product.brand' | translate}} : {{product.brand?.name}}
         </div>
         <p class="delivery-time">
             {{'product.delivery-under' | translate}} 3 à 5 {{'product.days' | translate}}

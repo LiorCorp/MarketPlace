@@ -20,7 +20,6 @@ export class CartComponent implements OnInit {
     const productsId: string[] = this.getProductsIdFromCookie(
       productsIdFromCookie
     );
-    console.warn(productsId);
     if (productsId.length > 0) {
       this.productsList = [];
       productsId.forEach((productId) => {
@@ -34,7 +33,6 @@ export class CartComponent implements OnInit {
   }
 
   getProductsIdFromCookie(productsIdFromCookie: string): string[] {
-    console.warn(this.cartService.cartIsEmpty());
     if (this.cartService.cartIsEmpty()) {
       return [];
     }

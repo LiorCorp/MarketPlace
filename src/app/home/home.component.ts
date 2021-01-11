@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from '../models/Product.model';
 import { ProductService } from './../services/product.service';
 
@@ -8,7 +9,7 @@ import { ProductService } from './../services/product.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  productsList: Product[];
+  productsList$: Observable<Product[]>;
   advantages = [
     {
       title: 'home.advantages.money-gain.title',
@@ -40,8 +41,6 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService
-      .getHomeProducts(36)
-      .then((products) => (this.productsList = products));
+    this.productsList$ = this.productService.getProducts();
   }
 }

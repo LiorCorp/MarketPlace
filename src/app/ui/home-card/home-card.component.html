@@ -1,9 +1,9 @@
-<div class="banner-card" [ngClass]="[backgroundClass]">
+<div *ngIf="productsList" class="banner-card" [ngClass]="[backgroundClass]">
     <a class="title" [routerLink]="['/products']"><img class="icon" src={{icon}}>
         <span>{{title | translate}}</span>
     </a>
-    <div class="cards" *ngIf="products && products.length > 0">
-        <div class="card" *ngFor="let product of products | slice:start:end">
+    <div class="cards">
+        <div class="card" *ngFor="let product of productsList | slice:start:end">
             <div class="product-name">{{product.name}}</div>
             <img class="product-img" src="{{product.img}}">
             <div class="price">
@@ -12,3 +12,4 @@
             </div>
         </div>
     </div>
+</div>

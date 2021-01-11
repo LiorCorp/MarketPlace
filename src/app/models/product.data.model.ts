@@ -1,17 +1,15 @@
-import { Brand } from './brand.model';
 import { Category } from './category.model';
-import { Seller } from './seller.model';
 
-export interface Product {
+export interface ProductData {
   readonly id?: string;
-  readonly seller?: Seller;
+  readonly sellerId?: string;
   readonly name?: string;
   readonly img?: string;
   readonly description?: string;
   readonly price?: number;
   readonly discountPrice?: number;
   readonly promotion?: number;
-  readonly brand?: Brand;
+  readonly brandId?: string;
   readonly orderMin?: number;
   readonly category?: Category;
 }

@@ -7,18 +7,21 @@
 
   .title-card {
     font-size: xx-large;
+    text-align: center;
+    font-weight: bold;
   }
 
   .line {
     border-bottom: 1px solid #a0aaaa;
     width: 33%;
     margin-top: 1rem;
+    align-self: center;
   }
 
   .container {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     app-product-card-cart {
       width: 53%;
       margin-right: 3rem;
@@ -26,7 +29,7 @@
     app-overview-cart {
       height: fit-content;
       position: sticky;
-      top: 6rem;
+      top: 2rem;
     }
   }
 }
