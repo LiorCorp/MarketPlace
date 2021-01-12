@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  DocumentChangeAction,
   DocumentReference,
-  QueryDocumentSnapshot,
   QuerySnapshot,
 } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
-import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { combineLatest, forkJoin, Observable, of } from 'rxjs';
+import { map, switchMap, take } from 'rxjs/operators';
 import { Product } from '../models/Product.model';
 import { ProductData } from './../models/product.data.model';
 import { BrandService } from './brand.service';
@@ -29,10 +27,36 @@ export class ProductService {
     private readonly brandService: BrandService
   ) {}
 
-  getProductById(
-    productId: string
-  ): Observable<QueryDocumentSnapshot<ProductData>> {
-    return this.productCollection.doc(productId).get();
+  getProductById(productId: string): Observable<Product> {
+    return this.productCollection
+      .doc(productId)
+      .valueChanges({
+        idField: 'id',
+      })
+      .pipe(
+        take(1),
+        switchMap((_product) => {
+          return forkJoin({
+            product: of(_product),
+            seller: this.sellerService.getSellerById(_product.sellerId),
+            brand: this.brandService.getBrandById(_product.brandId),
+            img: this.getProductImg(_product.img),
+          }).pipe(
+            map((data) => {
+              const product = data.product;
+              return {
+                id: product.id,
+                name: product.name,
+                img: data.img,
+                price: product.price,
+                discountPrice: product.discountPrice,
+                seller: data.seller,
+                brand: data.brand,
+              } as Product;
+            })
+          );
+        })
+      );
   }
 
   getProducts(): Observable<Product[]> {
@@ -73,35 +97,10 @@ export class ProductService {
     );
   }
 
-  // getProductsTest(): Observable<ProductData[]> {
-  //   return this.productCollection.snapshotChanges().pipe(
-  //     map((products: DocumentChangeAction<ProductData>[]) => {
-  //       return products.map((product: DocumentChangeAction<ProductData>) => {
-  //         const data: ProductData = product.payload.doc.data();
-  //         const sellerId: string = data.sellerId;
-  //         return this.sellerService.getSellerById(sellerId).pipe(
-  //           map((seller: Seller) => {
-  //             return Object.assign({ ...data, seller });
-  //           })
-  //         );
-  //       });
-  //     }),
-  //     mergeMap((products) => {
-  //       return combineLatest(products);
-  //     })
-  //   );
-  // }
-
   getProductsWithValueChanges(): Observable<ProductData[]> {
     return this.productCollection.valueChanges({
       idField: 'id',
     });
-  }
-
-  getProductsWithSnapshotChanges(): Observable<
-    DocumentChangeAction<ProductData>[]
-  > {
-    return this.productCollection.snapshotChanges();
   }
 
   async getProductImg(img: string): Promise<string> {

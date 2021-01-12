@@ -1,7 +1,7 @@
-<div class="product-overview">
-    <div class="product-name">{{product?.name}}</div>
-    <div class="seller">{{('product.seller' | translate) | uppercase}} : <span class="seller-brand">3M</span><img
-            class="flag" src="../../assets/png/flags/usa.png" alt="usa"></div>
+<div class="product-overview" *ngIf="product$ | async">
+    <div class="product-name">{{(product$ | async)?.name}}</div>
+    <div class="seller">{{('product.seller' | translate) | uppercase}} : <span class="seller-brand">{{(product$ |
+            async)?.seller?.name}}</span><img class="flag" src="../../assets/png/flags/usa.png" alt="usa"></div>
     <div class="rating">
         <div>
             <app-rating [fullStar]=3></app-rating>
@@ -12,7 +12,8 @@
     </div>
     <div class="line"></div>
     <div class="price-and-action">
-        <div class="price">{{'product.price' | translate}} : <span class="amount">{{product?.price | currency}}
+        <div class="price">{{'product.price' | translate}} : <span class="amount">{{(product$ | async)?.price |
+                currency}}
                 TTC</span>
         </div>
         <div class="action"><img class="wish-list" src="../../../assets/png/wish-list.png" alt="wishlist"><img
@@ -27,7 +28,8 @@
     <div class="disclaimer-article">{{'product.disclaimerArticle' | translate}} (L x L x H) : <span class="value">
             14.7 x 3 x 1.7 cm</span>
     </div>
-    <div class="brand">{{'product.brand' | translate}} : <span class="value">3M</span></div>
+    <div class="brand">{{'product.brand' | translate}} : <span class="value">{{(product$ | async)?.brand?.name}}</span>
+    </div>
     <div class="line"></div>
     <div class="about">
         <div class="label">{{'product.aboutArticle' | translate}} :</div>

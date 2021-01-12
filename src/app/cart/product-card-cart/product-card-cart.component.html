@@ -1,49 +1,54 @@
-<div class="card" *ngFor="let product of productsList">
-    <div>
-        <div class="estimated-date">Date de livraison estimé : 14 mars 2021 - 18 mars 2021</div>
-        <div class="shipped-by">Expédié par [vendeur 1] <img class="flag" src="../../../assets/png/flags/france.png"
-                alt="france"></div>
-    </div>
-    <div class="detail">
-        <div class="title-and-img">
-            <mat-checkbox class="checkbox" checked="true">
-            </mat-checkbox>
-            <div class="img-product">
-                <img src="{{product.img}}" alt="{{product.name}}">
-            </div>
-            <div class="info-product">
-                <div class="title-product">{{product.name}}</div>
-                <div class="price-product">{{product.price | currency}} ({{product.price | currency}}/unité)</div>
-                <div class="quantity-and-remove">
-                    <div class="quantity">
-                        Qté:
-                        <select>
-                            <option>1</option>
-                        </select>
+<div *ngFor="let productsInCart of productsCartArray">
+    <div class="card" *ngFor="let productInCart of productsInCart">
+        <div>
+            <div class="estimated-date">Date de livraison estimé : 14 mars 2021 - 18 mars 2021</div>
+            <div class="shipped-by">Expédié par {{productInCart.product?.seller?.name}} <img class="flag"
+                    src="../../../assets/png/flags/france.png" alt="france"></div>
+        </div>
+        <div class="detail">
+            <div class="title-and-img">
+                <mat-checkbox class="checkbox" checked="true">
+                </mat-checkbox>
+                <div class="img-product">
+                    <img src="{{productInCart.product?.img}}" alt="{{productInCart.product?.name}}">
+                </div>
+                <div class="info-product">
+                    <div class="title-product">{{productInCart.product?.name}}</div>
+                    <div class="price-product">{{productInCart.product?.price | currency}}
+                        ({{productInCart.product?.price |
+                        currency}}/unité)</div>
+                    <div class="quantity-and-remove">
+                        <div class="quantity">
+                            Qté:
+                            <select>
+                                <option>{{productInCart.quantity}}</option>
+                            </select>
+                        </div>
+                        <span class="vertical-line"></span>
+                        <span class="remove-product">Supprimer le produit</span>
                     </div>
-                    <span class="vertical-line"></span>
-                    <span class="remove-product">Supprimer le produit</span>
+                </div>
+            </div>
+            <div class="shipping-method">
+                <span class="shipping-title">Mode de livraison :</span>
+                <div class="radio-button">
+                    <mat-radio-button checked="true">
+                    </mat-radio-button>
+                    <span class="radio-button-label">Nom Transporteur 1, Prix, date de livraison estimé /ou
+                        garantie.</span>
+                </div>
+                <div class="radio-button">
+                    <mat-radio-button>
+                    </mat-radio-button>
+                    <span class="radio-button-label">Nom Transporteur 2, Prix, date de livraison estimé /ou
+                        garantie.</span>
                 </div>
             </div>
         </div>
-        <div class="shipping-method">
-            <span class="shipping-title">Mode de livraison :</span>
-            <div class="radio-button">
-                <mat-radio-button checked="true">
-                </mat-radio-button>
-                <span class="radio-button-label">Nom Transporteur 1, Prix, date de livraison estimé /ou
-                    garantie.</span>
-            </div>
-            <div class="radio-button">
-                <mat-radio-button>
-                </mat-radio-button>
-                <span class="radio-button-label">Nom Transporteur 2, Prix, date de livraison estimé /ou
-                    garantie.</span>
-            </div>
+        <div class="line"></div>
+        <div class="free-shipping-msg">Il manque <span class="important">100€</span> pour bénéficier de la livraison
+            gratuite chez
+            <span class="important">{{productInCart.product?.seller?.name}}</span>
         </div>
-    </div>
-    <div class="line"></div>
-    <div class="free-shipping-msg">Il manque <span class="important">100€</span> pour bénéficier de la livraison
-        gratuite cher <span class="important">vendeur 1</span>
     </div>
 </div>

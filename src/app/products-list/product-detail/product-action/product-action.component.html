@@ -1,5 +1,5 @@
 <div class="product-action">
-    <div class="price">{{product?.price | currency}} TTC</div>
+    <div class="price">{{(product$ | async)?.price | currency}} TTC</div>
     <div class="delivered"><span class="date">{{'product.delivered' | translate}} : 3 - 5 déc. </span><span
             class="detail">Détails</span></div>
     <div class="line"></div>
@@ -11,15 +11,15 @@
             <option *ngFor="let quantity of quantities">{{quantity}}</option>
         </select>
     </div>
-    <button class="btn add-to-card" (click)=addProductInCart()>
+    <button class="btn add-to-card" (click)=addProductInCart() mat-raised-button>
         <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">shopping_cart</mat-icon>
         <span class="label">{{'product.addToCart' | translate}}</span>
     </button>
-    <button class="btn automate-purchasing">
+    <button class="btn automate-purchasing" mat-raised-button>
         <mat-icon class="icon" class="material-icons-round" aria-hidden="false">autorenew</mat-icon>
         <span class="label">{{'product.automatePurchasing' | translate}}</span>
     </button>
-    <button class="btn buy-article">
+    <button class="btn buy-article" mat-raised-button>
         <mat-icon class="icon" class="material-icons-round" aria-hidden="false">credit_card</mat-icon>
         <span class="label">{{'product.buyArticle' | translate}}</span>
     </button>
@@ -29,7 +29,7 @@
         <span class="label">{{'product.secureTransaction' | translate}}</span>
     </div>
     <div class="shipped-and-sold"><span class="label">{{'product.shippedAndSoldBy' | translate}} : </span><span
-            class="brand">3M</span></div>
+            class="brand">{{(product$ | async)?.brand?.name}}</span></div>
     <div class="guarantee">{{'product.guarantee' | translate}}</div>
     <div class="line"></div>
     <div class="address">
@@ -37,7 +37,7 @@
         <span>{{'product.delivered' | translate}} à Anthony, Toulouse 31200</span>
     </div>
     <div class="line"></div>
-    <button class="btn add-to-my-list">
+    <button class="btn add-to-my-list" mat-raised-button>
         <span class="label">{{'product.addToMyList' | translate}}</span>
         <mat-icon class="material-icons-round" aria-hidden="false">keyboard_arrow_down</mat-icon>
     </button>

@@ -1,5 +1,4 @@
 import { Address } from './address.model';
-import { Cart } from './cart.model';
 import { CreditCard } from './credit-card.model';
 import { Order } from './order.model';
 import { WishList } from './wish-list.model';
@@ -16,7 +15,6 @@ export interface User {
   readonly nationality?: string;
   readonly siret?: number;
   readonly tvaNumber?: string;
-  readonly cart?: Cart;
   readonly creditCards?: CreditCard[];
   readonly orders?: Order[];
   readonly wishList?: WishList;

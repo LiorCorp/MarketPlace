@@ -87,6 +87,8 @@
     display: flex;
     align-items: center;
     outline: none;
+    height: 1.5rem;
+    font-weight: bold;
     cursor: pointer;
     padding: 0 0.5rem;
     width: 90%;
@@ -99,6 +101,16 @@
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 1);
     -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 1);
     -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 1);
+
+    ::ng-deep .mat-button-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      mat-icon {
+        align-self: center;
+      }
+    }
 
     .label {
       text-align: center;

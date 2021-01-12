@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductCart } from '../models/product-cart.model';
 import { Product } from '../models/Product.model';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
@@ -9,7 +10,10 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  productsList: Product[];
+  productsCart: ProductCart[];
+  productsCartArray: ProductCart[][];
+  sellersId: string[];
+  isLoaded = false;
   constructor(
     private readonly cartService: CartService,
     private readonly productService: ProductService
@@ -21,12 +25,13 @@ export class CartComponent implements OnInit {
       productsIdFromCookie
     );
     if (productsId.length > 0) {
-      this.productsList = [];
+      this.productsCart = [];
       productsId.forEach((productId) => {
         this.productService.getProductById(productId).subscribe((product) => {
-          this.productService.getProductImg(product.data().img).then((url) => {
-            this.productsList.push({ ...product.data(), img: url });
-          });
+          this.AddProductInCartOrUpdateQuantity(product);
+          if ([...new Set(productsId)].length === this.productsCart.length) {
+            this.groupProductsInCartBySeller();
+          }
         });
       });
     }
@@ -37,5 +42,39 @@ export class CartComponent implements OnInit {
       return [];
     }
     return productsIdFromCookie.split(';');
+  }
+
+  AddProductInCartOrUpdateQuantity(product: Product): void {
+    let productInCart = { product, quantity: 1 };
+
+    const _product: ProductCart = this.productsCart.find(
+      (p) => p.product.id === product.id
+    );
+    if (!_product) {
+      this.productsCart.push(productInCart);
+    } else {
+      const index = this.productsCart.findIndex(
+        (p) => p.product.id === productInCart.product.id
+      );
+      this.productsCart[index] = {
+        ...productInCart,
+        quantity: this.productsCart[index].quantity + 1,
+      };
+    }
+  }
+
+  groupProductsInCartBySeller(): void {
+    this.sellersId = [
+      ...new Set(this.productsCart.map((p) => p.product.seller.id)),
+    ];
+    let productsInCartBySeller: ProductCart[];
+    this.productsCartArray = [];
+    this.sellersId.forEach((sellerId) => {
+      productsInCartBySeller = this.productsCart.filter(
+        (p) => p.product.seller.id === sellerId
+      );
+      this.productsCartArray.push(productsInCartBySeller);
+    });
+    this.isLoaded = true;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Product } from '../../../models/Product.model';
 import { CartService } from './../../../services/cart.service';
 
@@ -9,7 +10,7 @@ import { CartService } from './../../../services/cart.service';
   styleUrls: ['./product-action.component.scss'],
 })
 export class ProductActionComponent implements OnInit {
-  @Input() product: Product;
+  @Input() product$: Observable<Product>;
   quantities = ['1', '2', '3', '4', '5'];
   selectedQuantity = '1';
   constructor(

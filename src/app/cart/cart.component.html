@@ -2,7 +2,8 @@
     <span class="title-card">Détail de votre panier :</span>
     <div class="line"></div>
     <div class="container">
-        <app-product-card-cart [productsList]=productsList></app-product-card-cart>
+        <app-product-card-cart *ngIf="isLoaded" [productsCartArray]=productsCartArray>
+        </app-product-card-cart>
         <app-overview-cart></app-overview-cart>
     </div>
 </div>

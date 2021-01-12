@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Product } from './../../models/Product.model';
 import { ProductService } from './../../services/product.service';
 
@@ -10,7 +11,7 @@ import { ProductService } from './../../services/product.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  product: Product;
+  product$: Observable<Product>;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -19,13 +20,9 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService
-      .getProductById(this.route.snapshot.params.id)
-      .subscribe((product) => {
-        this.productService
-          .getProductImg(product.data().img)
-          .then((url) => (this.product = { ...product.data(), img: url }));
-      });
+    this.product$ = this.productService.getProductById(
+      this.route.snapshot.params.id
+    );
   }
 
   back(): void {

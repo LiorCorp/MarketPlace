@@ -5,7 +5,7 @@ import {
   QuerySnapshot,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Seller } from './../models/seller.model';
 
 @Injectable({
@@ -46,6 +46,7 @@ export class SellerService {
       .doc(sellerId)
       .valueChanges({ idField: 'id' })
       .pipe(
+        take(1),
         map((seller: Seller) => {
           return seller;
         })

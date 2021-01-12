@@ -1,14 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../../models/Product.model';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { ProductCart } from 'src/app/models/product-cart.model';
 
 @Component({
   selector: 'app-product-card-cart',
   templateUrl: './product-card-cart.component.html',
   styleUrls: ['./product-card-cart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardCartComponent implements OnInit {
-  @Input() productsList: Product[];
+  @Input() productsCartArray: ProductCart[][];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.warn(this.productsCartArray);
+  }
 }
