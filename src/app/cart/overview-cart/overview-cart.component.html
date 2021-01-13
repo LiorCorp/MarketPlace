@@ -1,37 +1,36 @@
-<div class="overview">
-    <span class="title">Récapitulatif de la commande</span>
+<div class="overview position-sticky">
+    <div class="title">{{'cart.order-summary' | translate}}</div>
     <div class="items-number">
-        <span class="items-number-label">Total des articles :</span><span>0,00 €</span>
+        <span class="items-number-label">{{'cart.total-items' | translate}} :</span><span>0,00 €</span>
     </div>
     <div class="shipping">
-        <span class="shipping-label">Livraison (s) :</span><span>0,00 €</span>
+        <span class="shipping-label">{{'cart.delivery' | translate}} :</span><span>0,00 €</span>
     </div>
     <div class="saving">
-        <span class="saving-label">Économies réalisées :</span><span>0,00 €</span>
+        <span class="saving-label">{{'cart.savings-realized' | translate}} :</span><span>0,00 €</span>
     </div>
     <div class="line"></div>
     <mat-form-field appearance="outline">
-        <mat-label>Code promo</mat-label>
+        <mat-label>{{'cart.promo-code' | translate}}</mat-label>
         <input matInput autocomplete="off">
     </mat-form-field>
-    <button type="button" class="btn jackpot" mat-raised-button>Utiliser ma cagnotte (26,00€)</button>
+    <button type="button" class="btn jackpot" mat-raised-button>{{'cart.use-my-kitty' | translate}} (26,00€)</button>
     <div class="line"></div>
     <div class="total-amount">
-        <span class="total-amount-label">Montant total : </span>
+        <span class="total-amount-label">{{'cart.total-amount' | translate}} : </span>
         <span>0,00 €</span>
     </div>
     <div class="tva">
-        <span class="tva-label">TVA inclut.</span><span class="tva-detail">Voir détails.</span>
+        <span class="tva-label">TVA inclut.</span><span class="tva-detail">{{'cart.see-details' | translate}}.</span>
     </div>
     <div class="line"></div>
-    <button type="button" class="btn order-now" mat-raised-button>Passer commande</button>
-    <span class="info-general">En passant votre commande, vous acceptez les Conditions générales de vente de Meden.
-        Veuillez consulter notre
-        <span class="important">Notice Protection de vos informations personnelles</span>, notre Notice Cookies et notre
-        <span class="important">Notice
-            Annonces publicitaires basées sur vos centres d’intérêt</span>.
+    <button type="button" class="btn order-now" mat-raised-button>{{'cart.place-order' | translate}}</button>
+    <span class="info-general">{{'cart.general-conditions-sale-message1' | translate}}
+        <span class="important">{{'cart.general-conditions-sale-message2' | translate}}</span>,
+        {{'cart.general-conditions-sale-message3' | translate}}
+        <span class="important">{{'cart.general-conditions-sale-message4' | translate}}</span>.
     </span>
     <span class="info-shipping-cost important">
-        Comment sont calculés les frais de livraison ?
+        {{'cart.calcul-shipping-costs' | translate}}
     </span>
 </div>

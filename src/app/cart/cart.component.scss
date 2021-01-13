@@ -1,35 +1,14 @@
 @import "../style/style.scss";
 
-.cart {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem;
-
-  .title-card {
-    font-size: xx-large;
-    text-align: center;
-    font-weight: bold;
-  }
+.title-card {
+  text-align: center;
+  font-weight: bold;
+  margin: 1rem 0;
+  padding: 0 10rem;
 
   .line {
     border-bottom: 1px solid #a0aaaa;
-    width: 33%;
-    margin-top: 1rem;
+    margin: 1rem;
     align-self: center;
-  }
-
-  .container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    app-product-card-cart {
-      width: 53%;
-      margin-right: 3rem;
-    }
-    app-overview-cart {
-      height: fit-content;
-      position: sticky;
-      top: 2rem;
-    }
   }
 }

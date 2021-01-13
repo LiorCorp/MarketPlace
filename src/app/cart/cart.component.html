@@ -1,9 +1,10 @@
-<div class="cart">
-    <span class="title-card">Détail de votre panier :</span>
-    <div class="line"></div>
-    <div class="container">
-        <app-product-card-cart *ngIf="isLoaded" [productsCartArray]=productsCartArray>
+<div class="container">
+    <h1 class="title-card">{{'cart.cart-detail' | translate}} :
+        <div class="line"></div>
+    </h1>
+    <div class="row">
+        <app-product-card-cart class="col-lg-8" *ngIf="isLoaded" [productsCartArray]=productsCartArray>
         </app-product-card-cart>
-        <app-overview-cart></app-overview-cart>
+        <app-overview-cart class="col-lg-4"></app-overview-cart>
     </div>
 </div>

@@ -29,7 +29,7 @@
     "input": {
       "lastname": "Nom",
       "firstname": "Prénom",
-      "email": "Adresse email professionel",
+      "email": "Adresse email professionelle",
       "password": "Mot de passe",
       "confirmPassword": "Confirmez le mot de passe"
     }
@@ -50,7 +50,7 @@
       "description": "Nous sommes heureux de vous revoir parmi nous !"
     },
     "input": {
-      "email": "Adresse email professionel",
+      "email": "Adresse email professionelle",
       "password": "Mot de passe"
     },
     "stayConnected": "Rester connecté",
@@ -172,5 +172,28 @@
     "price-by-piece-max": "Prix par pièce maximum",
     "euro": "euro",
     "and-more": " & plus"
+  },
+  "cart": {
+    "cart-detail": "Détail de votre panier",
+    "estimated-date": "Date de livraison estimé",
+    "unit": "unité",
+    "qty": "Qté",
+    "remove-product": "Supprimer le produit",
+    "shipping-method": "Mode de livraison",
+    "order-summary": "Récapitulatif de la commande",
+    "total-items": "Total des articles",
+    "delivery": "Livraison",
+    "deliveries": "Livraisons",
+    "savings-realized": "Économies réalisées",
+    "promo-code": "Code promo",
+    "use-my-kitty": "Utiliser ma cagnotte",
+    "total-amount": "Montant total",
+    "see-details": "Voir détails",
+    "place-order": "Passer commande",
+    "general-conditions-sale-message1": "En passant votre commande, vous acceptez les Conditions générales de vente de Meden. Veuillez consulter notre",
+    "general-conditions-sale-message2": "Notice Protection de vos informations personnelles",
+    "general-conditions-sale-message3": "notre Notice Cookies et notre",
+    "general-conditions-sale-message4": "Annonces publicitaires basées sur vos centres d’intérêt",
+    "calcul-shipping-costs": "Comment sont calculés les frais de livraison ?"
   }
 }

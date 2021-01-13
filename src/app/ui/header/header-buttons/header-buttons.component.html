@@ -1,10 +1,10 @@
 <div class="right-buttons">
-    <div class="btn account" (click)="openAuthDialog()" (mouseenter)="bubbleAccountHover=true"
+    <div class="header-btn account" (click)="openAuthDialog()" (mouseenter)="bubbleAccountHover=true"
         (mouseleave)="bubbleAccountHover=false">
         <div class="icon">
             <img src="../../assets/svg/user.svg">
         </div>
-        <div class="label">
+        <div class="label-btn">
             <span class="hello">{{'header.hello' | translate}} {{isAuthenticated?.displayName}}</span>
             <span class="my-account" *ngIf="!isAuthenticated">{{'header.signin' | translate}}</span>
             <span class="my-account" *ngIf="isAuthenticated">{{'header.myaccount.title' | translate}}
@@ -14,17 +14,18 @@
             </span>
         </div>
     </div>
-    <div class="btn package">
+    <div class="header-btn package">
         <div class="icon">
             <img src="../../assets/svg/package.svg">
         </div>
-        <div class="label"><span>{{'header.my' | translate}}</span><span>{{'header.orders' | translate}}</span></div>
+        <div class="label-btn"><span>{{'header.my' | translate}}</span><span>{{'header.orders' | translate}}</span>
+        </div>
     </div>
-    <div class="btn cart" [routerLink]="['/cart']">
+    <div class="header-btn cart" [routerLink]="['/cart']">
         <div class="icon">
             <img src="../../assets/svg/shopping-cart.svg">
             <span class="items-number">0</span>
         </div>
-        <div class="label"><span>0,00€</span><span>{{'header.cart' | translate}}</span></div>
+        <div class="label-btn"><span>0,00€</span><span>{{'header.cart' | translate}}</span></div>
     </div>
 </div>

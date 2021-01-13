@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
 
-  .btn {
+  .header-btn {
     border: 2px transparent solid;
     cursor: pointer;
     display: flex;
@@ -37,7 +37,7 @@
       }
     }
 
-    .label {
+    .label-btn {
       display: flex;
       flex-direction: column;
       font-size: medium;

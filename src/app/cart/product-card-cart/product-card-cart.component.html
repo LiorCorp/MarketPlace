@@ -1,54 +1,63 @@
 <div *ngFor="let productsInCart of productsCartArray">
-    <div class="card" *ngFor="let productInCart of productsInCart">
-        <div>
-            <div class="estimated-date">Date de livraison estimé : 14 mars 2021 - 18 mars 2021</div>
-            <div class="shipped-by">Expédié par {{productInCart.product?.seller?.name}} <img class="flag"
-                    src="../../../assets/png/flags/france.png" alt="france"></div>
-        </div>
-        <div class="detail">
-            <div class="title-and-img">
-                <mat-checkbox class="checkbox" checked="true">
-                </mat-checkbox>
-                <div class="img-product">
-                    <img src="{{productInCart.product?.img}}" alt="{{productInCart.product?.name}}">
+    <div class="card" *ngIf="productsInCart.length > 0">
+        <div class="card-content" *ngFor="let productInCart of productsInCart; let index = index">
+            <div class="shipping" *ngIf="index === 0">
+                <div class="estimated-date">{{'cart.estimated-date' | translate}} : 14 mars 2021 - 18 mars 2021</div>
+                <div class="shipped-by">Expédié par {{productInCart.product?.seller?.name}} <img class="flag"
+                        src="../../../assets/png/flags/france.png" alt="france"></div>
+            </div>
+            <div class="row detail">
+                <div class="col-md-3 d-flex align-self-center">
+                    <mat-checkbox class="align-self-center" checked="true">
+                    </mat-checkbox>
+                    <div class="img-container p-2">
+                        <img class="img-fluid" src="{{productInCart.product?.img}}"
+                            alt="{{productInCart.product?.name}}">
+                    </div>
                 </div>
-                <div class="info-product">
-                    <div class="title-product">{{productInCart.product?.name}}</div>
-                    <div class="price-product">{{productInCart.product?.price | currency}}
-                        ({{productInCart.product?.price |
-                        currency}}/unité)</div>
-                    <div class="quantity-and-remove">
-                        <div class="quantity">
-                            Qté:
+                <div class="col-md-5 align-self-star d-flex flex-column justify-content-between py-3">
+                    <div class="title-and-price">
+                        <div class="title-product">{{productInCart.product?.name}}</div>
+                        <div class="price-product">{{productInCart.product?.price | currency}}
+                            ({{productInCart.product?.price |
+                            currency}}/{{'cart.unit' | translate}})</div>
+                    </div>
+                    <div class="row align-self-start flex-nowrap px-3">
+                        <div class="quantity col-sm-auto">
+                            {{'cart.qty' | translate}}:
                             <select>
                                 <option>{{productInCart.quantity}}</option>
                             </select>
                         </div>
                         <span class="vertical-line"></span>
-                        <span class="remove-product">Supprimer le produit</span>
+                        <span class="remove-product col-sm-auto align-self-center p-0"
+                            (click)="removeProduct(productInCart.product?.id, productsInCart, index)">{{'cart.remove-product'
+                            | translate}}</span>
+                    </div>
+                </div>
+                <div class="shipping-method col-md-4 pt-3" *ngIf="index === 0">
+                    <div class="shipping-title">{{'cart.shipping-method' | translate}} :</div>
+                    <div class="radio-button row">
+                        <mat-radio-button class="col-sm-auto pr-0" checked="true">
+                        </mat-radio-button>
+                        <span class="radio-button-label col pl-0">Nom Transporteur 1, Prix, date de livraison estimé /ou
+                            garantie.</span>
+                    </div>
+                    <div class="radio-button row">
+                        <mat-radio-button class="col-sm-auto pr-0">
+                        </mat-radio-button>
+                        <span class="radio-button-label col pl-0">Nom Transporteur 2, Prix, date de livraison estimé /ou
+                            garantie.</span>
                     </div>
                 </div>
             </div>
-            <div class="shipping-method">
-                <span class="shipping-title">Mode de livraison :</span>
-                <div class="radio-button">
-                    <mat-radio-button checked="true">
-                    </mat-radio-button>
-                    <span class="radio-button-label">Nom Transporteur 1, Prix, date de livraison estimé /ou
-                        garantie.</span>
-                </div>
-                <div class="radio-button">
-                    <mat-radio-button>
-                    </mat-radio-button>
-                    <span class="radio-button-label">Nom Transporteur 2, Prix, date de livraison estimé /ou
-                        garantie.</span>
-                </div>
+            <div class="half-line" [ngClass]='{"line": index === productsInCart.length-1}'></div>
+            <div class="free-shipping-msg" *ngIf="index === productsInCart.length-1">Il manque <span
+                    class="important">100€</span> pour
+                bénéficier de la livraison
+                gratuite chez
+                <span class="important">{{productInCart.product?.seller?.name}}</span>
             </div>
-        </div>
-        <div class="line"></div>
-        <div class="free-shipping-msg">Il manque <span class="important">100€</span> pour bénéficier de la livraison
-            gratuite chez
-            <span class="important">{{productInCart.product?.seller?.name}}</span>
         </div>
     </div>
 </div>
