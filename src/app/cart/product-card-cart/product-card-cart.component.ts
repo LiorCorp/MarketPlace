@@ -1,36 +1,38 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import { ProductCart } from 'src/app/models/product-cart.model';
-import { CartService } from 'src/app/services/cart.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProductCart } from '../../models/product-cart.model';
 
 @Component({
   selector: 'app-product-card-cart',
   templateUrl: './product-card-cart.component.html',
   styleUrls: ['./product-card-cart.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardCartComponent implements OnInit {
-  @Input() productsCartArray: ProductCart[][];
-  constructor(private readonly cartService: CartService) {}
-
-  ngOnInit(): void {
-    console.warn(this.productsCartArray);
+  @Input() productsCartArray$: Observable<ProductCart[][]>;
+  @Output() removeProductOutput = new EventEmitter();
+  @Output() updateQuantityOutput = new EventEmitter();
+  quantityMaxByProduct: number[];
+  constructor() {
+    this.quantityMaxByProduct = Array(10)
+      .fill(0)
+      .map((x, i) => i + 1);
   }
+
+  ngOnInit(): void {}
 
   removeProduct(
     productId: string,
     productsCart: ProductCart[],
-    index: number
+    indexChild: number
   ): void {
-    if (index > -1) {
-      this.cartService.removeProduct(productId);
-      const indexArray = this.productsCartArray.indexOf(productsCart);
-      this.productsCartArray[indexArray].splice(index, 1);
-      productsCart.splice(index, 1);
-    }
+    this.removeProductOutput.emit({ productId, productsCart, indexChild });
+  }
+
+  updateQuantityProductCart(
+    productsCart: ProductCart[],
+    productCart: ProductCart,
+    newQuantity: string
+  ): void {
+    this.updateQuantityOutput.emit({ productsCart, productCart, newQuantity });
   }
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProductCart } from '../models/product-cart.model';
-import { Product } from '../models/Product.model';
 import { CartService } from '../services/cart.service';
-import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,71 +9,43 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  productsCart: ProductCart[];
-  productsCartArray: ProductCart[][];
-  sellersId: string[];
-  isLoaded = false;
-  constructor(
-    private readonly cartService: CartService,
-    private readonly productService: ProductService
-  ) {}
+  productsCartArray$: Observable<ProductCart[][]>;
+  totalAmount = 0;
+  totalItems = 0;
+  constructor(private readonly cartService: CartService) {}
 
   ngOnInit(): void {
-    const productsIdFromCookie: string = this.cartService.getProducts();
-    const productsId: string[] = this.getProductsIdFromCookie(
-      productsIdFromCookie
-    );
-    if (productsId.length > 0) {
-      this.productsCart = [];
-      productsId.forEach((productId) => {
-        this.productService.getProductById(productId).subscribe((product) => {
-          this.AddProductInCartOrUpdateQuantity(product);
-          if ([...new Set(productsId)].length === this.productsCart.length) {
-            this.groupProductsInCartBySeller();
-          }
+    this.productsCartArray$ = this.cartService.getProducts();
+    this.productsCartArray$.subscribe((productsCartArray) => {
+      productsCartArray.map((productsCart) => {
+        productsCart.map((productCart) => {
+          this.totalAmount = this.totalAmount + productCart.totalPrice;
+          this.totalItems = this.totalItems + productCart.totalPrice;
         });
       });
-    }
-  }
-
-  getProductsIdFromCookie(productsIdFromCookie: string): string[] {
-    if (this.cartService.cartIsEmpty()) {
-      return [];
-    }
-    return productsIdFromCookie.split(';');
-  }
-
-  AddProductInCartOrUpdateQuantity(product: Product): void {
-    let productInCart = { product, quantity: 1 };
-
-    const _product: ProductCart = this.productsCart.find(
-      (p) => p.product.id === product.id
-    );
-    if (!_product) {
-      this.productsCart.push(productInCart);
-    } else {
-      const index = this.productsCart.findIndex(
-        (p) => p.product.id === productInCart.product.id
-      );
-      this.productsCart[index] = {
-        ...productInCart,
-        quantity: this.productsCart[index].quantity + 1,
-      };
-    }
-  }
-
-  groupProductsInCartBySeller(): void {
-    this.sellersId = [
-      ...new Set(this.productsCart.map((p) => p.product.seller.id)),
-    ];
-    let productsInCartBySeller: ProductCart[];
-    this.productsCartArray = [];
-    this.sellersId.forEach((sellerId) => {
-      productsInCartBySeller = this.productsCart.filter(
-        (p) => p.product.seller.id === sellerId
-      );
-      this.productsCartArray.push(productsInCartBySeller);
     });
-    this.isLoaded = true;
+  }
+
+  updateQuantityProductCart({ productsCart, productCart, newQuantity }): void {
+    const _newQuantity = parseInt(newQuantity, 0);
+    const index = productsCart.indexOf(productCart);
+    if (productCart.quantity !== _newQuantity) {
+      productsCart[index] = {
+        ...productCart,
+        quantity: _newQuantity,
+        totalPrice: productCart.product?.price * _newQuantity,
+      };
+      this.cartService.updateQuantityProductCard(
+        productCart.product?.id,
+        _newQuantity
+      );
+    }
+  }
+
+  removeProductFromCart({ productId, productsCart, indexChild }): void {
+    if (indexChild > -1) {
+      this.cartService.removeProduct(productId);
+      productsCart.splice(indexChild, 1);
+    }
   }
 }

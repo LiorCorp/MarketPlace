@@ -3,8 +3,10 @@
         <div class="line"></div>
     </h1>
     <div class="row">
-        <app-product-card-cart class="col-lg-8" *ngIf="isLoaded" [productsCartArray]=productsCartArray>
+        <app-product-card-cart class="col-lg-8" [productsCartArray$]=productsCartArray$
+            (removeProductOutput)="removeProductFromCart($event)"
+            (updateQuantityOutput)="updateQuantityProductCart($event)">
         </app-product-card-cart>
-        <app-overview-cart class="col-lg-4"></app-overview-cart>
+        <app-overview-cart class="col-lg-4" [totalAmount]=totalAmount [totalItems]=totalItems></app-overview-cart>
     </div>
 </div>

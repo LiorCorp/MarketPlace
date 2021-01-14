@@ -1,7 +1,8 @@
 <div class="overview position-sticky">
     <div class="title">{{'cart.order-summary' | translate}}</div>
     <div class="items-number">
-        <span class="items-number-label">{{'cart.total-items' | translate}} :</span><span>0,00 €</span>
+        <span class="items-number-label">{{'cart.total-items' | translate}} :</span><span>{{totalItems |
+            currency}}</span>
     </div>
     <div class="shipping">
         <span class="shipping-label">{{'cart.delivery' | translate}} :</span><span>0,00 €</span>
@@ -18,13 +19,14 @@
     <div class="line"></div>
     <div class="total-amount">
         <span class="total-amount-label">{{'cart.total-amount' | translate}} : </span>
-        <span>0,00 €</span>
+        <span>{{totalAmount | currency}}</span>
     </div>
     <div class="tva">
         <span class="tva-label">TVA inclut.</span><span class="tva-detail">{{'cart.see-details' | translate}}.</span>
     </div>
     <div class="line"></div>
-    <button type="button" class="btn order-now" mat-raised-button>{{'cart.place-order' | translate}}</button>
+    <button type="button" class="btn order-now" mat-raised-button (click)=orderNow()>{{'cart.place-order' |
+        translate}}</button>
     <span class="info-general">{{'cart.general-conditions-sale-message1' | translate}}
         <span class="important">{{'cart.general-conditions-sale-message2' | translate}}</span>,
         {{'cart.general-conditions-sale-message3' | translate}}

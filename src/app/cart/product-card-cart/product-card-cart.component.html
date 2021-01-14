@@ -1,9 +1,9 @@
-<div *ngFor="let productsInCart of productsCartArray">
-    <div class="card" *ngIf="productsInCart.length > 0">
-        <div class="card-content" *ngFor="let productInCart of productsInCart; let index = index">
-            <div class="shipping" *ngIf="index === 0">
+<div *ngFor="let productsCart of productsCartArray$ | async; let indexParent = index">
+    <div class="card" *ngIf="productsCart.length > 0">
+        <div class="card-content" *ngFor="let productCart of productsCart; let indexChild = index">
+            <div class="shipping" *ngIf="indexChild === 0">
                 <div class="estimated-date">{{'cart.estimated-date' | translate}} : 14 mars 2021 - 18 mars 2021</div>
-                <div class="shipped-by">Expédié par {{productInCart.product?.seller?.name}} <img class="flag"
+                <div class="shipped-by">Expédié par {{productCart.product?.seller?.name}} <img class="flag"
                         src="../../../assets/png/flags/france.png" alt="france"></div>
             </div>
             <div class="row detail">
@@ -11,52 +11,56 @@
                     <mat-checkbox class="align-self-center" checked="true">
                     </mat-checkbox>
                     <div class="img-container p-2">
-                        <img class="img-fluid" src="{{productInCart.product?.img}}"
-                            alt="{{productInCart.product?.name}}">
+                        <img class="img-fluid" src="{{productCart.product?.img}}" alt="{{productCart.product?.name}}">
                     </div>
                 </div>
                 <div class="col-md-5 align-self-star d-flex flex-column justify-content-between py-3">
                     <div class="title-and-price">
-                        <div class="title-product">{{productInCart.product?.name}}</div>
-                        <div class="price-product">{{productInCart.product?.price | currency}}
-                            ({{productInCart.product?.price |
+                        <div class="title-product">{{productCart.product?.name}}</div>
+                        <div class="price-product">{{productCart.totalPrice | currency}}
+                            ({{productCart.product?.price |
                             currency}}/{{'cart.unit' | translate}})</div>
                     </div>
                     <div class="row align-self-start flex-nowrap px-3">
                         <div class="quantity col-sm-auto">
                             {{'cart.qty' | translate}}:
-                            <select>
-                                <option>{{productInCart.quantity}}</option>
+                            <select
+                                (change)="updateQuantityProductCart(productsCart, productCart, $event.target.value)">
+                                <option *ngFor="let quantity of quantityMaxByProduct" [value]=productCart.quantity
+                                    [selected]="productCart.quantity==quantity" [value]=quantity>
+                                    {{quantity}}
+                                </option>
                             </select>
                         </div>
                         <span class="vertical-line"></span>
                         <span class="remove-product col-sm-auto align-self-center p-0"
-                            (click)="removeProduct(productInCart.product?.id, productsInCart, index)">{{'cart.remove-product'
+                            (click)="removeProduct(productCart.product?.id, productsCart, indexChild)">{{'cart.remove-product'
                             | translate}}</span>
                     </div>
                 </div>
-                <div class="shipping-method col-md-4 pt-3" *ngIf="index === 0">
+                <div class="shipping-method col-md-4 pt-3" *ngIf="indexChild === 0">
                     <div class="shipping-title">{{'cart.shipping-method' | translate}} :</div>
                     <div class="radio-button row">
-                        <mat-radio-button class="col-sm-auto pr-0" checked="true">
+                        <mat-radio-button class="col-sm-auto pr-0" name="{{indexParent + '' + indexChild}}"
+                            checked="true">
                         </mat-radio-button>
                         <span class="radio-button-label col pl-0">Nom Transporteur 1, Prix, date de livraison estimé /ou
                             garantie.</span>
                     </div>
                     <div class="radio-button row">
-                        <mat-radio-button class="col-sm-auto pr-0">
+                        <mat-radio-button class="col-sm-auto pr-0" name="{{indexParent + '' + indexChild}}">
                         </mat-radio-button>
                         <span class="radio-button-label col pl-0">Nom Transporteur 2, Prix, date de livraison estimé /ou
                             garantie.</span>
                     </div>
                 </div>
             </div>
-            <div class="half-line" [ngClass]='{"line": index === productsInCart.length-1}'></div>
-            <div class="free-shipping-msg" *ngIf="index === productsInCart.length-1">Il manque <span
+            <div class="half-line" [ngClass]='{"line": indexChild === productsCart.length-1}'></div>
+            <div class="free-shipping-msg" *ngIf="indexChild === productsCart.length-1">Il manque <span
                     class="important">100€</span> pour
                 bénéficier de la livraison
                 gratuite chez
-                <span class="important">{{productInCart.product?.seller?.name}}</span>
+                <span class="important">{{productCart.product?.seller?.name}}</span>
             </div>
         </div>
     </div>
