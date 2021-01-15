@@ -1,8 +1,7 @@
-<div class="home">
-    <div>
-        <img class="img-fluid" src="../../assets/png/pub.png" alt="home">
+<div class="container-fluid home">
+    <div class="img-container" *ngIf="productsList$ | async">
+        <img class="img-fluid" src="../../assets/png/home.png" alt="home">
     </div>
-    <!-- <div class="home-banner" *ngIf="productsList$ | async"></div> -->
     <mat-spinner *ngIf="!(productsList$ | async)"></mat-spinner>
     <div>
         <app-home-card [title]="'home.banner.promo'" [icon]="'../../assets/png/promo.png'"

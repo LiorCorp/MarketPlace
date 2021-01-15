@@ -8,18 +8,19 @@
     </div>
     <div class="quantity">{{'product.quantity' | translate}} :
         <select (change)="quantityValue()" [(ngModel)]="selectedQuantity">
-            <option *ngFor="let quantity of quantities">{{quantity}}</option>
+            <option *ngFor="let quantity of quantityMaxByProduct" [value]=quantity>{{quantity}}</option>
         </select>
     </div>
-    <button class="btn add-to-card" (click)=addProductInCart() mat-raised-button>
+    <button class="btn-action add-to-card" [disabled]=!addProductInCartBtnEnabled (click)=addProductInCart()
+        color="primary" mat-raised-button>
         <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">shopping_cart</mat-icon>
         <span class="label">{{'product.addToCart' | translate}}</span>
     </button>
-    <button class="btn automate-purchasing" mat-raised-button>
+    <button class="btn-action automate-purchasing" color="primary" mat-raised-button>
         <mat-icon class="icon" class="material-icons-round" aria-hidden="false">autorenew</mat-icon>
         <span class="label">{{'product.automatePurchasing' | translate}}</span>
     </button>
-    <button class="btn buy-article" mat-raised-button>
+    <button class="btn-action buy-article" color="primary" mat-raised-button>
         <mat-icon class="icon" class="material-icons-round" aria-hidden="false">credit_card</mat-icon>
         <span class="label">{{'product.buyArticle' | translate}}</span>
     </button>
@@ -37,7 +38,7 @@
         <span>{{'product.delivered' | translate}} à Anthony, Toulouse 31200</span>
     </div>
     <div class="line"></div>
-    <button class="btn add-to-my-list" mat-raised-button>
+    <button class="btn-action add-to-my-list" color="primary" mat-raised-button>
         <span class="label">{{'product.addToMyList' | translate}}</span>
         <mat-icon class="material-icons-round" aria-hidden="false">keyboard_arrow_down</mat-icon>
     </button>

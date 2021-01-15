@@ -14,19 +14,24 @@
                         <img class="img-fluid" src="{{productCart.product?.img}}" alt="{{productCart.product?.name}}">
                     </div>
                 </div>
-                <div class="col-md-5 align-self-star d-flex flex-column justify-content-between py-3">
+                <div class="col-md-5 align-self-star d-flex flex-column py-3">
                     <div class="title-and-price">
                         <div class="title-product">{{productCart.product?.name}}</div>
-                        <div class="price-product">{{productCart.totalPrice | currency}}
+                        <div class="price-product">
+                            {{productCart.totalPrice | currency}}
                             ({{productCart.product?.price |
                             currency}}/{{'cart.unit' | translate}})</div>
+                        <div class="discount-price-product" *ngIf="productCart.totalDiscountPrice > 0">
+                            {{productCart.totalDiscountPrice | currency}}
+                            ({{productCart.product?.discountPrice |
+                            currency}}/{{'cart.unit' | translate}})</div>
                     </div>
-                    <div class="row align-self-start flex-nowrap px-3">
+                    <div class="row align-self-start px-3">
                         <div class="quantity col-sm-auto">
                             {{'cart.qty' | translate}}:
                             <select
                                 (change)="updateQuantityProductCart(productsCart, productCart, $event.target.value)">
-                                <option *ngFor="let quantity of quantityMaxByProduct" [value]=productCart.quantity
+                                <option *ngFor="let quantity of quantityMaxByProduct"
                                     [selected]="productCart.quantity==quantity" [value]=quantity>
                                     {{quantity}}
                                 </option>

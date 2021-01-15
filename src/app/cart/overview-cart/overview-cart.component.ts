@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class OverviewCartComponent implements OnInit {
   @Input() totalAmount: number;
   @Input() totalItems: number;
+  @Input() totalSavingsRealized: number;
   constructor() {}
 
   ngOnInit(): void {}

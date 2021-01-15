@@ -7,17 +7,14 @@
   min-height: calc(100vh - 7rem);
   justify-content: center;
 
-  .home-banner {
-    width: 85%;
-    height: 15rem;
-    border-radius: $border-radius;
-    background: linear-gradient(
-      5deg,
-      rgba(82, 210, 172, 1) 0%,
-      rgba(51, 181, 179, 1) 44%,
-      rgba(27, 48, 162, 1) 100%
-    );
-    margin-top: 1.5rem;
+  .img-container {
+    padding: 1.5rem 1rem;
+    .img-fluid {
+      border-radius: $border-radius;
+      box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.44);
+      -webkit-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.44);
+      -moz-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.44);
+    }
   }
 
   mat-spinner {

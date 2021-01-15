@@ -19,16 +19,16 @@ export class CartService {
     return this.cookieService.get('cart');
   }
 
-  getProductsIdFromCookie(cartCookie: string): string[] {
-    if (this.cartIsEmpty()) {
+  getProductsIdFromCookie(productsIdString: string): string[] {
+    if (productsIdString.length === 0 || !this.cartCookieExist()) {
       return [];
     }
-    return cartCookie.split(';');
+    return productsIdString.split(';');
   }
 
   getProducts(): Observable<ProductCart[][]> {
-    const cartCookie: string = this.getCartCookie();
-    const productsId: string[] = this.getProductsIdFromCookie(cartCookie);
+    const productsIdString: string = this.getCartCookie();
+    const productsId: string[] = this.getProductsIdFromCookie(productsIdString);
     return forkJoin(
       productsId.map((id: string) => this.productService.getProductById(id))
     ).pipe(
@@ -43,7 +43,12 @@ export class CartService {
     products.map((product: Product) => {
       const _product = productsCart.find((p) => p.product.id === product.id);
       if (!_product) {
-        productsCart.push({ product, quantity: 1, totalPrice: product.price });
+        productsCart.push({
+          product,
+          quantity: 1,
+          totalPrice: product.price,
+          totalDiscountPrice: product.discountPrice || 0,
+        });
       } else {
         const index = productsCart.indexOf(_product);
         const newQuantity = productsCart[index].quantity + 1;
@@ -51,6 +56,9 @@ export class CartService {
           ..._product,
           quantity: newQuantity,
           totalPrice: _product.product.price * newQuantity,
+          totalDiscountPrice: _product.product.discountPrice
+            ? _product.product.discountPrice * newQuantity
+            : 0,
         };
       }
     });
@@ -63,14 +71,15 @@ export class CartService {
     return productsCartArray;
   }
 
-  addProduct(productId: string): void {
-    if (!this.cookieService.check('cart')) {
+  addProduct(productId: string): boolean {
+    let productsIdString: string = this.getCartCookie();
+    if (productsIdString.length === 0 || !this.cartCookieExist()) {
       this.cookieService.set('cart', productId, 7);
     } else {
-      let productsIdString: string = this.getCartCookie();
       productsIdString = productsIdString + ';' + productId;
       this.cookieService.set('cart', productsIdString, 7);
     }
+    return true;
   }
 
   removeProduct(productId: string): void {
@@ -80,10 +89,6 @@ export class CartService {
     productsId = productsId.filter((id) => id !== productId);
     productsIdString = productsId.join(separator);
     this.cookieService.set('cart', productsIdString, 7);
-  }
-
-  cartIsEmpty(): boolean {
-    return !this.cookieService.check('cart');
   }
 
   updateQuantityProductCard(productId: string, newQuantity: number): void {
@@ -103,6 +108,10 @@ export class CartService {
     }
     productsIdString = productsId.join(separator);
     this.cookieService.set('cart', productsIdString, 7);
+  }
+
+  private cartCookieExist(): boolean {
+    return this.cookieService.check('cart');
   }
 
   private getQuantityProductCart(productId: string): number {
