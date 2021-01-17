@@ -1,6 +1,6 @@
 <div class="container-product">
     <div class="navigation-and-img">
-        <span class="navigation" (click)="back()">Retour</span>
+        <span class="navigation" (click)="goBack()">Retour</span>
         <div class="img-product">
             <img src="{{(product$ | async)?.img}}" alt="{{(product$ | async)?.name}}">
         </div>

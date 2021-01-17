@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ProductCart } from '../../models/product-cart.model';
 
 @Component({
@@ -8,10 +7,11 @@ import { ProductCart } from '../../models/product-cart.model';
   styleUrls: ['./product-card-cart.component.scss'],
 })
 export class ProductCardCartComponent implements OnInit {
-  @Input() productsCartArray$: Observable<ProductCart[][]>;
+  @Input() productsCartArray: ProductCart[][];
   @Output() removeProductOutput = new EventEmitter();
   @Output() updateQuantityOutput = new EventEmitter();
   quantityMaxByProduct: number[];
+  rippleColor = 'rgba(255,255,255,0.3)';
   constructor() {
     this.quantityMaxByProduct = Array(10)
       .fill(0)
@@ -22,10 +22,16 @@ export class ProductCardCartComponent implements OnInit {
 
   removeProduct(
     productId: string,
-    productsCart: ProductCart[],
-    indexChild: number
+    indexParent: number,
+    indexChild: number,
+    productsCartArray: ProductCart[][]
   ): void {
-    this.removeProductOutput.emit({ productId, productsCart, indexChild });
+    this.removeProductOutput.emit({
+      productId,
+      indexParent,
+      indexChild,
+      productsCartArray,
+    });
   }
 
   updateQuantityProductCart(
@@ -33,6 +39,10 @@ export class ProductCardCartComponent implements OnInit {
     productCart: ProductCart,
     newQuantity: string
   ): void {
-    this.updateQuantityOutput.emit({ productsCart, productCart, newQuantity });
+    this.updateQuantityOutput.emit({
+      productsCart,
+      productCart,
+      newQuantity,
+    });
   }
 }

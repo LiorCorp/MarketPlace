@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProductCart } from '../models/product-cart.model';
 import { Product } from '../models/Product.model';
@@ -29,11 +29,74 @@ export class CartService {
   getProducts(): Observable<ProductCart[][]> {
     const productsIdString: string = this.getCartCookie();
     const productsId: string[] = this.getProductsIdFromCookie(productsIdString);
-    return forkJoin(
-      productsId.map((id: string) => this.productService.getProductById(id))
-    ).pipe(
-      map((products: Product[]) => this.getProductsCartBySeller(products))
-    );
+    if (productsId.length > 0) {
+      return forkJoin(
+        productsId.map((id: string) => this.productService.getProductById(id))
+      ).pipe(
+        map((products: Product[]) => this.getProductsCartBySeller(products))
+      );
+    } else {
+      return of([]);
+    }
+  }
+
+  addProduct(productId: string): void {
+    let productsIdString: string = this.getCartCookie();
+    if (productsIdString.length === 0 || !this.cartCookieExist()) {
+      this.updateCartCookie(productId);
+    } else {
+      productsIdString = productsIdString + ';' + productId;
+      this.updateCartCookie(productsIdString);
+    }
+  }
+
+  updateCartCookie(productsIdString: string): void {
+    this.cookieService.set('cart', productsIdString, {
+      expires: 7,
+      path: '/',
+    });
+  }
+
+  removeProduct(productId: string): void {
+    let productsIdString: string = this.getCartCookie();
+    const separator = ';';
+    let productsId: string[] = this.getProductsIdFromCookie(productsIdString);
+    if (productsId.length > 0) {
+      productsId = productsId.filter((id) => id !== productId);
+      productsIdString = productsId.join(separator);
+      this.updateCartCookie(productsIdString);
+    }
+  }
+
+  updateQuantityProductCard(productId: string, newQuantity: number): void {
+    let productsIdString: string = this.getCartCookie();
+    const separator = ';';
+    const productsId: string[] = this.getProductsIdFromCookie(productsIdString);
+    if (productsId.length > 0) {
+      const quantityInCart: number = this.getQuantityProductCart(productId);
+      if (newQuantity > quantityInCart) {
+        for (newQuantity; newQuantity > quantityInCart; newQuantity--) {
+          productsId.push(productId);
+        }
+      } else if (newQuantity < quantityInCart) {
+        for (newQuantity; newQuantity < quantityInCart; newQuantity++) {
+          const index: number = productsId.indexOf(productId);
+          productsId.splice(index, 1);
+        }
+      }
+      productsIdString = productsId.join(separator);
+      this.updateCartCookie(productsIdString);
+    }
+  }
+
+  private cartCookieExist(): boolean {
+    return this.cookieService.check('cart');
+  }
+
+  private getQuantityProductCart(productId: string): number {
+    const productsIdString: string = this.getCartCookie();
+    const productsId: string[] = this.getProductsIdFromCookie(productsIdString);
+    return productsId.reduce((a, v) => (v === productId ? a + 1 : a), 0);
   }
 
   private getProductsCartBySeller(products: Product[]): ProductCart[][] {
@@ -69,54 +132,5 @@ export class CartService {
       productsCartArray.push(productsCartBySeller);
     });
     return productsCartArray;
-  }
-
-  addProduct(productId: string): boolean {
-    let productsIdString: string = this.getCartCookie();
-    if (productsIdString.length === 0 || !this.cartCookieExist()) {
-      this.cookieService.set('cart', productId, 7);
-    } else {
-      productsIdString = productsIdString + ';' + productId;
-      this.cookieService.set('cart', productsIdString, 7);
-    }
-    return true;
-  }
-
-  removeProduct(productId: string): void {
-    let productsIdString: string = this.getCartCookie();
-    const separator = ';';
-    let productsId = productsIdString.split(separator);
-    productsId = productsId.filter((id) => id !== productId);
-    productsIdString = productsId.join(separator);
-    this.cookieService.set('cart', productsIdString, 7);
-  }
-
-  updateQuantityProductCard(productId: string, newQuantity: number): void {
-    let productsIdString: string = this.getCartCookie();
-    const separator = ';';
-    const productsId: string[] = productsIdString.split(separator);
-    const quantityInCart: number = this.getQuantityProductCart(productId);
-    if (newQuantity > quantityInCart) {
-      for (newQuantity; newQuantity > quantityInCart; newQuantity--) {
-        productsId.push(productId);
-      }
-    } else if (newQuantity < quantityInCart) {
-      for (newQuantity; newQuantity < quantityInCart; newQuantity++) {
-        const index: number = productsId.indexOf(productId);
-        productsId.splice(index, 1);
-      }
-    }
-    productsIdString = productsId.join(separator);
-    this.cookieService.set('cart', productsIdString, 7);
-  }
-
-  private cartCookieExist(): boolean {
-    return this.cookieService.check('cart');
-  }
-
-  private getQuantityProductCart(productId: string): number {
-    const separator = ';';
-    const productsId: string[] = this.getCartCookie().split(separator);
-    return productsId.reduce((a, v) => (v === productId ? a + 1 : a), 0);
   }
 }

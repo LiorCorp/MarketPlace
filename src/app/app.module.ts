@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -103,6 +104,7 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatRadioModule,
+    MatRippleModule,
     MatPasswordStrengthModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

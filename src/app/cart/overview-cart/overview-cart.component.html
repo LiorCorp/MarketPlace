@@ -16,7 +16,8 @@
         <mat-label>{{'cart.promo-code' | translate}}</mat-label>
         <input matInput autocomplete="off">
     </mat-form-field>
-    <button type="button" class="btn jackpot" mat-raised-button>{{'cart.use-my-kitty' | translate}} (26,00€)</button>
+    <button type="button" class="btn-action jackpot" mat-raised-button>{{'cart.use-my-kitty' | translate}}
+        (26,00€)</button>
     <div class="line"></div>
     <div class="total-amount">
         <span class="total-amount-label">{{'cart.total-amount' | translate}} : </span>
@@ -26,7 +27,7 @@
         <span class="tva-label">TVA inclut.</span><span class="tva-detail">{{'cart.see-details' | translate}}.</span>
     </div>
     <div class="line"></div>
-    <button type="button" class="btn order-now" mat-raised-button (click)=orderNow()>{{'cart.place-order' |
+    <button type="button" class="btn-action order-now" mat-raised-button (click)=orderNow()>{{'cart.place-order' |
         translate}}</button>
     <span class="info-general">{{'cart.general-conditions-sale-message1' | translate}}
         <span class="important">{{'cart.general-conditions-sale-message2' | translate}}</span>,

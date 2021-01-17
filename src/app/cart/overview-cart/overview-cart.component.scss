@@ -7,7 +7,6 @@
   border-radius: 2.5rem;
   background: #ffffff;
   padding: 1rem 2rem;
-  max-width: 20rem;
   -webkit-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.44);
@@ -72,7 +71,7 @@
     .mat-form-field-outline-thick {
     color: #2574ab;
   }
-  .btn {
+  .btn-action {
     background: linear-gradient(
       70deg,
       rgba(82, 210, 172, 1) 0%,
@@ -82,18 +81,20 @@
     color: #ffffff;
     border-radius: 0.5rem;
     border: 1px solid #ffffff;
+    text-shadow: 0px 0px 2px #000000;
     -webkit-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3);
   }
   .jackpot {
     font-weight: bold;
+    height: 2.5rem;
     @include font-size(1rem);
   }
   .total-amount {
     display: flex;
     justify-content: space-between;
-    @include font-size(1.5rem);
+    @include font-size(1.4rem);
     color: #bf1100;
     font-weight: bold;
     margin-bottom: 0.5rem;

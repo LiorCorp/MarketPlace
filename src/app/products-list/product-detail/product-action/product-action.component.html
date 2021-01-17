@@ -7,8 +7,9 @@
     <div class="desired-colors-value"><span>A1</span><span>A2</span><span>A3</span><span>B1</span><span>C2</span>
     </div>
     <div class="quantity">{{'product.quantity' | translate}} :
-        <select (change)="quantityValue()" [(ngModel)]="selectedQuantity">
-            <option *ngFor="let quantity of quantityMaxByProduct" [value]=quantity>{{quantity}}</option>
+        <select [(ngModel)]="productQuantity">
+            <option *ngFor="let quantity of quantityMaxByProduct" [value]=quantity>
+                {{quantity}}</option>
         </select>
     </div>
     <button class="btn-action add-to-card" [disabled]=!addProductInCartBtnEnabled (click)=addProductInCart()

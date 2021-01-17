@@ -25,7 +25,7 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
-  back(): void {
+  goBack(): void {
     this.location.back();
   }
 }

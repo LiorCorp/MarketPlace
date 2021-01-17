@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ProductCart } from '../models/product-cart.model';
@@ -14,7 +15,10 @@ export class CartComponent implements OnInit, OnDestroy {
   totalAmount = 0;
   totalItems = 0;
   totalSavingsRealized = 0;
-  constructor(private readonly cartService: CartService) {}
+  constructor(
+    private readonly cartService: CartService,
+    private readonly location: Location
+  ) {}
 
   ngOnInit(): void {
     this.productsCartArray$ = this.cartService.getProducts();
@@ -57,8 +61,8 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   updateQuantityProductCart({ productsCart, productCart, newQuantity }): void {
-    const _newQuantity = parseInt(newQuantity, 0);
-    const index = productsCart.indexOf(productCart);
+    const _newQuantity: number = parseInt(newQuantity, 0);
+    const index: number = productsCart.indexOf(productCart);
     if (productCart.quantity !== _newQuantity) {
       productsCart[index] = {
         ...productCart,
@@ -74,10 +78,23 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
-  removeProductFromCart({ productId, productsCart, indexChild }): void {
+  removeProductFromCart({
+    productId,
+    indexParent,
+    indexChild,
+    productsCartArray,
+  }): void {
     if (indexChild > -1) {
+      this.updateTotalPrice(productsCartArray[indexParent][indexChild], 0);
       this.cartService.removeProduct(productId);
-      productsCart.splice(indexChild, 1);
+      productsCartArray[indexParent].splice(indexChild, 1);
+      if (productsCartArray[indexParent].length === 0) {
+        productsCartArray.splice(indexParent, 1);
+      }
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

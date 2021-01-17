@@ -19,7 +19,8 @@ export class ProductActionComponent implements OnInit {
   @Input() product$: Observable<Product>;
   quantityMaxByProduct: number[];
   addProductInCartBtnEnabled = true;
-  selectedQuantity = '1';
+  productId: string;
+  productQuantity = 1;
   constructor(
     private readonly cartService: CartService,
     private readonly route: ActivatedRoute,
@@ -30,17 +31,16 @@ export class ProductActionComponent implements OnInit {
       .map((x, i) => i + 1);
   }
 
-  ngOnInit(): void {}
-
-  quantityValue(): void {
-    console.log(this.selectedQuantity);
+  ngOnInit(): void {
+    this.productId = this.route.snapshot.params.id;
   }
 
   addProductInCart(): void {
     this.addProductInCartBtnEnabled = false;
-    this.addProductInCartBtnEnabled = this.cartService.addProduct(
-      this.route.snapshot.params.id
-    );
+    for (let i = 0; i < this.productQuantity; i++) {
+      this.cartService.addProduct(this.productId);
+    }
+    this.addProductInCartBtnEnabled = true;
     this.snackBar.openFromComponent(SnackbarComponent, {
       data: {
         title: 'Le produit a bien été ajouté dans votre panier',
