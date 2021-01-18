@@ -12,7 +12,7 @@
                 {{quantity}}</option>
         </select>
     </div>
-    <button class="btn-action add-to-card" [disabled]=!addProductInCartBtnEnabled (click)=addProductInCart()
+    <button class="btn-action add-to-cart" [disabled]=!addProductInCartBtnEnabled (click)=addProductInCart()
         color="primary" mat-raised-button>
         <mat-icon class="icon" class="material-icons-outlined" aria-hidden="false">shopping_cart</mat-icon>
         <span class="label">{{'product.addToCart' | translate}}</span>

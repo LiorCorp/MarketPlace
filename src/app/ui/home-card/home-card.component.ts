@@ -1,10 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DEFAULT_CURRENCY_CODE,
-  Inject,
   Input,
-  LOCALE_ID,
   OnInit,
 } from '@angular/core';
 import { Product } from '../../models/Product.model';
@@ -24,10 +21,7 @@ export class HomeCardComponent implements OnInit {
   @Input() end: number;
   @Input() promo = false;
 
-  constructor(
-    @Inject(DEFAULT_CURRENCY_CODE) public currency: string,
-    @Inject(LOCALE_ID) public locale: string
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

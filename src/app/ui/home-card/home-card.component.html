@@ -1,14 +1,23 @@
-<div *ngIf="productsList" class="banner-card" [ngClass]="[backgroundClass]">
-    <a class="title" [routerLink]="['/products']"><img class="icon" src={{icon}}>
+<div *ngIf="productsList" class="banner-card row px-3 py-2 my-3" [ngClass]="[backgroundClass]">
+    <div class="title col mb-2 d-flex align-items-center" [routerLink]="['/products']">
+        <img class="icon mr-2" src={{icon}} alt="{{title | translate}}">
         <span>{{title | translate}}</span>
-    </a>
-    <div class="cards">
-        <div class="card" *ngFor="let product of productsList | slice:start:end">
-            <div class="product-name">{{product.name}}</div>
-            <img class="product-img" src="{{product.img}}">
-            <div class="price">
-                <div class="base" *ngIf="promo">{{product.price | currency}}</div>
-                <div class="discount">{{product.discountPrice | currency}}</div>
+    </div>
+    <div class="row px-3">
+        <div class="cards col-md-2 d-flex justify-content-center"
+            *ngFor="let product of productsList | slice:start:end">
+            <div class="card d-flex p-2 justify-content-between">
+                <div class="product-name px-2">{{product.name}}</div>
+                <div class="img-container p-2">
+                    <img class="img-fluid product-img" src="{{product.img}}">
+                </div>
+                <div class="price d-flex justify-content-center flex-wrap">
+                    <div class="base px-1" *ngIf="promo">{{product.price | currency}}</div>
+                    <div class="discount px-1">{{product.discountPrice | currency}}</div>
+                </div>
+                <button class="add-to-cart mt-2 px-0" color="primary" mat-raised-button>
+                    <span class="label">{{'product.see-details' | translate}}</span>
+                </button>
             </div>
         </div>
     </div>

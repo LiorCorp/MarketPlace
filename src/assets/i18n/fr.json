@@ -122,7 +122,7 @@
       "advice-practitioners": {
         "title": "L'avis des praticiens",
         "icon": "feedback",
-        "descripton": "Profitez des notes et des commentaires de vos confrères afin de vous assurer de faire les bons choix."
+        "description": "Profitez des notes et des commentaires de vos confrères afin de vous assurer de faire les bons choix."
       }
     }
   },
@@ -152,7 +152,8 @@
     "piece": "pièce",
     "delivery-under": "Livraison sous",
     "days": "jours",
-    "see-offers": "Voir les offres"
+    "see-offers": "Voir les offres",
+    "see-details": "Voir détail"
   },
   "filter": {
     "promo": "Promotions",
