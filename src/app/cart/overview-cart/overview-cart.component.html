@@ -12,8 +12,12 @@
             currency}}</span>
     </div>
     <div class="line"></div>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="promo-code position-relative" appearance="outline">
         <mat-label>{{'cart.promo-code' | translate}}</mat-label>
+        <button type="button" class="confirm-promo-code" matRipple [matRippleUnbounded]=false
+            [matRippleColor]="rippleColor">
+            <mat-icon class="material-icons-round" aria-hidden="false">done</mat-icon>
+        </button>
         <input matInput autocomplete="off">
     </mat-form-field>
     <button type="button" class="btn-action jackpot" mat-raised-button>{{'cart.use-my-kitty' | translate}}

@@ -9,6 +9,7 @@ export class OverviewCartComponent implements OnInit {
   @Input() totalAmount: number;
   @Input() totalItems: number;
   @Input() totalSavingsRealized: number;
+  rippleColor = 'rgba(255,255,255,0.3)';
   constructor() {}
 
   ngOnInit(): void {}

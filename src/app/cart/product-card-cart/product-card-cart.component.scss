@@ -153,6 +153,9 @@
       .radio-button {
         margin-bottom: 0.3rem;
         &::ng-deep {
+          .mat-radio-container {
+            align-self: flex-start;
+          }
           .mat-radio-inner-circle {
             background: linear-gradient(
               218deg,
@@ -170,6 +173,7 @@
         }
         .radio-button-label {
           font-weight: bold;
+          white-space: normal;
           @include font-size(0.9rem);
         }
       }

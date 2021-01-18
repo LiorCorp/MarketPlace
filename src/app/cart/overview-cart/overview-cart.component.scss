@@ -38,6 +38,32 @@
     margin: 0.5rem 0;
   }
 
+  .promo-code {
+    ::ng-deep.mat-input-element {
+      padding-right: 2rem;
+    }
+    .confirm-promo-code {
+      position: absolute;
+      border-radius: 5px;
+      right: -0.7rem;
+      bottom: 0;
+      outline: none;
+      height: 2.5rem;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      overflow: hidden;
+      background: linear-gradient(
+        70deg,
+        rgba(82, 210, 172, 1) 0%,
+        rgba(51, 153, 173, 1) 33%,
+        rgba(27, 48, 162, 1) 100%
+      );
+      mat-icon {
+        font-weight: bold;
+      }
+    }
+  }
+
   mat-form-field {
     margin-bottom: 0.3rem;
     ::ng-deep .mat-form-field-outline {
@@ -78,6 +104,7 @@
       rgba(51, 153, 173, 1) 33%,
       rgba(27, 48, 162, 1) 100%
     );
+    outline: none;
     color: #ffffff;
     border-radius: 0.5rem;
     border: 1px solid #ffffff;
