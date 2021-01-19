@@ -1,35 +1,39 @@
-<mat-spinner *ngIf="!(productsList$ | async)"></mat-spinner>
-<mat-card class="product-card" *ngFor="let product of productsList$ | async">
-    <mat-card-header>
-        <mat-card-title>{{product.name}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="{{product.img}}">
-    <mat-card-content>
-        <p>
-            <span class="product-price">{{product.price | currency}}</span>
-            <span>/ pcs</span>
-        </p>
-        <p>
-            {{'product.from' | translate}} 10 {{'product.piece' | translate}}
-        </p>
-        <div class="rating">
-            <app-rating [fullStar]=4></app-rating>
-            <p>42 {{'product.advice' | translate}}</p>
-        </div>
-        <div class="seller">
-            {{'product.seller' | translate}} : {{product.seller?.name}}
-            <img class="flag" src="../../../assets/png/flags/france.png" alt="france">
-        </div>
-        <div>
-            {{'product.brand' | translate}} : {{product.brand?.name}}
-        </div>
-        <p class="delivery-time">
-            {{'product.delivery-under' | translate}} 3 à 5 {{'product.days' | translate}}
-            <mat-icon class="material-icons-outlined" aria-hidden="false">local_shipping</mat-icon>
-        </p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button [routerLink]="['/product', product.name, product.id]">{{'product.see-offers' |
-            translate}}</button>
-    </mat-card-actions>
-</mat-card>
+<div class="d-flex flex-wrap justify-content-center">
+    <div class="p-3" *ngFor="let product of productsList">
+        <mat-card class="product-card">
+            <mat-card-header>
+                <mat-card-title>{{product.name}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="{{product.img}}">
+            <mat-card-content class="mb-2">
+                <div>
+                    <span class="product-price">{{product.price | currency}}</span>
+                    <span>/ pcs</span>
+                </div>
+                <div>
+                    {{'product.from' | translate}} 10 {{'product.piece' | translate}}
+                </div>
+                <div class="rating d-flex">
+                    <app-rating class="pr-1" [fullStar]=4></app-rating>
+                    <div>42 {{'product.advice' | translate}}</div>
+                </div>
+                <div class="seller">
+                    {{'product.seller' | translate}} : {{product.seller?.name}}
+                    <img class="flag pl-1" src="../../../assets/png/flags/france.png" alt="france">
+                </div>
+                <div>
+                    {{'product.brand' | translate}} : {{product.brand?.name}}
+                </div>
+                <div class="delivery-time">
+                    {{'product.delivery-under' | translate}} 3 à 5 {{'product.days' | translate}}
+                    <mat-icon class="material-icons-outlined" aria-hidden="false">local_shipping</mat-icon>
+                </div>
+            </mat-card-content>
+            <mat-card-actions class="p-0">
+                <button class="see-offers px-0" mat-raised-button
+                    [routerLink]="['/product', product.name, product.id]">{{'product.see-offers' |
+                    translate}}</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

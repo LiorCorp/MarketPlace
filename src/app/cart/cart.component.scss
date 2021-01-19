@@ -7,13 +7,14 @@
   color: #696969;
   .goback {
     cursor: pointer;
+    font-weight: bold;
     text-decoration: underline;
   }
 }
 .title-card {
   text-align: center;
   font-weight: bold;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   padding: 0 10rem;
 
   .line {

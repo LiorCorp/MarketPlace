@@ -4,7 +4,6 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from '../../models/Product.model';
 
 @Component({
@@ -14,7 +13,7 @@ import { Product } from '../../models/Product.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsCardComponent implements OnInit {
-  @Input() productsList$: Observable<Product[]>;
+  @Input() productsList: Product[];
   products: Product[] = [];
 
   constructor() {}

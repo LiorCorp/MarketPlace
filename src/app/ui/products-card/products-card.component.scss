@@ -7,22 +7,20 @@ mat-spinner {
 .product-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
   border-radius: $border-radius;
-  width: 190px;
+  width: 14rem;
   color: $primary-color;
   -webkit-box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-  margin: 0 1rem 1.5rem 0;
-  position: static;
 
   mat-card-header {
     justify-content: center;
     mat-card-title {
       font-weight: bold;
       text-align: center;
+      @include font-size(1.2rem);
     }
   }
 
@@ -31,20 +29,13 @@ mat-spinner {
     flex-direction: column;
     height: 100%;
     justify-content: flex-end;
-    margin: 0;
-
-    p {
-      margin: 0;
-    }
+    @include font-size(0.9rem);
 
     .seller {
       display: flex;
       align-items: center;
-      margin-top: 0.3rem;
-
       .flag {
-        width: 0.9rem;
-        margin-left: 0.3rem;
+        width: 1rem;
       }
     }
 
@@ -56,14 +47,7 @@ mat-spinner {
 
     .product-price {
       font-weight: bold;
-      font-size: x-large;
-    }
-
-    .rating {
-      display: flex;
-      app-rating {
-        padding-right: 0.3rem;
-      }
+      @include font-size(1.4rem);
     }
   }
 
@@ -71,10 +55,23 @@ mat-spinner {
     display: flex;
     justify-content: center;
 
-    button {
+    .see-offers {
       background: linear-gradient(0deg, #52d2ac 0%, #33b5b3 0%, #1b30a2 100%);
       color: #ffffff;
+      @include font-size(1rem);
+      outline: none;
+      width: 53%;
+      height: 2rem;
+      align-self: center;
       font-weight: bold;
+      border-radius: 0.5rem;
+      text-shadow: 0px 0px 2px #000000;
+      box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      -moz-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     }
   }
 }
