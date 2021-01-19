@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  QuerySnapshot,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -41,7 +40,7 @@ export class SellerService {
     });
   }
 
-  getSellerById(sellerId: string): Observable<Seller> {
+  getSellerByIdOld(sellerId: string): Observable<Seller> {
     return this.sellerCollection
       .doc(sellerId)
       .valueChanges({ idField: 'id' })
@@ -53,7 +52,7 @@ export class SellerService {
       );
   }
 
-  getAllSeller(): Observable<QuerySnapshot<Seller>> {
-    return this.sellerCollection.get();
+  getSellerById(sellerId: string): Observable<Seller> {
+    return this.sellerCollection.doc(sellerId).valueChanges({ idField: 'id' });
   }
 }

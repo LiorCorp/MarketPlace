@@ -24,6 +24,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +44,7 @@ import { ProductActionComponent } from './products-list/product-detail/product-a
 import { ProductDetailComponent } from './products-list/product-detail/product-detail.component';
 import { ProductOverviewComponent } from './products-list/product-detail/product-overview/product-overview.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { AppState } from './store/app-state/app.state';
 import { BubbleMenuComponent } from './ui/bubble-menu/bubble-menu.component';
 import { FilterComponent } from './ui/filter/filter.component';
 import { HamburgerIconComponent } from './ui/hamburger-icon/hamburger-icon.component';
@@ -82,6 +85,10 @@ import { SnackbarComponent } from './ui/snackbar/snackbar.component';
     OverviewCartComponent,
   ],
   imports: [
+    NgxsModule.forRoot([AppState], {
+      developmentMode: !environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
