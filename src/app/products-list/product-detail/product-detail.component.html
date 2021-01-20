@@ -2,9 +2,9 @@
     <div class="navigation-and-img">
         <span class="navigation" (click)="goBack()">Retour</span>
         <div class="img-product">
-            <img src="{{(product$ | async)?.img}}" alt="{{(product$ | async)?.name}}">
+            <img src="{{product?.img}}" alt="{{product?.name}}">
         </div>
     </div>
-    <app-product-overview [product$]=product$></app-product-overview>
-    <app-product-action [product$]=product$></app-product-action>
+    <app-product-overview [product]=product></app-product-overview>
+    <app-product-action [product]=product></app-product-action>
 </div>

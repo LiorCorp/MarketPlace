@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  QuerySnapshot,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -41,7 +40,7 @@ export class BrandService {
     });
   }
 
-  getBrandById(brandId: string): Observable<Brand> {
+  getBrandByIdOld(brandId: string): Observable<Brand> {
     return this.brandCollection
       .doc(brandId)
       .valueChanges({ idField: 'id' })
@@ -53,7 +52,7 @@ export class BrandService {
       );
   }
 
-  getAllBrand(): Observable<QuerySnapshot<Brand>> {
-    return this.brandCollection.get();
+  getBandById(brandId: string): Observable<Brand> {
+    return this.brandCollection.doc(brandId).valueChanges({ idField: 'id' });
   }
 }

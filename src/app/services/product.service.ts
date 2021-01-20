@@ -39,7 +39,7 @@ export class ProductService {
           return forkJoin({
             product: of(_product),
             seller: this.sellerService.getSellerByIdOld(_product.sellerId),
-            brand: this.brandService.getBrandById(_product.brandId),
+            brand: this.brandService.getBrandByIdOld(_product.brandId),
             img: this.getProductImg(_product.img),
           }).pipe(
             map((data) => {
@@ -71,7 +71,7 @@ export class ProductService {
           ),
           combineLatest(
             products.map((product: ProductData) =>
-              this.brandService.getBrandById(product.brandId)
+              this.brandService.getBrandByIdOld(product.brandId)
             )
           ),
           combineLatest(

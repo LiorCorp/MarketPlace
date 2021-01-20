@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { Product } from '../models/Product.model';
+import { AppState } from '../store/app-state/app.state';
 import { ProductService } from './../services/product.service';
 
 @Component({
@@ -8,7 +11,8 @@ import { ProductService } from './../services/product.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  productsList: Product[];
+  @Select(AppState.products) productsList$: Observable<Product[]>;
+
   advantages = [
     {
       title: 'home.advantages.money-gain.title',
@@ -39,9 +43,5 @@ export class HomeComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe((products) => {
-      this.productsList = products;
-    });
-  }
+  ngOnInit(): void {}
 }

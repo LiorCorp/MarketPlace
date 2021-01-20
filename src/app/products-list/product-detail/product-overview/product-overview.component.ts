@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/Product.model';
 
 @Component({
@@ -8,7 +7,7 @@ import { Product } from 'src/app/models/Product.model';
   styleUrls: ['./product-overview.component.scss'],
 })
 export class ProductOverviewComponent implements OnInit {
-  @Input() product$: Observable<Product>;
+  @Input() product: Product;
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,5 +1,5 @@
 <div class="product-action">
-    <div class="price">{{(product$ | async)?.price | currency}} TTC</div>
+    <div class="price">{{product?.price | currency}} TTC</div>
     <div class="delivered"><span class="date">{{'product.delivered' | translate}} : 3 - 5 déc. </span><span
             class="detail">Détails</span></div>
     <div class="line"></div>
@@ -31,7 +31,7 @@
         <span class="label">{{'product.secureTransaction' | translate}}</span>
     </div>
     <div class="shipped-and-sold"><span class="label">{{'product.shippedAndSoldBy' | translate}} : </span><span
-            class="brand">{{(product$ | async)?.brand?.name}}</span></div>
+            class="brand">{{product?.brand?.name}}</span></div>
     <div class="guarantee">{{'product.guarantee' | translate}}</div>
     <div class="line"></div>
     <div class="address">

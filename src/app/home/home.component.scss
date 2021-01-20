@@ -1,12 +1,6 @@
 @import "../style/style.scss";
 
 .home {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-height: calc(100vh - 7rem);
-  justify-content: center;
-
   .img-container {
     padding: 1.5rem 1rem;
     .img-fluid {
@@ -17,11 +11,8 @@
     }
   }
 
-  mat-spinner {
-    align-self: center;
-  }
-
   .advantages {
+    margin-bottom: 1rem;
     .advantage {
       display: flex;
       flex-direction: column;
@@ -45,4 +36,10 @@
       }
     }
   }
+}
+
+mat-spinner {
+  position: absolute;
+  top: 45%;
+  left: 45%;
 }

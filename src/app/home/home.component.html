@@ -1,41 +1,47 @@
-<div class="container-fluid home">
-    <div class="img-container" *ngIf="productsList">
-        <img class="img-fluid" src="../../assets/png/home.png" alt="home">
-    </div>
-    <mat-spinner *ngIf="!productsList"></mat-spinner>
-
-    <div class="advantages row justify-content-center" *ngIf="productsList">
-        <div class="advantage col-sm-2" *ngFor="let advantage of advantages">
-            <img class="icon" [src]="advantage.icon">
-            <div class="title py-3">{{(advantage.title | translate) | uppercase}}</div>
-            <div class="description">{{advantage.description | translate}}</div>
+<div *ngIf="productsList$ | async as productsList">
+    <div class="container-fluid home" *ngIf="productsList.length > 0; else loading">
+        <div class="img-container">
+            <img class="img-fluid" src="../../assets/png/home.png" alt="home">
         </div>
-    </div>
 
-    <app-home-card [title]="'home.banner.promo'" [icon]="'../../assets/png/promo.png'"
-        [backgroundClass]="'backgournd-card-1'" [productsList]="productsList" [start]=0 [end]=6 [promo]=true>
-    </app-home-card>
-    <app-home-card [title]="'home.banner.ranking'" [icon]="'../../assets/png/ranking.png'"
-        [backgroundClass]="'backgournd-card-2'" [productsList]="productsList" [start]=6 [end]=12>
-    </app-home-card>
-    <app-home-card [title]="'home.banner.top-selection'" [icon]="'../../assets/png/top-selection.png'"
-        [backgroundClass]="'backgournd-card-1'" [productsList]="productsList" [start]=12 [end]=18>
-    </app-home-card>
-    <app-home-card [title]="'home.banner.news'" [icon]="'../../assets/png/new.png'"
-        [backgroundClass]="'backgournd-card-2'" [productsList]="productsList" [start]=18 [end]=24>
-    </app-home-card>
-    <app-home-card [title]="'home.banner.best-sellers'" [icon]="'../../assets/png/shop.png'"
-        [backgroundClass]="'backgournd-card-1'" [productsList]="productsList" [start]=24 [end]=30>
-    </app-home-card>
-    <app-home-card [title]="'home.banner.eco'" [icon]="'../../assets/png/eco.png'"
-        [backgroundClass]="'backgournd-card-2'" [productsList]="productsList" [start]=30 [end]=36>
-    </app-home-card>
+        <div class="advantages row justify-content-center">
+            <div class="advantage col-sm-2" *ngFor="let advantage of advantages">
+                <img class="icon" [src]="advantage.icon">
+                <div class="title py-3">{{(advantage.title | translate) | uppercase}}</div>
+                <div class="description">{{advantage.description | translate}}</div>
+            </div>
+        </div>
 
-    <div class="advantages row justify-content-center" *ngIf="productsList">
-        <div class="advantage col-sm-2" *ngFor="let advantage of advantages">
-            <img class="icon" [src]="advantage.icon">
-            <div class="title py-3">{{(advantage.title | translate) | uppercase}}</div>
-            <div class="description">{{advantage.description | translate}}</div>
+        <app-home-card [title]="'home.banner.promo'" [icon]="'../../assets/png/promo.png'"
+            [backgroundClass]="'backgournd-card-1'" [productsList]="productsList" [start]=0 [end]=6 [promo]=true>
+        </app-home-card>
+        <app-home-card [title]="'home.banner.ranking'" [icon]="'../../assets/png/ranking.png'"
+            [backgroundClass]="'backgournd-card-2'" [productsList]="productsList" [start]=6 [end]=12>
+        </app-home-card>
+        <app-home-card [title]="'home.banner.top-selection'" [icon]="'../../assets/png/top-selection.png'"
+            [backgroundClass]="'backgournd-card-1'" [productsList]="productsList" [start]=12 [end]=18>
+        </app-home-card>
+        <app-home-card [title]="'home.banner.news'" [icon]="'../../assets/png/new.png'"
+            [backgroundClass]="'backgournd-card-2'" [productsList]="productsList" [start]=18 [end]=24>
+        </app-home-card>
+        <app-home-card [title]="'home.banner.best-sellers'" [icon]="'../../assets/png/shop.png'"
+            [backgroundClass]="'backgournd-card-1'" [productsList]="productsList" [start]=24 [end]=30>
+        </app-home-card>
+        <app-home-card [title]="'home.banner.eco'" [icon]="'../../assets/png/eco.png'"
+            [backgroundClass]="'backgournd-card-2'" [productsList]="productsList" [start]=30 [end]=36>
+        </app-home-card>
+
+        <div class="advantages row justify-content-center">
+            <div class="advantage col-sm-2" *ngFor="let advantage of advantages">
+                <img class="icon" [src]="advantage.icon">
+                <div class="title py-3">{{(advantage.title | translate) | uppercase}}</div>
+                <div class="description">{{advantage.description | translate}}</div>
+            </div>
         </div>
     </div>
 </div>
+
+
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

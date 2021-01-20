@@ -5,7 +5,6 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { SnackbarComponent } from 'src/app/ui/snackbar/snackbar.component';
 import { Product } from '../../../models/Product.model';
 import { CartService } from './../../../services/cart.service';
@@ -16,7 +15,7 @@ import { CartService } from './../../../services/cart.service';
   styleUrls: ['./product-action.component.scss'],
 })
 export class ProductActionComponent implements OnInit {
-  @Input() product$: Observable<Product>;
+  @Input() product: Product;
   quantityMaxByProduct: number[];
   addProductInCartBtnEnabled = true;
   productId: string;
