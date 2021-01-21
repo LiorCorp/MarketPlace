@@ -26,7 +26,7 @@ export class HomeGuard implements CanActivate {
     | boolean
     | UrlTree {
     const products: Product[] = this.store.selectSnapshot(AppState.products);
-    if (products.length === 0) {
+    if (!products) {
       this.store.dispatch(FetchProducts);
     }
     return true;
