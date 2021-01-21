@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/Product.model';
-import { FetchAllProducts } from 'src/app/store/app-state/app.actions';
+import { FetchCurrentProduct } from 'src/app/store/app-state/app.actions';
 import { AppState } from 'src/app/store/app-state/app.state';
 
 @Injectable({
@@ -25,9 +25,9 @@ export class ProductDetailGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const products: Product[] = this.store.selectSnapshot(AppState.products);
-    if (products.length === 0) {
-      this.store.dispatch(FetchAllProducts);
+    const products: Product = this.store.selectSnapshot(AppState.product);
+    if (!products) {
+      this.store.dispatch(new FetchCurrentProduct(route.params.id));
     }
     return true;
   }

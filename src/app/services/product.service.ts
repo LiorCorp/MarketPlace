@@ -27,7 +27,19 @@ export class ProductService {
     private readonly brandService: BrandService
   ) {}
 
-  getProductById(productId: string): Observable<Product> {
+  getProductById(productId: string): Observable<ProductData> {
+    return this.productCollection.doc(productId).valueChanges({
+      idField: 'id',
+    });
+  }
+
+  getProducts(): Observable<ProductData[]> {
+    return this.productCollection.valueChanges({
+      idField: 'id',
+    });
+  }
+
+  getProductByIdOld(productId: string): Observable<Product> {
     return this.productCollection
       .doc(productId)
       .valueChanges({
@@ -59,8 +71,8 @@ export class ProductService {
       );
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.getProductsWithValueChanges().pipe(
+  getProductsOld(): Observable<Product[]> {
+    return this.getProducts().pipe(
       switchMap((products: ProductData[]) => {
         return combineLatest([
           of(products),
@@ -95,12 +107,6 @@ export class ProductService {
         });
       })
     );
-  }
-
-  getProductsWithValueChanges(): Observable<ProductData[]> {
-    return this.productCollection.valueChanges({
-      idField: 'id',
-    });
   }
 
   async getProductImg(img: string): Promise<string> {

@@ -1,4 +1,4 @@
-<div class="container-product">
+<div class="container-product" *ngIf="product$ | async as product;else loading">
     <div class="navigation-and-img">
         <span class="navigation" (click)="goBack()">Retour</span>
         <div class="img-product">
@@ -8,3 +8,7 @@
     <app-product-overview [product]=product></app-product-overview>
     <app-product-action [product]=product></app-product-action>
 </div>
+
+<ng-template #loading>
+    <mat-spinner></mat-spinner>
+</ng-template>

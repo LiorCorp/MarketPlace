@@ -1,10 +1,8 @@
-<div *ngIf="(productsList$ | async) as productsList">
-    <div class="container-fluid" *ngIf="productsList.length > 0; else loading">
-        <div class="row mt-3">
-            <app-filter class="col-sm-auto d-flex justify-content-end pl-5 pt-3"></app-filter>
-            <app-products-card class="col pl-0" [productsList]=productsList>
-            </app-products-card>
-        </div>
+<div class="container-fluid" *ngIf="(productsList$ | async) as productsList; else loading">
+    <div class="row mt-3">
+        <app-filter class="col-sm-auto d-flex justify-content-end pl-5 pt-3"></app-filter>
+        <app-products-card class="col pl-0" [productsList]=productsList>
+        </app-products-card>
     </div>
 </div>
 

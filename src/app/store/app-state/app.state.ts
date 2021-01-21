@@ -10,14 +10,16 @@ import { ProductData } from './../../models/product.data.model';
 import { BrandService } from './../../services/brand.service';
 import { SellerService } from './../../services/seller.service';
 import {
-  FetchAllProducts,
   FetchBrandById,
-  FetchProductImgById,
+  FetchCurrentProduct,
+  FetchProductImg,
+  FetchProducts,
   FetchSellerById,
 } from './app.actions';
 
 export interface AppStateModel {
   products: ProductData[];
+  product: ProductData;
   sellers: Seller[];
   brands: Brand[];
   productImages: string[];
@@ -26,7 +28,8 @@ export interface AppStateModel {
 @State<AppStateModel>({
   name: 'appState',
   defaults: {
-    products: [],
+    products: null,
+    product: null,
     sellers: [],
     brands: [],
     productImages: [],
@@ -53,63 +56,131 @@ export class AppState {
       brandsId.length === state.brands.length &&
       state.products.length === state.productImages.length
     ) {
-      return this.mapProductDataToProduct(state);
+      return this.mapProductsDataToProducts(state);
     }
-    return [];
+    return null;
   }
 
-  static mapProductDataToProduct(state: AppStateModel): Product[] {
+  @Selector()
+  static product(state: AppStateModel): Product {
+    return this.mapProductDataToProduct(state, state.product);
+  }
+
+  static mapProductsDataToProducts(state: AppStateModel): Product[] {
     const products: Product[] = [];
     state.products.map((_product: ProductData) => {
-      let product: Product;
-      const seller: Seller = state.sellers.find(
-        (s) => s.id === _product.sellerId
-      );
-      const brand: Brand = state.brands.find((b) => b.id === _product.brandId);
-      const img: string = state.productImages.find((pi) =>
-        pi.includes(_product.img)
-      );
-      product = {
-        id: _product.id,
-        name: _product.name,
-        price: _product.price,
-        discountPrice: _product.discountPrice,
-        seller,
-        brand,
-        img,
-      };
+      const product = this.mapProductDataToProduct(state, _product);
       products.push(product);
     });
     return products;
   }
 
-  @Action(FetchAllProducts)
-  fetchAll({
+  static mapProductDataToProduct(
+    state: AppStateModel,
+    _product: ProductData
+  ): Product {
+    const seller: Seller = state.sellers.find(
+      (s) => s.id === _product.sellerId
+    );
+    const brand: Brand = state.brands.find((b) => b.id === _product.brandId);
+    const img: string = state.productImages.find((pi) =>
+      pi.includes(_product.img)
+    );
+    return {
+      id: _product.id,
+      name: _product.name,
+      price: _product.price,
+      discountPrice: _product.discountPrice,
+      seller,
+      brand,
+      img,
+    } as Product;
+  }
+
+  @Action(FetchProducts)
+  fetchProducts({
     getState,
     patchState,
     dispatch,
-  }: StateContext<AppStateModel>): Observable<Product[]> {
-    return this.productService.getProductsWithValueChanges().pipe(
+  }: StateContext<AppStateModel>): Observable<ProductData[]> {
+    return this.productService.getProducts().pipe(
       take(1),
       tap((products: ProductData[]) => {
         const sellersId: string[] = [
           ...new Set(products.map((p) => p.sellerId)),
         ];
         const brandsId: string[] = [...new Set(products.map((p) => p.brandId))];
-        const imgsId: string[] = [...new Set(products.map((p) => p.img))];
-        sellersId.map((sellerId: string) =>
-          dispatch(new FetchSellerById(sellerId))
-        );
-        brandsId.map((brandId: string) =>
-          dispatch(new FetchBrandById(brandId))
-        );
-        imgsId.map((img) => dispatch(new FetchProductImgById(img)));
+        sellersId.map((sellerId: string) => {
+          const seller = getState().sellers.find((s) => s.id === sellerId);
+          if (!seller) {
+            dispatch(new FetchSellerById(sellerId));
+          }
+        });
+        brandsId.map((brandId: string) => {
+          const brand = getState().brands.find((b) => b.id === brandId);
+          if (!brand) {
+            dispatch(new FetchBrandById(brandId));
+          }
+        });
+        products.map((product) => {
+          const img = getState().productImages.find((pi) =>
+            pi.includes(product.img)
+          );
+          if (!img) {
+            dispatch(new FetchProductImg(product.img));
+          }
+        });
         patchState({
           ...getState(),
           products,
         });
       })
     );
+  }
+
+  @Action(FetchCurrentProduct)
+  getProductById(
+    { getState, patchState, dispatch }: StateContext<AppStateModel>,
+    action: FetchCurrentProduct
+  ): Observable<ProductData> {
+    return this.productService.getProductById(action.productId).pipe(
+      take(1),
+      tap((product: ProductData) => {
+        const img = getState().productImages.find((pi) =>
+          pi.includes(product.img)
+        );
+        const seller = getState().sellers.find(
+          (s) => s.id === product.sellerId
+        );
+        const brand = getState().brands.find((b) => b.id === product.brandId);
+        if (!img) {
+          dispatch(new FetchProductImg(product.img));
+        }
+        if (!seller) {
+          dispatch(new FetchSellerById(product.sellerId));
+        }
+        if (!brand) {
+          dispatch(new FetchBrandById(product.brandId));
+        }
+        patchState({
+          ...getState(),
+          product,
+        });
+      })
+    );
+  }
+
+  @Action(FetchProductImg)
+  async getProductImg(
+    { getState, patchState }: StateContext<AppStateModel>,
+    action: FetchProductImg
+  ): Promise<void | string> {
+    return await this.productService.getProductImg(action.img).then((img) => {
+      patchState({
+        ...getState(),
+        productImages: [...getState().productImages, img],
+      });
+    });
   }
 
   @Action(FetchSellerById)
@@ -142,18 +213,5 @@ export class AppState {
         });
       })
     );
-  }
-
-  @Action(FetchProductImgById)
-  async getProductImg(
-    { getState, patchState }: StateContext<AppStateModel>,
-    action: FetchProductImgById
-  ): Promise<void | string> {
-    return await this.productService.getProductImg(action.img).then((img) => {
-      patchState({
-        ...getState(),
-        productImages: [...getState().productImages, img],
-      });
-    });
   }
 }

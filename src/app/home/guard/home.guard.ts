@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/Product.model';
-import { FetchAllProducts } from '../../store/app-state/app.actions';
+import { FetchProducts } from '../../store/app-state/app.actions';
 import { AppState } from '../../store/app-state/app.state';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class HomeGuard implements CanActivate {
     | UrlTree {
     const products: Product[] = this.store.selectSnapshot(AppState.products);
     if (products.length === 0) {
-      this.store.dispatch(FetchAllProducts);
+      this.store.dispatch(FetchProducts);
     }
     return true;
   }

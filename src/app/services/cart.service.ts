@@ -15,23 +15,14 @@ export class CartService {
     private readonly productService: ProductService
   ) {}
 
-  getCartCookie(): string {
-    return this.cookieService.get('cart');
-  }
-
-  getProductsIdFromCookie(productsIdString: string): string[] {
-    if (productsIdString.length === 0 || !this.cartCookieExist()) {
-      return [];
-    }
-    return productsIdString.split(';');
-  }
-
   getProducts(): Observable<ProductCart[][]> {
     const productsIdString: string = this.getCartCookie();
     const productsId: string[] = this.getProductsIdFromCookie(productsIdString);
     if (productsId.length > 0) {
       return forkJoin(
-        productsId.map((id: string) => this.productService.getProductById(id))
+        productsId.map((id: string) =>
+          this.productService.getProductByIdOld(id)
+        )
       ).pipe(
         map((products: Product[]) => this.getProductsCartBySeller(products))
       );
@@ -87,6 +78,17 @@ export class CartService {
       productsIdString = productsId.join(separator);
       this.updateCartCookie(productsIdString);
     }
+  }
+
+  private getCartCookie(): string {
+    return this.cookieService.get('cart');
+  }
+
+  getProductsIdFromCookie(productsIdString: string): string[] {
+    if (productsIdString.length === 0 || !this.cartCookieExist()) {
+      return [];
+    }
+    return productsIdString.split(';');
   }
 
   private cartCookieExist(): boolean {
